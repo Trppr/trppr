@@ -1,38 +1,38 @@
-const express = require('express');
-const router = express.Router();
+module.exports = (app, express) => {
 
-router.get('/dummyData', (req, res) => {
-  res.send(200, {
-    hello: 'world'
+  app.get('/dummyData', (req, res) => {
+    res.status(200)
+    .body({
+      hello: 'world'
+    });
   });
-});
 
-router.get('/recent', (req, res) => {
-  //gets most recent trips
-});
+  app.get('/recent', (req, res) => {
+    //gets most recent trips
+  });
 
-router.post('/signup', (req, res) => {
-  //create new user
-});
+  app.post('/signup', (req, res) => {
+    //create new user
+  });
 
-router.post('/login', (req, res) => {
-  //gives user acess to account
-});
+  app.post('/login', (req, res) => {
+    //gives user acess to account
+  });
 
-router.get('/search', (req, res) => {
-  //uses search params to get revelent results
-});
+  app.get('/search', (req, res) => {
+    //uses search params to get revelent results
+  });
 
-router.post('/createTrip', (req, res) => {
-  //creates a new trip
-});
+  app.post('/createTrip', (req, res) => {
+    //creates a new trip
+  });
 
-router.post('/reserve', (req, res) => {
-  //reserves seat or seats on a trip
-});
+  app.post('/reserve', (req, res) => {
+    //reserves seat or seats on a trip
+  });
 
-router.get('*', (req, res) => {
-  res.sendStatus(404);
-});
+  app.get('*', (req, res) => {
+    res.status(404);
+  });
 
-module.exports = router;
+};
