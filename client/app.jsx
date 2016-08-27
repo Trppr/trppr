@@ -5,6 +5,7 @@ import {render} from 'react-dom';
 
 var trip = require('./src/components/trip.jsx');
 import tripList from './src/components/tripList.jsx';
+import searchBar from './src/components/searchBar.jsx';
 
 class App extends React.Component {
   render () {
