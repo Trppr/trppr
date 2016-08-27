@@ -6,8 +6,8 @@ import {render} from 'react-dom';
        <div>
          <h3>Trip List</h3>
          <ul>
-           {trips.map((trip) => {
-             return <li>{trip}</li>
+           {trips.map((trip, index) => {
+             return <li key={index}>{trip}</li>
            })}
          </ul>
        </div>
