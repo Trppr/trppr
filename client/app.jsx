@@ -4,7 +4,14 @@ var trip = require('./src/components/trip.jsx');
 var tripList = require('./src/components/tripList.jsx');
 var apple = require('./src/components/app.jsx');
 
+class App extends React.Component {
+  render () {
+    return <p> Hello React!</p>;
+  }
+}
 
-document.getElementById('root').appendChild(tripList());
-document.getElementById('root').appendChild(apple());
-document.getElementById('root').appendChild(trip());
+render(<App/>, document.getElementById('app'));
+
+// document.getElementById('root').appendChild(tripList());
+// document.getElementById('root').appendChild(apple());
+// document.getElementById('root').appendChild(trip());

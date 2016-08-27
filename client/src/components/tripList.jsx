@@ -1,5 +1,21 @@
+import React from 'react';
 module.exports = function() {
-  var greet = document.createElement('div');
-  greet.textContent = "Hey I'm inside this div in tripList.jsx";
-  return greet;
-};
+  const TripList = () => {
+
+     const trips = ["Los Angeles - Las Vegas", "New York - Boston", "San Diego - San Francisco", "Portland - Seattle"];
+
+     return (
+       <div>
+         <h3>Trip List</h3>
+         <ul>
+           {trips.map((trip) => {
+             return <li>{trip}</li>
+           })}
+         </ul>
+       </div>
+     );
+   }
+
+
+  ReactDOM.render(<TripList />, document.getElementById('tripList'));
+}
