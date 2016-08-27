@@ -1,6 +1,5 @@
 node_modules
-<<<<<<< 936c0d47858d2b40978af67ba38c4bddbc96768e
+<<<<<<< 399b4ea7b86649732097c4e091b1a3c4123397a9
 client/bundle.js
 =======
-client/lib
->>>>>>> [fix] removed gitignore conflict
+>>>>>>> .gitignore
