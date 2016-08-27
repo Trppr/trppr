@@ -1,9 +1,7 @@
 import React from 'react';
-module.exports = function() {
+import {render} from 'react-dom';
   const TripList = () => {
-
      const trips = ["Los Angeles - Las Vegas", "New York - Boston", "San Diego - San Francisco", "Portland - Seattle"];
-
      return (
        <div>
          <h3>Trip List</h3>
@@ -14,8 +12,6 @@ module.exports = function() {
          </ul>
        </div>
      );
-   }
+  }
 
-
-  ReactDOM.render(<TripList />, document.getElementById('tripList'));
-}
+export default TripList;
