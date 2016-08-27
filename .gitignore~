@@ -1,5 +1,7 @@
 node_modules
-<<<<<<< 399b4ea7b86649732097c4e091b1a3c4123397a9
+<<<<<<< HEAD
 client/bundle.js
 =======
->>>>>>> .gitignore
+client/lib
+npm-debug.log
+>>>>>>> firstRoute
