@@ -1,7 +1,0 @@
-node_modules
-<<<<<<< HEAD
-client/bundle.js
-=======
-client/lib
-npm-debug.log
->>>>>>> firstRoute
