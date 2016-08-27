@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/Trppr/trppr",
   "dependencies": {
+    "axios": "^0.13.1",
     "body-parser": "^1.15.2",
     "bower": "^1.7.9",
     "cors": "^2.8.0",
