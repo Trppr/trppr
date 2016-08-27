@@ -1,12 +1,14 @@
 //if you require outside files at the top of the entry file defined when you
 //call webpack in the terminal, webpack automatically bundles the linked files
+import React from 'react';
+import {render} from 'react-dom';
+
 var trip = require('./src/components/trip.jsx');
-var tripList = require('./src/components/tripList.jsx');
-var apple = require('./src/components/app.jsx');
+import tripList from './src/components/tripList.jsx';
 
 class App extends React.Component {
   render () {
-    return <p> Hello React!</p>;
+    return <div> {tripList()} </div>;
   }
 }
 
