@@ -1,7 +1,0 @@
-node_modules
-<<<<<<< e1b686a371df25ef3c0ed4f1e4f59f2876992f47
-client/bundle.js
-=======
-client/lib
-npm-debug.log
->>>>>>> added npm-debug.log to gitignore
