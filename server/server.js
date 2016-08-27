@@ -1,13 +1,14 @@
-var express = require('express');
-var bodyParser = require('body-parser');
-var cors = require('cors');
+const express = require('express');
+const bodyParser = require('body-parser');
+const cors = require('cors');
+const routes = require('./config/routes');
 
-var app = express();
-var port = process.env.PORT || 3000;
+const app = express();
+const port = process.env.PORT || 3000;
 
 app.use(cors());
-app.use('/', express.static('./client'));
+app.use('/', routes);
 
-app.listen(port, function(){
+app.listen(port, () =>{
   console.log('Trppr server listening on port ', port);
 });
