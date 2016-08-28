@@ -1,10 +1,9 @@
 const express = require('express');
-//const routes = require('./config/routes');
 
 const app = express();
 const port = process.env.PORT || 3000;
 
-require('./config/middleware.js')(app, express);
+require('./config/middleware')(app, express);
 require('./config/routes')(app, express);
 
 app.listen(port, () => {
