@@ -10,15 +10,12 @@ import SearchBar from './src/components/searchBar.jsx';
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      searchArr: []
-    };
+    this.state = { searchTerm: '' };
+    this.routeSearch = this.routeSearch.bind(this);
   }
 
-  routeSearch(searchObj) {
-    this.setState({
-      searchObj: searchObj
-    })
+  routeSearch(searchTerm) {
+    this.setState({searchTerm: searchTerm});
   }
 
   render () {
