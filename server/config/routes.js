@@ -1,3 +1,5 @@
+const jwt = require('jsonwebtoken');
+
 module.exports = (app, express) => {
 
   app.get('/dummyData', (req, res) => {
@@ -26,9 +28,11 @@ module.exports = (app, express) => {
       res.status(400).send('password required');
       return;
     }
-    //test login
+    //test login with JWTs
     if(req.body.username === 'john' && req.body.password === '123'){
-      res.status(200).json({name:'john'});
+      const myToken = jwt
+      .sign({ username: req.body.username }, 'hello world trppr');
+      res.status(200).json(myToken);
     }else {
       res.status(401).send('invalid login');
     }
