@@ -8,10 +8,25 @@ class SearchBar extends Component {
     this.state = { term: '' };
   }
 
+  onType(term) {
+    this.setState({term});
+  }
+
+  submitValue(location) {
+    this.props.routeSearch(location);
+  }
   render() {
-    <div>
-      Search bar test
-    </div>
+    return (
+      <div className="search-bar">
+        <input
+          value = {this.state.term}
+          onChange = {event => this.onType(event.target.value)} />
+        <input
+          type="button"
+          value="Search"
+          onClick = {event => this.submitValue(this.state.term)}/>
+      </div>
+    )
   }
 }
 
