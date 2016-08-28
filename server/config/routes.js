@@ -18,20 +18,19 @@ module.exports = (app, express) => {
   app.post('/login', (req, res) => {
     //checks to make sure we got both a username and password on the request
     //in Postman use body and x-www-form-urlencoded to enter username and password
-    console.log(req.body)
     if(!req.body.username){
-      res.status(400).send('username required')
+      res.status(400).send('username required');
       return;
     }
     if(!req.body.password){
-      res.status(400).send('password required')
+      res.status(400).send('password required');
       return;
     }
     //test login
     if(req.body.username === 'john' && req.body.password === '123'){
-      res.status(200).json({name:'john'})
+      res.status(200).json({name:'john'});
     }else {
-      res.status(401).send('invalid login')
+      res.status(401).send('invalid login');
     }
   });
 
