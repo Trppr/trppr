@@ -1,3 +1,5 @@
+const jwt = require('jsonwebtoken');
+
 module.exports = (app, express) => {
 
   app.get('/dummyData', (req, res) => {
@@ -16,7 +18,24 @@ module.exports = (app, express) => {
   });
 
   app.post('/login', (req, res) => {
-    //gives user acess to account
+    //checks to make sure we got both a username and password on the request
+    //in Postman use body and x-www-form-urlencoded to enter username and password
+    if(!req.body.username){
+      res.status(400).send('username required');
+      return;
+    }
+    if(!req.body.password){
+      res.status(400).send('password required');
+      return;
+    }
+    //test login with JWTs
+    if(req.body.username === 'john' && req.body.password === '123'){
+      const myToken = jwt
+      .sign({ username: req.body.username }, 'hello world trppr');
+      res.status(200).json(myToken);
+    }else {
+      res.status(401).send('invalid login');
+    }
   });
 
   app.get('/search', (req, res) => {
