@@ -12,16 +12,19 @@ class SearchBar extends Component {
     this.setState({term});
   }
 
+  submitValue(location) {
+    this.props.routeSearch(location);
+  }
   render() {
-    console.log(this.props.routeSearch);
     return (
       <div className="search-bar">
         <input
           value = {this.state.term}
           onChange = {event => this.onType(event.target.value)} />
         <input
-          type="submit"
-          value="Search" />
+          type="button"
+          value="Search"
+          onClick = {event => this.submitValue(this.state.term)}/>
       </div>
     )
   }
