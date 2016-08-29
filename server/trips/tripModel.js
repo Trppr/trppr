@@ -10,7 +10,8 @@ const Trip = sequelize.define('trip', {
   numSeats: Sequelize.INTEGER,
   seatPrice: Sequelize.INTEGER,
   vehicleType: Sequelize.STRING,
-  description: Sequelize.TEXT
+  description: Sequelize.TEXT,
+  driverId: Sequelize.INTEGER
 });
 // Associations/foreign key relationships:
 Trip.belongsTo(User, {as: 'driver'});
@@ -22,7 +23,7 @@ Trip.belongsToMany(User, { as: 'passengers', through: 'tripPassengers'});
 sequelize
   .sync()
   .then(function(err) {
-    console.log('sync() successful.');
+    console.log('<TRPPR> trip model sync() successful.');
   }, function(err) {
     console.log('An error occurred while creating the table:', err);
   });
