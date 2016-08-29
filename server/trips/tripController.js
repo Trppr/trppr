@@ -1,6 +1,46 @@
+
 const Trip = require('../trips/tripModel');
 
 module.exports = {
+  createTrip: function(req, res){
+    const newTrip = Trip.build({
+      driverName: req.body.driverName,
+      tripDate: req.body.tripDate,
+      startLocation: req.body.startLocation,
+      endLocation: req.body.endLocation,
+      numSeats: req.body.numSeats,
+      seatPrice: req.body.seatPrice,
+      vehicleType: req.body.vehicleType,
+      description: req.body.description,
+      driverId: req.body.driverId
+    });
+
+    newTrip
+      .save()
+      .then(function() {
+        console.log("<TRPPR> new trip created");
+        // send response?
+      })
+      .catch(function(err) {
+        console.log('Error:', err);
+      });
+  },
+
+  reserveSeat: function(req, res){
+
+    Trip.findOne({
+      where: {
+        id: req.body.tripId
+      }
+    })
+    .then(function(trip) {
+      trip.setPassengers(req.body.passengerId);
+      console.log("<TRPPR> seat reserved");
+    })
+    .catch(function(err) {
+      console.log('Error:', err);
+    });
+  },
 
   getAllTrips: function(req, res){
     var tripsList = [];
