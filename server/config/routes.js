@@ -4,7 +4,7 @@ module.exports = (app, express) => {
 
   app.get('/dummyData', (req, res) => {
     res.status(200)
-    .body({
+    .send({
       hello: 'world'
     });
   });
