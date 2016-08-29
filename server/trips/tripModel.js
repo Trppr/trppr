@@ -12,36 +12,19 @@ const Trip = sequelize.define('trip', {
   vehicleType: Sequelize.STRING,
   description: Sequelize.TEXT
 });
+// Associations/foreign key relationships:
 Trip.belongsTo(User, {as: 'driver'});
+// One-to-one relationship between trip and driver.
 Trip.belongsToMany(User, { as: 'passengers', through: 'tripPassengers'});
+// One-to-many relationship between trip and passengers. Using 'through' creates
+// a join table automatically.
 
 sequelize
-  .sync() // { force: true } drops table before recreating it
+  .sync()
   .then(function(err) {
     console.log('sync() successful.');
   }, function(err) {
     console.log('An error occurred while creating the table:', err);
   });
-
-// const testTrip = Trip.build({
-//   driverName: "Bob",
-//   tripDate: "monday",
-//   startLocation: "LA",
-//   endLocation: "SF",
-//   numSeats: "2",
-//   seatPrice: "20",
-//   vehicleType: "Sports car",
-//   description: "road trip description",
-//   driverId: "1"
-// });
-// testTrip.setPassengers('3');
-// testTrip
-//   .save()
-//   .then(function() {
-//     console.log("save() successful");
-//   })
-//   .catch(function (err) {
-//     console.log('Error:', err);
-//   });
 
 module.exports = Trip;
