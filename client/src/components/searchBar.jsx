@@ -5,27 +5,77 @@ import {render} from 'react-dom';
 class SearchBar extends Component {
   constructor(props) {
     super(props);
-    this.state = { term: '' };
+    this.state = { endLocation: '',
+                   startLocation: '',
+                   numSeats: '',
+                   price: ''
+                 };
   }
 
-  onType(term) {
-    this.setState({term});
+  handleEndLocation(endLocation) {
+    this.setState({endLocation});
   }
 
-  submitValue(location) {
-    this.props.routeSearch(location);
+  handleStartLocation(startLocation) {
+    this.setState({startLocation});
   }
+
+  handleNumSeats(numSeats) {
+    this.setState({numSeats});
+  }
+
+  handlePrice(price) {
+    this.setState({price});
+  }
+
+  submitData() {
+    this.props.infoStore(this.state);
+  }
+
+  // driverName: Sequelize.STRING,
+  // tripDate: Sequelize.STRING,
+  // startLocation: Sequelize.STRING,
+  // endLocation: Sequelize.STRING,
+  // numSeats: Sequelize.INTEGER,
+  // seatPrice: Sequelize.INTEGER,
+  // vehicleType: Sequelize.STRING,
+  // description: Sequelize.TEXT
   render() {
     return (
-      <div className="search-bar">
-        <input
-          value = {this.state.term}
-          onChange = {event => this.onType(event.target.value)} />
-        <input
-          type="button"
-          value="Search"
-          onClick = {event => this.submitValue(this.state.term)}/>
-      </div>
+      <form>
+        <div>
+          <div>
+            <input
+              placeholder = "Where to?"
+              value = {this.state.endLocation}
+              onChange = {event => this.handleEndLocation(event.target.value)} />
+          </div>
+          <div>
+            <input
+              placeholder = "Where are you?"
+              value = {this.state.startLocation}
+              onChange = {event => this.handleStartLocation(event.target.value)}/>
+          </div>
+          <div>
+            <input
+              placeholder = "# of passengers?"
+              value = {this.state.numSeats}
+              onChange = {event => this.handleNumSeats(event.target.value)}/>
+          </div>
+          <div>
+            <input
+              placeholder = "Max budget?"
+              value = {this.state.price}
+              onChange = {event => this.handlePrice(event.target.value)}/>
+          </div>
+          <div>
+            <input
+              type="button"
+              value="Search"
+              onClick = {event => this.submitData()}/>
+          </div>
+        </div>
+      </form>
     )
   }
 }
