@@ -25,7 +25,7 @@ sequelize
 
 // .build() creates a model instance, needs to be saved using .save()
 // .create() builds and saves`
-
+//
 // const testUser = User.build({
 //   name: "John",
 //   password: "1234",
