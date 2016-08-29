@@ -1,7 +1,6 @@
 const User = require('../users/userModel');
 
 module.exports = {
-
   createUser: function(req, res) {
 
     const newUser = User.build({
@@ -10,7 +9,7 @@ module.exports = {
       email: req.body.email,
       description: req.body.description,
     });
-
+    
     newUser
       .save()
       .then(function() {
@@ -23,6 +22,7 @@ module.exports = {
   },
 
   getAllUsers: function(req, res) {
+
     var userList = [];
     User.findAll({
       attributes: ['id', 'email', 'name', 'description']
