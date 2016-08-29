@@ -24,23 +24,3 @@ sequelize
   });
 
 module.exports = User;
-
-// .build() creates a model instance, needs to be saved using .save()
-// .create() builds and saves`
-//
-// const testUser = User.build({
-//   name: "John",
-//   password: "1234",
-//   email: "user2@domain.com",
-//   description: "test user data",
-//   joinDate: Date.now()
-// });
-//
-// testUser
-//   .save()
-//   .then(function() {
-//     console.log("save() successful");
-//   })
-//   .catch(function (err) {
-//     console.log('Error:', err);
-//   });
