@@ -16,6 +16,21 @@ class App extends Component {
 
   infoStore(searchObj) {
     this.setState({searchTerm: searchObj});
+    this.getTrips();
+  }
+
+  getTrips() {
+    $.ajax({
+      url: '/recent',
+      dataType: 'json',
+      cache: false,
+      success: function(data) {
+        console.log(data);
+      }.bind(this),
+      error: function(xhr, status, err) {
+        console.error(this.props.url, status, err.toString());
+      }.bind(this)
+    });
   }
 
   render () {

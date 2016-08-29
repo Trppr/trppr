@@ -32,14 +32,6 @@ class SearchBar extends Component {
     this.props.infoStore(this.state);
   }
 
-  // driverName: Sequelize.STRING,
-  // tripDate: Sequelize.STRING,
-  // startLocation: Sequelize.STRING,
-  // endLocation: Sequelize.STRING,
-  // numSeats: Sequelize.INTEGER,
-  // seatPrice: Sequelize.INTEGER,
-  // vehicleType: Sequelize.STRING,
-  // description: Sequelize.TEXT
   render() {
     return (
       <form>
