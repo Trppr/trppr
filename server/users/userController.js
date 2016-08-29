@@ -14,7 +14,7 @@ module.exports = {
     newUser
       .save()
       .then(function() {
-        console.log("new user created");
+        console.log("<TRPPR> new user created");
         res.sendStatus(201);
       })
       .catch(function(err) {
