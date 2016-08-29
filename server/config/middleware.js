@@ -1,6 +1,6 @@
 const cors = require('cors');
 const bodyParser = require('body-parser');
-// const expressJWT = require('express-jwt');
+const expressJWT = require('express-jwt');
 
 
 module.exports = (app, express) => {
