@@ -23,6 +23,8 @@ sequelize
     console.log('An error occurred while creating the table:', err);
   });
 
+module.exports = User;
+
 // .build() creates a model instance, needs to be saved using .save()
 // .create() builds and saves`
 //
