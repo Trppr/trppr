@@ -1,5 +1,9 @@
+<<<<<<< 74d4523cc5c93c8ce7a4acb809357ae6fa6b14df
 const jwt = require('jsonwebtoken');
 const tripController = require('../trips/tripController');
+=======
+// const jwt = require('jsonwebtoken');
+>>>>>>> [feature] Simple ajax request added, waiting on dummy data
 
 module.exports = (app, express) => {
 
