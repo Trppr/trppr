@@ -11,17 +11,18 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = { searchTerm: '' };
-    this.routeSearch = this.routeSearch.bind(this);
+    this.infoStore = this.infoStore.bind(this);
   }
 
-  routeSearch(searchTerm) {
-    this.setState({searchTerm: searchTerm});
+  infoStore(searchObj) {
+    this.setState({searchTerm: searchObj});
   }
 
   render () {
+    console.log('state inside app.jsx', this.state)
     return (
           <div>
-            <SearchBar routeSearch={this.routeSearch}/>
+            <SearchBar infoStore={this.infoStore}/>
             {tripList()}
           </div>
     )
