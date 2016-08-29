@@ -23,6 +23,7 @@ module.exports = {
   },
 
   getAllUsers: function(req, res) {
+
     var userList = [];
     User.findAll({
       attributes: ['id', 'email', 'name', 'description']
