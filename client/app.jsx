@@ -47,6 +47,7 @@ class App extends Component {
       console.log(response);
     })
     .catch(function (error) {
+      render(<div> Please login. </div>, document.getElementById('create'));
       console.log(error);
     });
   }
