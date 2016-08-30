@@ -23,6 +23,10 @@ class CreateTrip extends Component {
     this.setState(change);
   }
 
+  submitTrip() {
+    this.props.makeTrip(this.state);
+  }
+
   render() {
     return (
       <form>
@@ -46,12 +50,14 @@ class CreateTrip extends Component {
         </div>
         <div>
           <input
+            type = 'number'
             placeholder = "# of Seats"
             value = {this.state.numSeats}
             onChange = {this.handleChange.bind(this, 'numSeats')} />
         </div>
         <div>
           <input
+            type = 'number'
             placeholder = "Price per Seats"
             value = {this.state.seatPrice}
             onChange = {this.handleChange.bind(this, 'seatPrice')} />
@@ -71,8 +77,14 @@ class CreateTrip extends Component {
         <div>
           <input
             placeholder = "Driver Id"
-            value = {this.state.startLocation}
+            value = {this.state.driverId}
             onChange = {this.handleChange.bind(this, 'driverId')} />
+        </div>
+        <div>
+          <input
+            type="button"
+            value="Create"
+            onClick = {event => this.submitTrip()}/>
         </div>
       </form>
     )

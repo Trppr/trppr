@@ -16,7 +16,6 @@ class App extends Component {
                    tripResults: []
                  };
     this.infoStore = this.infoStore.bind(this);
-    this.getTrips = this.getTrips.bind(this);
   }
 
   infoStore(searchObj) {
@@ -25,12 +24,13 @@ class App extends Component {
   }
 
   getTrips(searchObj) {
+    const that = this;
     axios.get('/searchTrips', {
       params: searchObj
       }
     )
     .then(function (response) {
-      this.setState({tripResults: response.data})
+      that.setState({tripResults: response.data})
     })
     .catch(function (error) {
       console.log(error);
@@ -38,7 +38,15 @@ class App extends Component {
   }
 
   makeTrip(tripObj) {
-
+    axios.post('/createTrip',
+      tripObj
+    )
+    .then(function (response) {
+      console.log(response);
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
   }
 
   render () {
@@ -47,8 +55,9 @@ class App extends Component {
           <div>
             <SearchBar infoStore={this.infoStore}/>
             <TripList trips={this.state.tripResults}/>
-            <CreateTrip makeTrip={this.state.makeTrips}/>
+            <CreateTrip makeTrip={this.makeTrip}/>
           </div>
+    )
   }
 }
 
