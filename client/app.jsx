@@ -7,6 +7,7 @@ const axios = require('axios');
 var trip = require('./src/components/trip.jsx');
 import TripList from './src/components/tripList.jsx';
 import SearchBar from './src/components/searchBar.jsx';
+import CreateTrip from './src/components/createTrip.jsx'
 
 class App extends Component {
   constructor(props) {
@@ -15,6 +16,7 @@ class App extends Component {
                    tripResults: []
                  };
     this.infoStore = this.infoStore.bind(this);
+    this.getTrips = this.getTrips.bind(this);
   }
 
   infoStore(searchObj) {
@@ -23,19 +25,20 @@ class App extends Component {
   }
 
   getTrips(searchObj) {
-    const that = this;
     axios.get('/searchTrips', {
       params: searchObj
       }
     )
     .then(function (response) {
-      console.log('response inside app.jsx',response);
-      console.log(that)
-      that.setState({tripResults: response.data})
+      this.setState({tripResults: response.data})
     })
     .catch(function (error) {
       console.log(error);
     });
+  }
+
+  makeTrip(tripObj) {
+
   }
 
   render () {
@@ -44,8 +47,8 @@ class App extends Component {
           <div>
             <SearchBar infoStore={this.infoStore}/>
             <TripList trips={this.state.tripResults}/>
+            <CreateTrip makeTrip={this.state.makeTrips}/>
           </div>
-    )
   }
 }
 
