@@ -12,34 +12,16 @@ class SearchBar extends Component {
                  };
   }
 
-  handleEndLocation(endLocation) {
-    this.setState({endLocation});
-  }
-
-  handleStartLocation(startLocation) {
-    this.setState({startLocation});
-  }
-
-  handleNumSeats(numSeats) {
-    this.setState({numSeats});
-  }
-
-  handlePrice(price) {
-    this.setState({price});
+  handleChange(name, e) {
+    let change = {};
+    change[name] = e.target.value;
+    this.setState(change);
   }
 
   submitData() {
     this.props.infoStore(this.state);
   }
 
-  // driverName: Sequelize.STRING,
-  // tripDate: Sequelize.STRING,
-  // startLocation: Sequelize.STRING,
-  // endLocation: Sequelize.STRING,
-  // numSeats: Sequelize.INTEGER,
-  // seatPrice: Sequelize.INTEGER,
-  // vehicleType: Sequelize.STRING,
-  // description: Sequelize.TEXT
   render() {
     return (
       <form>
@@ -48,25 +30,25 @@ class SearchBar extends Component {
             <input
               placeholder = "Where to?"
               value = {this.state.endLocation}
-              onChange = {event => this.handleEndLocation(event.target.value)} />
+              onChange = {this.handleChange.bind(this, 'endLocation')} />
           </div>
           <div>
             <input
               placeholder = "Where are you?"
               value = {this.state.startLocation}
-              onChange = {event => this.handleStartLocation(event.target.value)}/>
+              onChange = {this.handleChange.bind(this, 'startLocation')} />
           </div>
           <div>
             <input
               placeholder = "# of passengers?"
               value = {this.state.numSeats}
-              onChange = {event => this.handleNumSeats(event.target.value)}/>
+              onChange = {this.handleChange.bind(this, 'numSeats')} />
           </div>
           <div>
             <input
               placeholder = "Max budget?"
               value = {this.state.price}
-              onChange = {event => this.handlePrice(event.target.value)}/>
+              onChange = {this.handleChange.bind(this, 'price')}/>
           </div>
           <div>
             <input
