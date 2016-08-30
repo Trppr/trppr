@@ -1,11 +1,17 @@
 const Sequelize = require('sequelize');
 
-sequelize = new Sequelize('postgres://admin:PSZFZHAUDTKOUUHS@sl-us-dal-9-portal.2.dblayer.com:10860/trppr');
+var sequelize = new Sequelize('trppr', 'admin', 'PSZFZHAUDTKOUUHS', {
+  host: 'sl-us-dal-9-portal.2.dblayer.com',
+  dialect: 'postgres',
+  port: '10860',
+  logging: false,
+});
 
 sequelize
 .authenticate()
 .then(function(err) {
-  console.log('Connected to DB!');
+  console.log('\033[34m <TRPPR> Connected to DB. \033[0m');
+
 })
 .catch(function (err) {
   console.log('Unable to connect to the database:', err);
