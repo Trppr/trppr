@@ -5,13 +5,15 @@ import {render} from 'react-dom';
 const axios = require('axios');
 
 var trip = require('./src/components/trip.jsx');
-import tripList from './src/components/tripList.jsx';
+import TripList from './src/components/tripList.jsx';
 import SearchBar from './src/components/searchBar.jsx';
 
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = { searchTerm: '' };
+    this.state = { searchTerm: '',
+                   tripResults: []
+                 };
     this.infoStore = this.infoStore.bind(this);
   }
 
@@ -21,12 +23,15 @@ class App extends Component {
   }
 
   getTrips(searchObj) {
+    const that = this;
     axios.get('/searchTrips', {
       params: searchObj
       }
     )
     .then(function (response) {
       console.log('response inside app.jsx',response);
+      console.log(that)
+      that.setState({tripResults: response.data})
     })
     .catch(function (error) {
       console.log(error);
@@ -38,7 +43,7 @@ class App extends Component {
     return (
           <div>
             <SearchBar infoStore={this.infoStore}/>
-            {tripList()}
+            <TripList trips={this.state.tripResults}/>
           </div>
     )
   }
