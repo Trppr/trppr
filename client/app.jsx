@@ -2,6 +2,7 @@
 //call webpack in the terminal, webpack automatically bundles the linked files
 import React, { Component } from 'react';
 import {render} from 'react-dom';
+const axios = require('axios');
 
 var trip = require('./src/components/trip.jsx');
 import tripList from './src/components/tripList.jsx';
@@ -16,6 +17,19 @@ class App extends Component {
 
   infoStore(searchObj) {
     this.setState({searchTerm: searchObj});
+    this.getTrips(searchObj);
+  }
+
+  getTrips(searchObj) {
+    axios.post('/getTripsByStart',
+      searchObj
+    )
+    .then(function (response) {
+      console.log('response inside app.jsx',response);
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
   }
 
   render () {

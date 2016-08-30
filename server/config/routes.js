@@ -1,6 +1,8 @@
 const jwt = require('jsonwebtoken');
 const tripController = require('../trips/tripController');
 
+// const jwt = require('jsonwebtoken');
+
 module.exports = (app, express) => {
 
   app.get('/dummyData', (req, res) => {
