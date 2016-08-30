@@ -21,14 +21,13 @@ module.exports = {
         tripsList.push(trips[i].dataValues);
       }
       console.log('\033[34m <TRPPR> Sending data: \033[0m');
-      console.log(req);
-
+      console.log(req.body);
 
       tripsList = tripsList.filter((trip) => {
         if(req.body.endLocation) if(req.body.endLocation !== trip.endLocation) return false;
         if(req.body.startLocation) if(req.body.startLocation !== trip.startLocation) return false;
         if(req.body.numSeats)if(req.body.numSeats > trip.numSeats) return false;
-        if(req.body.price)if(req.body.price < trip.price) return false;
+        if(req.body.price)if(req.body.price < trip.seatPrice) return false;
         return true;
       })
 
