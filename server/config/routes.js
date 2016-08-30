@@ -1,6 +1,8 @@
 const jwt = require('jsonwebtoken');
 const tripController = require('../trips/tripController');
 
+//testing search route
+const testController = require('../trips/testController')
 // const jwt = require('jsonwebtoken');
 
 module.exports = (app, express) => {
@@ -11,6 +13,8 @@ module.exports = (app, express) => {
       hello: 'world'
     });
   });
+
+  app.post('/search', testController.search);
 
   app.get('/recent', (req, res) => {
     //gets most recent trips
