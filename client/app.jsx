@@ -21,8 +21,9 @@ class App extends Component {
   }
 
   getTrips(searchObj) {
-    axios.post('/getTripsByStart',
-      searchObj
+    axios.get('/searchTrips', {
+      params: searchObj
+      }
     )
     .then(function (response) {
       console.log('response inside app.jsx',response);
