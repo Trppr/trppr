@@ -40,12 +40,14 @@ class SearchBar extends Component {
           </div>
           <div>
             <input
+              type = "number"
               placeholder = "# of passengers?"
               value = {this.state.numSeats}
               onChange = {this.handleChange.bind(this, 'numSeats')} />
           </div>
           <div>
             <input
+              type = "number"
               placeholder = "Max budget?"
               value = {this.state.price}
               onChange = {this.handleChange.bind(this, 'price')}/>
