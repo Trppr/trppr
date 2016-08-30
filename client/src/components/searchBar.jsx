@@ -26,38 +26,28 @@ class SearchBar extends Component {
     return (
       <form>
         <div>
-          <div>
-            <input
-              placeholder = "Where to?"
-              value = {this.state.endLocation}
-              onChange = {this.handleChange.bind(this, 'endLocation')} />
-          </div>
-          <div>
-            <input
-              placeholder = "Where are you?"
-              value = {this.state.startLocation}
-              onChange = {this.handleChange.bind(this, 'startLocation')} />
-          </div>
-          <div>
-            <input
-              type = "number"
-              placeholder = "# of passengers?"
-              value = {this.state.numSeats}
-              onChange = {this.handleChange.bind(this, 'numSeats')} />
-          </div>
-          <div>
-            <input
-              type = "number"
-              placeholder = "Max budget?"
-              value = {this.state.price}
-              onChange = {this.handleChange.bind(this, 'price')}/>
-          </div>
-          <div>
-            <input
-              type="button"
-              value="Search"
-              onClick = {event => this.submitData()}/>
-          </div>
+          <input
+            placeholder = "Where to?"
+            value = {this.state.endLocation}
+            onChange = {this.handleChange.bind(this, 'endLocation')} />
+          <input
+            placeholder = "Where are you?"
+            value = {this.state.startLocation}
+            onChange = {this.handleChange.bind(this, 'startLocation')} />
+          <input
+            type = "number"
+            placeholder = "# of passengers?"
+            value = {this.state.numSeats}
+            onChange = {this.handleChange.bind(this, 'numSeats')} />
+          <input
+            type = "number"
+            placeholder = "Max budget?"
+            value = {this.state.price}
+            onChange = {this.handleChange.bind(this, 'price')}/>
+          <input
+            type="button"
+            value="Search"
+            onClick = {event => this.submitData()}/>
         </div>
       </form>
     )
