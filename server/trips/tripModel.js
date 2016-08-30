@@ -4,11 +4,26 @@ const User = require('../users/userModel');
 
 const Trip = sequelize.define('trip', {
   driverName: Sequelize.STRING,
-  tripDate: Sequelize.STRING,
-  startLocation: Sequelize.STRING,
-  endLocation: Sequelize.STRING,
-  numSeats: Sequelize.INTEGER,
-  seatPrice: Sequelize.INTEGER,
+  tripDate: {
+    type: Sequelize.STRING,
+    allowNull: false
+  },
+  startLocation: {
+    type: Sequelize.STRING,
+    allowNull: false
+  },
+  endLocation: {
+    type: Sequelize.STRING,
+    allowNull: false
+  },
+  numSeats: {
+    type: Sequelize.INTEGER,
+    allowNull: false
+  },
+  seatPrice: {
+    type: Sequelize.INTEGER,
+    allowNull: false
+  },
   vehicleType: Sequelize.STRING,
   description: Sequelize.TEXT,
   driverId: Sequelize.INTEGER
@@ -23,7 +38,8 @@ Trip.belongsToMany(User, { as: 'passengers', through: 'tripPassengers'});
 sequelize
   .sync()
   .then(function(err) {
-    console.log('<TRPPR> trip model sync() successful.');
+    console.log('\033[34m <TRPPR> Trip model sync() successful. \033[0m');
+
   }, function(err) {
     console.log('An error occurred while creating the table:', err);
   });
