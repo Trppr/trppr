@@ -48,6 +48,7 @@ module.exports = {
     })
     .then(function(user) {
       console.log(user.dataValues);
+      //res.send(user.dataValues);
     })
     .catch(function(err) {
       console.log('Error:', err);

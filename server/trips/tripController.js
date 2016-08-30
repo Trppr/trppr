@@ -1,4 +1,3 @@
-
 const Trip = require('../trips/tripModel');
 
 module.exports = {
@@ -18,8 +17,8 @@ module.exports = {
     newTrip
       .save()
       .then(function() {
-        console.log("<TRPPR> new trip created");
-        // send response?
+        console.log("\033[34m <TRPPR> New trip created. \033[0m");
+        res.sendStatus(201);
       })
       .catch(function(err) {
         console.log('Error:', err);
@@ -35,7 +34,8 @@ module.exports = {
     })
     .then(function(trip) {
       trip.setPassengers(req.body.passengerId);
-      console.log("<TRPPR> seat reserved");
+      console.log("\033[34m <TRPPR> Seat reserved. \033[0m");
+      res.sendStatus(201);
     })
     .catch(function(err) {
       console.log('Error:', err);
@@ -45,13 +45,26 @@ module.exports = {
   getAllTrips: function(req, res){
     var tripsList = [];
     Trip.findAll({
-      attributes: ['id', 'driverName', 'tripDate', 'startLocation', 'endLocation']
+      attributes: [
+        'id',
+        'driverName',
+        'tripDate',
+        'startLocation',
+        'endLocation',
+        'numSeats',
+        'seatPrice',
+        'vehicleType',
+        'description',
+        'driverId'
+      ]
     })
     .then(function(trips){
       for(var i = 0; i < trips.length; i++){
         tripsList.push(trips[i].dataValues);
       }
+      console.log('\033[34m <TRPPR> Sending data: \033[0m');
       console.log(tripsList);
+      res.json(tripsList);
     })
     .catch(function(err) {
       console.log('Error:', err);
@@ -75,7 +88,9 @@ module.exports = {
       for(var i = 0; i < trips.length; i++){
         tripsList.push(trips[i].dataValues);
       }
+      console.log('\033[34m <TRPPR> Sending data: \033[0m');
       console.log(tripsList);
+      res.json(tripsList);
     })
     .catch(function(err) {
       console.log('Error:', err);
@@ -99,7 +114,9 @@ module.exports = {
       for(var i = 0; i < trips.length; i++){
         tripsList.push(trips[i].dataValues);
       }
+      console.log('\033[34m <TRPPR> Sending data: \033[0m');
       console.log(tripsList);
+      res.json(tripsList);
     })
     .catch(function(err) {
       console.log('Error:', err);
@@ -123,7 +140,9 @@ module.exports = {
       for(var i = 0; i < trips.length; i++){
         tripsList.push(trips[i].dataValues);
       }
+      console.log('\033[34m <TRPPR> Sending data: \033[0m');
       console.log(tripsList);
+      res.json(tripsList);
     })
     .catch(function(err) {
       console.log('Error:', err);

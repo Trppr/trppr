@@ -1,4 +1,5 @@
 const jwt = require('jsonwebtoken');
+const tripController = require('../trips/tripController');
 
 module.exports = (app, express) => {
 
@@ -38,17 +39,30 @@ module.exports = (app, express) => {
     }
   });
 
-  app.get('/search', (req, res) => {
-    //uses search params to get revelent results
-  });
+  /*
+  *  Trip API Requests
+  */
 
-  app.post('/createTrip', (req, res) => {
-    //creates a new trip
-  });
+  app.get('/getAllTrips', tripController.getAllTrips);
+  // Grabs all the trips, needs no params.
 
-  app.post('/reserve', (req, res) => {
-    //reserves seat or seats on a trip
-  });
+  app.post('/getTripsByStart', tripController.getTripsByStart);
+  // Needs start location -> req.body.startLocation
+
+  app.post('/getTripsByEnd', tripController.getTripsByEnd);
+  // Needs end location -> req.body.endLocation
+
+  app.post('/getTripsByDate', tripController.getTripsByDate);
+  // Needs a date -> req.body.tripDate
+
+  app.post('/createTrip', tripController.createTrip);
+  // Needs ALL the trip model attributes, refer to tripController.js or schema
+  // Note: The driverId field has to be a valid user id.
+
+  app.post('/reserveSeat', tripController.reserveSeat);
+  // Needs trip id & passenger id -> req.body.tripId, req.body.passengerId
+  // Note: These id's are foreign keys so they have to exist in the db
+  // for this to work.
 
   app.get('*', (req, res) => {
     res.status(404);
