@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {render} from 'react-dom';
 
-// Start with functional and change it to a class when needed generally
+// Add form validation
 class CreateTrip extends Component {
   constructor(props) {
     super(props);
@@ -24,7 +24,14 @@ class CreateTrip extends Component {
   }
 
   submitTrip() {
-    this.props.makeTrip(this.state);
+    if(this.state.driverName === '' || this.state.tripData === '' || this.state.startLocation === ''
+      || this.state.endLocation === '' || this.state.numSeats === '' || this.state.seatPrice === ''
+      || this.state.vehicleType === '') {
+        render(<div> Please fill out all fields </div>, document.getElementById('create'));
+      } else {
+          render(<div></div>, document.getElementById('create'));
+          this.props.makeTrip(this.state);
+        }
   }
 
   render() {
