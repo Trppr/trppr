@@ -1,6 +1,6 @@
 const cors = require('cors');
 const bodyParser = require('body-parser');
-// const expressJWT = require('express-jwt');
+const expressJWT = require('express-jwt');
 
 
 module.exports = (app, express) => {
@@ -14,4 +14,6 @@ module.exports = (app, express) => {
   //.unless({path: ['/login', '/', '/recent', '/signup', '/search', '/dummyData']}));
 
   app.use('/', express.static('./client'));
+  app.use(expressJWT({secret:'hello world trppr'})
+  .unless({path: ['/login', '/', '/recent', '/signup', '/search']}));
 };
