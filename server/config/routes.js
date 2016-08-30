@@ -48,6 +48,12 @@ module.exports = (app, express) => {
   app.get('/getAllTrips', tripController.getAllTrips);
   // Grabs all the trips, needs no params.
 
+  app.get('/searchTrips', tripController.searchTrips);
+  // Trip search performed via get request, all params are
+  // optional. If all params are blank, all trips will be
+  // returned. Example:
+  // /searchTrips?startLocation=la&numSeats=1
+
   app.post('/getTripsByStart', tripController.getTripsByStart);
   // Needs start location -> req.body.startLocation
 
