@@ -8,6 +8,7 @@ var trip = require('./src/components/trip.jsx');
 import TripList from './src/components/tripList.jsx';
 import SearchBar from './src/components/searchBar.jsx';
 import CreateTrip from './src/components/createTrip.jsx'
+import Login from './src/components/login.jsx'
 
 class App extends Component {
   constructor(props) {
@@ -38,6 +39,7 @@ class App extends Component {
   }
 
   makeTrip(tripObj) {
+    const that = this;
     axios.post('/createTrip',
       tripObj
     )
@@ -49,10 +51,24 @@ class App extends Component {
     });
   }
 
+  checkUser(userObj) {
+    console.log('userObj inside app.jsx', userObj)
+    axios.post('/login',
+      userObj
+    )
+    .then(function (response) {
+      console.log(response);
+    })
+    .catch(function (error) {
+      console.log(error);
+    })
+  }
+
   render () {
     console.log('state inside app.jsx', this.state)
     return (
           <div>
+            <Login checkUser={this.checkUser}/>
             <SearchBar infoStore={this.infoStore}/>
             <TripList trips={this.state.tripResults}/>
             <CreateTrip makeTrip={this.makeTrip}/>
