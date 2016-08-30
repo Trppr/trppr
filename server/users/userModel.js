@@ -8,7 +8,7 @@ const User = sequelize.define('user', {
     allowNull: false
   },
   password: {
-    type:Sequelize.STRING,
+    type: Sequelize.STRING,
     allowNull: false
   },
   name: Sequelize.STRING,
@@ -18,7 +18,8 @@ const User = sequelize.define('user', {
 sequelize
   .sync() // { force: true } drops table before recreating it
   .then(function(err) {
-    console.log('<TRPPR> user model sync() successful.');
+    console.log('\033[34m <TRPPR> User model sync() successful. \033[0m');
+
   }, function(err) {
     console.log('An error occurred while creating the table:', err);
   });
