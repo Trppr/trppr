@@ -14,9 +14,11 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = { searchTerm: '',
-                   tripResults: []
+                   tripResults: [],
+                   Authorization: ''
                  };
     this.infoStore = this.infoStore.bind(this);
+    this.checkUser = this.checkUser.bind(this);
   }
 
   infoStore(searchObj) {
@@ -53,12 +55,13 @@ class App extends Component {
   }
 
   checkUser(userObj) {
-    console.log('userObj inside app.jsx', userObj)
+    const that = this;
     axios.post('/login',
       userObj
     )
     .then(function (response) {
-      console.log(response);
+      console.log('response inside checkUser app.jsx: ',response);
+      axios.defaults.headers.common['Authorization'] = 'Bearer ' + response.data;
     })
     .catch(function (error) {
       console.log(error);
