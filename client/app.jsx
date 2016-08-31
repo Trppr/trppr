@@ -7,8 +7,8 @@ const axios = require('axios');
 const trip = require('./src/components/trip.jsx');
 import TripList from './src/components/tripList.jsx';
 import SearchBar from './src/components/searchBar.jsx';
-import CreateTrip from './src/components/createTrip.jsx'
-import Login from './src/components/login.jsx'
+import CreateTrip from './src/components/createTrip.jsx';
+import Login from './src/components/login.jsx';
 
 class App extends Component {
   constructor(props) {
