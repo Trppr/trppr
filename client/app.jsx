@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 import {render} from 'react-dom';
 const axios = require('axios');
 
-var trip = require('./src/components/trip.jsx');
+const trip = require('./src/components/trip.jsx');
 import TripList from './src/components/tripList.jsx';
 import SearchBar from './src/components/searchBar.jsx';
 import CreateTrip from './src/components/createTrip.jsx'
