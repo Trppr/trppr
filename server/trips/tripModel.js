@@ -9,6 +9,9 @@ const Trip = sequelize.define('trip', {
     allowNull: false
   },
   startLocation: {
+    // str = street addr
+    // str = city
+    // str = zip
     type: Sequelize.STRING,
     allowNull: false
   },
