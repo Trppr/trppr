@@ -5,7 +5,8 @@ module.exports = {
   createUser: function(req, res) {
 
     const newUser = User.build({
-      name: req.body.name,
+      firstName: req.body.name,
+      lastName: req.body.name,
       password: req.body.password,
       email: req.body.email,
       description: req.body.description,
@@ -26,7 +27,7 @@ module.exports = {
 
     var userList = [];
     User.findAll({
-      attributes: ['id', 'email', 'name', 'description']
+      attributes: ['id', 'email', 'firstName', 'lastName', 'description']
     })
     .then(function(users) {
       for(var i = 0; i < users.length; i++){
@@ -45,7 +46,7 @@ module.exports = {
       where: {
         id: req.body.id
       },
-      attributes: ['id', 'email', 'name', 'description']
+      attributes: ['id', 'email', 'firstName', 'lastName', 'description']
     })
     .then(function(user) {
       console.log(user.dataValues);
@@ -80,5 +81,5 @@ module.exports = {
       res.status(401).send('invalid login');
     }
 
-  });
+  }
 }

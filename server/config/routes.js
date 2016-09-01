@@ -43,23 +43,11 @@ module.exports = (app, express) => {
   *  Trip API Requests
   */
 
-  app.get('/getAllTrips', tripController.getAllTrips);
-  // Grabs all the trips, needs no params.
-
   app.get('/searchTrips', tripController.searchTrips);
   // Trip search performed via get request, all params are
   // optional. If all params are blank, all trips will be
   // returned. Example:
   // /searchTrips?startLocation=la&numSeats=1
-
-  app.post('/getTripsByStart', tripController.getTripsByStart);
-  // Needs start location -> req.body.startLocation
-
-  app.post('/getTripsByEnd', tripController.getTripsByEnd);
-  // Needs end location -> req.body.endLocation
-
-  app.post('/getTripsByDate', tripController.getTripsByDate);
-  // Needs a date -> req.body.tripDate
 
   app.post('/createTrip', tripController.createTrip);
   // Needs ALL the trip model attributes, refer to tripController.js or schema
