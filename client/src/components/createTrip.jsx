@@ -42,99 +42,100 @@ class CreateTrip extends Component {
       this.props.makeTrip(this.state);
     }
   }
-  
+
   render() {
     return (
-      <form>
+      <form className="form-group">
         <div>
           <input
             placeholder = "Driver name"
+            className="form-control"
             value = {this.state.driverName}
             onChange = {this.handleChange.bind(this, 'driverName')} />
-        </div>
-        <div>
+
           <input
             placeholder = "Trip Date"
+            className="form-control"
             value = {this.state.tripDate}
             onChange = {this.handleChange.bind(this, 'tripDate')} />
-        </div>
-        <div>
+
           <input
             placeholder = "Start street"
+            className="form-control"
             value = {this.state.startSt}
             onChange = {this.handleChange.bind(this, 'startSt')} />
-        </div>
-        <div>
+
           <input
             placeholder = "Start city"
+            className="form-control"
             value = {this.state.startCiy}
             onChange = {this.handleChange.bind(this, 'startCity')} />
-        </div>
-        <div>
+
           <input
             placeholder = "Start state"
+            className="form-control"
             value = {this.state.startState}
             onChange = {this.handleChange.bind(this, 'startState')} />
-        </div>
-        <div>
+
           <input
             placeholder = "End street"
+            className="form-control"
             value = {this.state.endSt}
             onChange = {this.handleChange.bind(this, 'endSt')} />
-        </div>
-        <div>
+
           <input
             placeholder = "End city"
+            className="form-control"
             value = {this.state.endCity}
             onChange = {this.handleChange.bind(this, 'endCity')} />
-        </div>
-        <div>
+
           <input
             placeholder = "End state"
+            className="form-control"
             value = {this.state.endState}
             onChange = {this.handleChange.bind(this, 'endState')} />
-        </div>
-        <div>
+
           <input
             type = 'number'
+            className="form-control"
             placeholder = "# of Seats"
             value = {this.state.numSeats}
             onChange = {this.handleChange.bind(this, 'numSeats')} />
-        </div>
-        <div>
+
           <input
             type = 'number'
+            className="form-control"
             placeholder = "Price per Seats"
             value = {this.state.seatPrice}
             onChange = {this.handleChange.bind(this, 'seatPrice')} />
-        </div>
-        <div>
+
           <input
             placeholder = "Vehicle Make"
+            className="form-control"
             value = {this.state.vehicleMake}
             onChange = {this.handleChange.bind(this, 'vehicleMake')} />
-        </div>
-        <div>
+
           <input
             placeholder = "Vehicle Model"
+            className="form-control"
             value = {this.state.vehicleModel}
             onChange = {this.handleChange.bind(this, 'vehicleModel')} />
-        </div>
-        <div>
+
           <input
             placeholder = "Description"
+            className="form-control"
             value = {this.state.description}
             onChange = {this.handleChange.bind(this, 'description')} />
-        </div>
-        <div>
+
           <input
             placeholder = "Driver Id"
+            className="form-control"
             value = {this.state.driverId}
             onChange = {this.handleChange.bind(this, 'driverId')} />
-        </div>
-        <div>
+
           <input
             type="button"
+            className="btn btn-primary"
             value="Create"
             onClick = {event => this.submitTrip()}/>
         </div>
