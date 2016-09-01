@@ -78,9 +78,21 @@ class App extends Component {
     return (
           <div>
             <Login checkUser={this.checkUser}/>
-            <SearchBar infoStore={this.infoStore}/>
+
+            <div className="container">
+              <ul className="nav nav-tabs">
+                <li role="presentation" className="active">
+                  <a href="#">Search Trips</a>
+                </li>
+                <li role="presentation">
+                  <a href="#">Create Trip</a>
+                </li>
+              </ul>
+              <SearchBar infoStore={this.infoStore}/>
+              <CreateTrip makeTrip={this.makeTrip}/>
+            </div>
+
             <TripList trips={this.state.tripResults}/>
-            <CreateTrip makeTrip={this.makeTrip}/>
           </div>
     )
   }
