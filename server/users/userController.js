@@ -24,8 +24,8 @@ module.exports = {
   },
 
   getAllUsers: function(req, res) {
-
     var userList = [];
+
     User.findAll({
       attributes: ['id', 'email', 'firstName', 'lastName', 'description']
     })
@@ -39,9 +39,11 @@ module.exports = {
     .catch(function(err) {
       console.log('Error:', err);
     });
+
   },
 
   getUser: function(req, res) {
+
     User.findOne({
       where: {
         id: req.body.id
@@ -55,18 +57,36 @@ module.exports = {
     .catch(function(err) {
       console.log('Error:', err);
     });
+
   },
 
   authenticateUser: function(req, res) {
 
-    if(!req.body.username){
-      res.status(400).send('username required');
+    if(!req.body.email){
+      res.status(400).send('Email address required.');
       return;
     }
     if(!req.body.password){ // should be encrypted
-      res.status(400).send('password required');
+      res.status(400).send('Password required.');
       return;
     }
+
+    User.findOne({
+      where: {
+        email: req.body.email
+      },
+      attributes: ['password']
+    })
+    .then(function(user) {
+      //console.log(user.dataValues);
+      //res.send(user.dataValues);
+      if(user.password === req.body.password){
+        
+      }
+    })
+    .catch(function(err) {
+      console.log('Error:', err);
+    });
 
     // look up username/email
       // compare hashes
@@ -81,5 +101,6 @@ module.exports = {
       res.status(401).send('invalid login');
     }
 
-  });
+  }
+
 }
