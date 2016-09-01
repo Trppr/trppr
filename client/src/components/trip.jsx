@@ -8,10 +8,12 @@ import {render} from 'react-dom';
             <li>
             Driver name: {trip.driverName}, &nbsp;
             Trip dates: {trip.tripDate}, &nbsp;
-            {trip.startLocation} - {trip.endLocation}, &nbsp;
-            Number of seats available: {trip.numSeats}, &nbsp;
+            Pick-up: {trip.startSt}, &nbsp; {trip.startCity}, &nbsp; {trip.State}, &nbsp;
+            Drop-off: {trip.endSt}, &nbsp; {trip.endCity}, &nbsp; {trip.endState}, &nbsp;
+            Seats available: {trip.numSeats}, &nbsp;
             Price of seat: {trip.seatPrice}, &nbsp;
-            Vehicle Type: {trip.vehicleType}
+            Vehicle Details: {trip.vehicleMake}, &nbsp; {trip.vehicleModel}, &nbsp; {trip.vehicleYear}, &nbsp;
+            Other trip details: {trip.description};
             </li>
        </div>
      );
