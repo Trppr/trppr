@@ -150,7 +150,8 @@ module.exports = {
       res.json(tripsList);
     })
     .catch(function(err) {
-      console.log('Error:', err);
+      console.log('Error:', err.message);
+      res.send(err.message);
     });
   }
 
