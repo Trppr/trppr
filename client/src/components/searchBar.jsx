@@ -33,9 +33,10 @@ class SearchBar extends Component {
 
   render() {
     return (
-      <nav className="navbar navbar-default">
-      <div className="container-fluid">
-      <form className="navbar-form navbar-left">
+
+      <div className="container">
+      <div className="page-header">
+      <form className="">
         <div className="form-group">
           <input
             type = "date"
@@ -79,7 +80,7 @@ class SearchBar extends Component {
         </div>
       </form>
       </div>
-      </nav>
+      </div>
     )
   }
 }
