@@ -16,7 +16,7 @@ const Trip = sequelize.define('trip', {
     type: Sequelize.STRING,
     allowNull: false
   },
-  startZip: {
+  startState: {
     type: Sequelize.STRING,
     allowNull: false
   },
@@ -28,7 +28,7 @@ const Trip = sequelize.define('trip', {
     type: Sequelize.STRING,
     allowNull: false
   },
-  endZip: {
+  endState: {
     type: Sequelize.STRING,
     allowNull: false
   },

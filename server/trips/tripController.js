@@ -1,16 +1,24 @@
 const Trip = require('../trips/tripModel');
 const sequelize = require('sequelize');
+const moment = require('moment');
+
 
 module.exports = {
   createTrip: function(req, res){
     const newTrip = Trip.build({
       driverName: req.body.driverName,
       tripDate: req.body.tripDate,
-      startLocation: req.body.startLocation,
-      endLocation: req.body.endLocation,
+      startSt: req.body.startSt,
+      startCity: req.body.startCity,
+      startState: req.body.startState,
+      endSt: req.body.endSt,
+      endCity: req.body.endCity,
+      endState: req.body.endState,
       numSeats: req.body.numSeats,
       seatPrice: req.body.seatPrice,
-      vehicleType: req.body.vehicleType,
+      vehicleMake: req.body.vehicleMake,
+      vehicleModel: req.body.vehicleModel,
+      vehicleYear: req.body.vehicleYear,
       description: req.body.description,
       driverId: req.body.driverId
     });
@@ -43,142 +51,78 @@ module.exports = {
     });
   },
 
-  getAllTrips: function(req, res){
-    var tripsList = [];
-    Trip.findAll({
-      attributes: [
-        'id',
-        'driverName',
-        'tripDate',
-        'startLocation',
-        'endLocation',
-        'numSeats',
-        'seatPrice',
-        'vehicleType',
-        'description',
-        'driverId'
-      ]
-    })
-    .then(function(trips){
-      for(var i = 0; i < trips.length; i++){
-        tripsList.push(trips[i].dataValues);
-      }
-      console.log('\033[34m <TRPPR> Sending data: \033[0m');
-      console.log(tripsList);
-      res.json(tripsList);
-    })
-    .catch(function(err) {
-      console.log('Error:', err);
-    });
-  },
-
-  getTripsByStart: function(req, res){
-    var tripsList = [];
-    var startLocation = req.body.startLocation; // || something else?
-
-    Trip.findAll({
-      where: {
-        startLocation: {
-          $iLike: startLocation
-        }
-      },
-      attributes: ['id', 'driverName', 'tripDate', 'startLocation', 'endLocation',
-        'numSeats', 'seatPrice', 'vehicleType', 'description']
-    })
-    .then(function(trips){
-      for(var i = 0; i < trips.length; i++){
-        tripsList.push(trips[i].dataValues);
-      }
-      console.log('\033[34m <TRPPR> Sending data: \033[0m');
-      console.log(tripsList);
-      res.json(tripsList);
-    })
-    .catch(function(err) {
-      console.log('Error:', err);
-    });
-  },
-
-  getTripsByEnd: function(req, res){
-    var tripsList = [];
-    var endLocation = req.body.endLocation; // || something else?
-
-    Trip.findAll({
-      where: {
-        endLocation: {
-          $iLike: endLocation
-        }
-      },
-      attributes: ['id', 'driverName', 'tripDate', 'startLocation', 'endLocation',
-        'numSeats', 'seatPrice', 'vehicleType', 'description']
-    })
-    .then(function(trips){
-      for(var i = 0; i < trips.length; i++){
-        tripsList.push(trips[i].dataValues);
-      }
-      console.log('\033[34m <TRPPR> Sending data: \033[0m');
-      console.log(tripsList);
-      res.json(tripsList);
-    })
-    .catch(function(err) {
-      console.log('Error:', err);
-    });
-  },
-
-  getTripsByDate: function(req, res){
-    var tripsList = [];
-    var tripDate = req.body.tripDate; // || something else?
-
-    Trip.findAll({
-      where: {
-        tripDate: {
-          $iLike: tripDate
-        }
-      },
-      attributes: ['id', 'driverName', 'tripDate', 'startLocation', 'endLocation',
-        'numSeats', 'seatPrice', 'vehicleType', 'description']
-    })
-    .then(function(trips){
-      for(var i = 0; i < trips.length; i++){
-        tripsList.push(trips[i].dataValues);
-      }
-      console.log('\033[34m <TRPPR> Sending data: \033[0m');
-      console.log(tripsList);
-      res.json(tripsList);
-    })
-    .catch(function(err) {
-      console.log('Error:', err);
-    });
-  },
-
   searchTrips: function(req, res){
     var tripsList = [];
 
-    // Grabs params from query, all of them are optional,
-    // eg a blank query will return all trips
-    var tripDate = req.query.tripDate;
+    var startDate, endDate, momentObj;
+    if(req.query.startDate){
+      momentObj = moment(req.query.startDate, "MM-DD-YYYY");
+      startDate = momentObj.format('YYYY-MM-DD HH:mm:ss Z');
+      if(!req.query.endDate){
+        endDate = momentObj.add(1, 'months').format('YYYY-MM-DD HH:mm:ss Z');
+      }
+    }
+
+    if(req.query.endDate){
+      momentObj = moment(req.query.endDate, "MM-DD-YYYY");
+      endDate = momentObj.add(24, 'hours').format('YYYY-MM-DD HH:mm:ss Z');
+      if(!req.query.startDate){
+        startDate = momentObj.subtract(1, 'months').format('YYYY-MM-DD HH:mm:ss Z');
+      }
+    }
+    // Location can be either state or city.
     var startLocation = req.query.startLocation;
     var endLocation = req.query.endLocation;
+
     var numSeats = req.query.numSeats;
     var seatPrice = req.query.seatPrice;
 
-    // Creating object that will store attribute queries. This
+    // Creating an object to store attribute queries. This
     // will create a query only if the attribute is passed in.
     var where = {};
 
-    if(tripDate){
-      where.tripDate = {
-        // $iLike matches similar string, case-insensitve
-        $iLike: tripDate
-      }
-    }
+    // The two if() statements below check if the start/end location contain
+    // either the city or state.
     if(startLocation){
-      where.startLocation = {
-        $iLike: startLocation
+      where = {
+        $or: [
+          {
+            startCity: {
+              $iLike: startLocation
+            }
+          },
+          {
+            startState: {
+              $iLike: startLocation
+            }
+          }
+        ]
       }
     }
     if(endLocation){
-      where.endLocation = {
-        $iLike: endLocation
+      where = {
+        $or: [
+          {
+            endCity: {
+              $iLike: endLocation
+            }
+          },
+          {
+            endState: {
+              $iLike: endLocation
+
+            }
+          }
+        ]
+      }
+    }
+
+    // The following if()s add additional queries to the query object.
+    if(startDate){
+      where.tripDate = {
+        // matches a departure date between the start and end date
+        $gte: startDate,
+        $lte: endDate
       }
     }
     if(numSeats){
@@ -199,14 +143,20 @@ module.exports = {
       attributes: [
         'id',
         'driverName',
+        'driverId',
         'tripDate',
-        'startLocation',
-        'endLocation',
+        'startSt',
+        'startCity',
+        'startState',
+        'endSt',
+        'endCity',
+        'endState',
         'numSeats',
         'seatPrice',
-        'vehicleType',
-        'description',
-        'driverId'
+        'vehicleMake',
+        'vehicleModel',
+        'vehicleYear',
+        'description'
       ]
     })
     .then(function(trips){
