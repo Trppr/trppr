@@ -5,14 +5,30 @@ const User = require('../users/userModel');
 const Trip = sequelize.define('trip', {
   driverName: Sequelize.STRING,
   tripDate: {
+    type: Sequelize.DATE,
+    allowNull: false
+  },
+  startSt: {
     type: Sequelize.STRING,
     allowNull: false
   },
-  startLocation: {
+  startCity: {
     type: Sequelize.STRING,
     allowNull: false
   },
-  endLocation: {
+  startState: {
+    type: Sequelize.STRING,
+    allowNull: false
+  },
+  endSt: {
+    type: Sequelize.STRING,
+    allowNull: false
+  },
+  endCity: {
+    type: Sequelize.STRING,
+    allowNull: false
+  },
+  endState: {
     type: Sequelize.STRING,
     allowNull: false
   },
@@ -24,10 +40,13 @@ const Trip = sequelize.define('trip', {
     type: Sequelize.INTEGER,
     allowNull: false
   },
-  vehicleType: Sequelize.STRING,
+  vehicleMake: Sequelize.STRING,
+  vehicleModel: Sequelize.STRING,
+  vehicleYear: Sequelize.STRING,
   description: Sequelize.TEXT,
   driverId: Sequelize.INTEGER
 });
+
 // Associations/foreign key relationships:
 Trip.belongsTo(User, {as: 'driver'});
 // One-to-one relationship between trip and driver.
