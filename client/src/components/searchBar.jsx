@@ -22,6 +22,13 @@ class SearchBar extends Component {
 
   submitData() {
     this.props.infoStore(this.state);
+    this.setState({ endLocation: '',
+                   startLocation: '',
+                   numSeats: '',
+                   price: '',
+                   startDate: '',
+                   endDate: ''
+                 });
   }
 
   render() {
