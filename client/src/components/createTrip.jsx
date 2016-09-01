@@ -7,11 +7,16 @@ class CreateTrip extends Component {
     super(props);
     this.state = { driverName: '',
                    tripDate: '',
-                   startLocation: '',
-                   endLocation: '',
+                   startSt: '',
+                   startCity: '',
+                   startState: '',
+                   endSt: '',
+                   endCity: '',
+                   endState: '',
                    numSeats: '',
                    seatPrice: '',
-                   vehicleType: '',
+                   vehicleMake: '',
+                   vehicleModel: '',
                    description: '',
                    driverId: ''
                    };
@@ -24,16 +29,20 @@ class CreateTrip extends Component {
   }
 
   submitTrip() {
-    if(this.state.driverName === '' || this.state.tripData === '' || this.state.startLocation === ''
-      || this.state.endLocation === '' || this.state.numSeats === '' || this.state.seatPrice === ''
-      || this.state.vehicleType === '') {
-        render(<div> Please fill out all fields </div>, document.getElementById('create'));
-      } else {
-          render(<div></div>, document.getElementById('create'));
-          this.props.makeTrip(this.state);
-        }
+    let filled = true;
+    for(var attr in this.state) {
+      if(this.state[attr] === '') {
+        filled = false;
+      }
+    }
+    if(!filled) {
+      render(<div> Please fill out all fields </div>, document.getElementById('create'));
+    } else {
+      render(<div></div>, document.getElementById('create'));
+      this.props.makeTrip(this.state);
+    }
   }
-
+  
   render() {
     return (
       <form>
@@ -45,15 +54,45 @@ class CreateTrip extends Component {
         </div>
         <div>
           <input
-            placeholder = "Start Location"
-            value = {this.state.startLocation}
-            onChange = {this.handleChange.bind(this, 'startLocation')} />
+            placeholder = "Trip Date"
+            value = {this.state.tripDate}
+            onChange = {this.handleChange.bind(this, 'tripDate')} />
         </div>
         <div>
           <input
-            placeholder = "End Location"
-            value = {this.state.endLocation}
-            onChange = {this.handleChange.bind(this, 'endLocation')} />
+            placeholder = "Start street"
+            value = {this.state.startSt}
+            onChange = {this.handleChange.bind(this, 'startSt')} />
+        </div>
+        <div>
+          <input
+            placeholder = "Start city"
+            value = {this.state.startCiy}
+            onChange = {this.handleChange.bind(this, 'startCity')} />
+        </div>
+        <div>
+          <input
+            placeholder = "Start state"
+            value = {this.state.startState}
+            onChange = {this.handleChange.bind(this, 'startState')} />
+        </div>
+        <div>
+          <input
+            placeholder = "End street"
+            value = {this.state.endSt}
+            onChange = {this.handleChange.bind(this, 'endSt')} />
+        </div>
+        <div>
+          <input
+            placeholder = "End city"
+            value = {this.state.endCity}
+            onChange = {this.handleChange.bind(this, 'endCity')} />
+        </div>
+        <div>
+          <input
+            placeholder = "End state"
+            value = {this.state.endState}
+            onChange = {this.handleChange.bind(this, 'endState')} />
         </div>
         <div>
           <input
@@ -71,9 +110,15 @@ class CreateTrip extends Component {
         </div>
         <div>
           <input
-            placeholder = "Vehicle Type"
-            value = {this.state.vehicleType}
-            onChange = {this.handleChange.bind(this, 'vehicleType')} />
+            placeholder = "Vehicle Make"
+            value = {this.state.vehicleMake}
+            onChange = {this.handleChange.bind(this, 'vehicleMake')} />
+        </div>
+        <div>
+          <input
+            placeholder = "Vehicle Model"
+            value = {this.state.vehicleModel}
+            onChange = {this.handleChange.bind(this, 'vehicleModel')} />
         </div>
         <div>
           <input
