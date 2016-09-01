@@ -8,7 +8,9 @@ class SearchBar extends Component {
     this.state = { endLocation: '',
                    startLocation: '',
                    numSeats: '',
-                   price: ''
+                   price: '',
+                   startDate: '',
+                   endDate: ''
                  };
   }
 
@@ -27,11 +29,21 @@ class SearchBar extends Component {
       <form>
         <div>
           <input
-            placeholder = "Where to?"
+            type = "date"
+            placeholder = "Starting date"
+            value = {this.state.startDate}
+            onChange = {this.handleChange.bind(this, 'startDate')}/>
+          <input
+            type = "date"
+            placeholder = "Ending date"
+            value = {this.state.endDate}
+            onChange = {this.handleChange.bind(this, 'endDate')}/>
+          <input
+            placeholder = "Ending city/state"
             value = {this.state.endLocation}
             onChange = {this.handleChange.bind(this, 'endLocation')} />
           <input
-            placeholder = "Where are you?"
+            placeholder = "Starting city/state"
             value = {this.state.startLocation}
             onChange = {this.handleChange.bind(this, 'startLocation')} />
           <input
