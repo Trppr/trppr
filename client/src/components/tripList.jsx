@@ -13,7 +13,7 @@ import Trip from './trip.jsx';
          <ul>
            {props.trips.map((trip, index) => {
             // return <div key={index}>{trip}</div>
-            return <Trip trip={trip}/>
+            return <Trip key={index} trip={trip}/>
            })}
          </ul>
        </div>
