@@ -12,8 +12,20 @@ module.exports = (app, express) => {
   //you need to add Authorization and Bearer [jwt] in your header to use all other routes
   //app.use(expressJWT({secret:'hello world trppr'})
   //.unless({path: ['/login', '/', '/recent', '/signup', '/search', '/dummyData']}));
-
   app.use('/', express.static('./client'));
-  app.use(expressJWT({secret:'hello world trppr'})
-  .unless({path: ['/login', '/', '/recent', '/signup', '/search']}));
+  // Temporarily turning off auth for testing purposes.
+  // app.use(expressJWT({secret:'hello world trppr'})
+  //   .unless( {
+  //     path: [
+  //       '/login',
+  //       '/',
+  //       '/recent',
+  //       '/signup',
+  //       '/createTrip',
+  //       '/reserveSeat',
+  //       '/searchTrips'
+  //     ]
+  //   }
+  // ));
+
 };
