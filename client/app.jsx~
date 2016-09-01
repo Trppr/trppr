@@ -90,22 +90,26 @@ class App extends Component {
   render () {
     return (
           <div>
-          <Login checkUser={this.checkUser}/>
+            <Login checkUser={this.checkUser}/>
+<<<<<<< HEAD
 
-          <div className="container">
-             <ul className="nav nav-tabs">
-               <li role="presentation" className="active">
-                 <a href="#">Search Trips</a>
-               </li>
-               <li role="presentation">
-                 <a href="#">Create Trip</a>
+            <div className="container">
+              <ul className="nav nav-tabs">
+                <li role="presentation" className="active">
+                  <a href="#">Search Trips</a>
                 </li>
-             </ul>
-             <SearchBar infoStore={this.infoStore}/>
-             <CreateTrip makeTrip={this.makeTrip}/>
-           </div>
+                <li role="presentation">
+                  <a href="#">Create Trip</a>
+                </li>
+              </ul>
+              <SearchBar infoStore={this.infoStore}/>
+              <CreateTrip makeTrip={this.makeTrip}/>
+            </div>
 
+=======
             <Signup createUser={this.createUser}/>
+            <SearchBar infoStore={this.infoStore}/>
+>>>>>>> dev
             <TripList trips={this.state.tripResults}/>
           </div>
     )
