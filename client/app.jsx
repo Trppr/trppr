@@ -3,8 +3,8 @@
 import React, { Component } from 'react';
 import {render} from 'react-dom';
 const axios = require('axios');
+const moment = require('moment');
 
-const trip = require('./src/components/trip.jsx');
 import TripList from './src/components/tripList.jsx';
 import SearchBar from './src/components/searchBar.jsx';
 import CreateTrip from './src/components/createTrip.jsx';
@@ -28,6 +28,11 @@ class App extends Component {
 
   getTrips(searchObj) {
     const that = this;
+    if(searchObj.startDate !== '')
+      searchObj.startDate = moment(searchObj.startDate).format('MM-DD-YYYY');
+    if(searchObj.endDate !== '')
+      searchObj.endDate = moment(searchObj.endDate).format('MM-DD-YYYY');
+    console.log('searchObj inside app.jsx', searchObj)
     axios.get('/searchTrips', {
       params: searchObj
       }
