@@ -4,20 +4,26 @@ const userController = require('../users/userController');
 
 module.exports = (app, express) => {
 
-  app.get('/dummyData', (req, res) => {
-    res.status(200)
-    .send({
-      hello: 'world'
-    });
-  });
-
   /*
-  *  Use API Requests
+  *  User API Requests
   */
 
   app.post('/signup', userController.createUser);
+  // Takes the following(description not required):
+  // req.body.email,
+  // req.body.password,
+  // req.body.firstName,
+  // req.body.lastName,
+  // req.body.description
+  // Succes -> 201
+  // Failure -> 500 with errors
 
   app.post('/login', userController.authenticateUser);
+  // Takes the following:
+  // req.body.email,
+  // req.body.password
+  // Success -> Will return json object with user object and token
+  // Failure -> 500 with erors
 
   /*
   *  Trip API Requests
