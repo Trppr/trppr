@@ -20,27 +20,34 @@ class Login extends Component {
 
   render() {
     return (
-      <form>
-        <div>
-          <input
-            value = {this.state.username}
-            placeholder = 'Username'
-            onChange = {this.handleChange.bind(this, 'username')}/>
+      <nav className = 'navbar navbar-default navbar-fixed-top'>
+        <div className = 'container-fluid'>
+          <a className = 'navbar-brand'
+             href = '#'> Trppr </a>
+          <form className = 'navbar-form navbar-right'>
+            <div>
+              <input
+                value = {this.state.username}
+                placeholder = 'Username'
+                className = 'form-control'
+                onChange = {this.handleChange.bind(this, 'username')}/> 
+
+              <input
+                value = {this.state.password}
+                type = 'password'
+                className = 'form-control'
+                placeholder = 'Password'
+                onChange = {this.handleChange.bind(this, 'password')}/>
+
+              <input
+                type = 'button'
+                className = 'btn btn-primary'
+                value = 'Login'
+                onClick = {event => this.submitUser()}/>
+            </div>
+          </form>
         </div>
-        <div>
-          <input
-            value = {this.state.password}
-            type = 'password'
-            placeholder = 'Password'
-            onChange = {this.handleChange.bind(this, 'password')}/>
-        </div>
-        <div>
-          <input
-            type="button"
-            value="Login"
-            onClick = {event => this.submitUser()}/>
-        </div>
-      </form>
+      </nav>
     )
   }
 }
