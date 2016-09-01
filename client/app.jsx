@@ -9,6 +9,7 @@ import TripList from './src/components/tripList.jsx';
 import SearchBar from './src/components/searchBar.jsx';
 import CreateTrip from './src/components/createTrip.jsx';
 import Login from './src/components/login.jsx';
+import Signup from './src/components/signUp.jsx';
 
 class App extends Component {
   constructor(props) {
@@ -71,10 +72,26 @@ class App extends Component {
     })
   }
 
+  createUser(newUserObj) {
+    const that = this;
+    axios.post('/signup',
+      newUserObj)
+    .then(function(response) {
+      console.log("new user created: ", response);
+    })
+    .catch(function(error) {
+      render(<div> User email already exists. Please enter a different email address. </div>, document.getElementByID('create'));
+      console.log(error);
+    })
+  }
+
+
+
   render () {
     return (
           <div>
             <Login checkUser={this.checkUser}/>
+            <Signup createUser={this.createUser}/>
             <SearchBar infoStore={this.infoStore}/>
             <TripList trips={this.state.tripResults}/>
             <CreateTrip makeTrip={this.makeTrip}/>
