@@ -16,14 +16,14 @@ module.exports = (app, express) => {
   // req.body.lastName,
   // req.body.description
   // Succes -> 201
-  // Failure -> 500 w/erors on error.
+  // Failure -> 500 with errors
 
   app.post('/login', userController.authenticateUser);
   // Takes the following:
   // req.body.email,
   // req.body.password
   // Success -> Will return json object with user object and token
-  // Failure -> 500
+  // Failure -> 500 with erors
 
   /*
   *  Trip API Requests
