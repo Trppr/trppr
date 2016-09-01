@@ -32,7 +32,6 @@ class App extends Component {
       searchObj.startDate = moment(searchObj.startDate).format('MM-DD-YYYY');
     if(searchObj.endDate !== '')
       searchObj.endDate = moment(searchObj.endDate).format('MM-DD-YYYY');
-    console.log('searchObj inside app.jsx', searchObj)
     axios.get('/searchTrips', {
       params: searchObj
       }
@@ -65,7 +64,6 @@ class App extends Component {
       userObj
     )
     .then(function (response) {
-      console.log('response inside checkUser app.jsx: ',response);
       axios.defaults.headers.common['Authorization'] = 'Bearer ' + response.data;
     })
     .catch(function (error) {
@@ -74,7 +72,6 @@ class App extends Component {
   }
 
   render () {
-    console.log('state inside app.jsx', this.state)
     return (
           <div>
             <Login checkUser={this.checkUser}/>
