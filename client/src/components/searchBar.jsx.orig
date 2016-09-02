@@ -33,7 +33,7 @@ class SearchBar extends Component {
   render() {
     return (
       <form className="form-group">
-      <div className="col-md-6" id="CreateAndSearchTripsLeft">
+      <div className="col-md-6" id="searchTripsLeft">
         <input
           type = "date"
           className="form-control"
@@ -54,19 +54,8 @@ class SearchBar extends Component {
           value = {this.state.numSeats}
           onChange = {this.handleChange.bind(this, 'numSeats')} />
 
-<<<<<<< 6ab503768fca288275eaabb4fbcd869b61af5dd5
           </div>
           <div className="col-md-6" id="searchTripsRight">
-=======
-      </div>
-      <div className="col-md-6" id="CreateAndSearchTripsRight">
-
-        <input
-          placeholder = "Ending city/state"
-          className="form-control"
-          value = {this.state.endLocation}
-          onChange = {this.handleChange.bind(this, 'endLocation')} />
->>>>>>> [refactor]reordered the create trips to be balanced
 
         <input
           type = "date"
@@ -82,6 +71,22 @@ class SearchBar extends Component {
           onChange = {this.handleChange.bind(this, 'endLocation')} />
       </div>
       <div className="col-md-6">
+<<<<<<< 36490d6e4e7cb1ace8884f79c041b196c578a12a
+=======
+        <input
+          placeholder = "Starting city/state"
+          className="form-control"
+          value = {this.state.startLocation}
+          onChange = {this.handleChange.bind(this, 'startLocation')} />
+
+        <input
+          type = "number"
+          className="form-control"
+          placeholder = "# of passengers?"
+          value = {this.state.numSeats}
+          onChange = {this.handleChange.bind(this, 'numSeats')} />
+
+>>>>>>> worked on styling searchbar
         <input
           type = "number"
           className="form-control"

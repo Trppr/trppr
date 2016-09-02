@@ -1,14 +1,14 @@
 body {
   padding-top: 70px;
 }
-<<<<<<< 396db11781f6de65ea262b2f5560f8d32dff82fe
-#searchTripsLeft{
+<<<<<<< 36490d6e4e7cb1ace8884f79c041b196c578a12a
+#CreateAndSearchTripsLeft{
   width: 50%;
   padding-left: 0px;
   border: 0px;
   margin: 0px;
 }
-#searchTripsRight{
+#CreateAndSearchTripsRight{
   width: 50%;
   padding-right: 0px;
   border: 0px;
