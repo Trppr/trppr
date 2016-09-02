@@ -1,21 +1,23 @@
 body {
   padding-top: 70px;
 }
-<<<<<<< 36490d6e4e7cb1ace8884f79c041b196c578a12a
+<<<<<<< 2b4a756eaeb8f1a468fbe161df09668b3dee3777
 #CreateAndSearchTripsLeft{
+=======
+#searchTripsLeft{
+>>>>>>> [refactor] put search trips in two colums
   width: 50%;
   padding-left: 0px;
   border: 0px;
   margin: 0px;
 }
+<<<<<<< 2b4a756eaeb8f1a468fbe161df09668b3dee3777
 #CreateAndSearchTripsRight{
+=======
+#searchTripsRight{
+>>>>>>> [refactor] put search trips in two colums
   width: 50%;
   padding-right: 0px;
   border: 0px;
   margin: 0px;
-=======
-#tripBox {
-  border-radius: 1px;
-  background-color: cadetblue;
->>>>>>> worked on styling searchbar
 }

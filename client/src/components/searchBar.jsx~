@@ -69,24 +69,12 @@ class SearchBar extends Component {
           className="form-control"
           value = {this.state.endLocation}
           onChange = {this.handleChange.bind(this, 'endLocation')} />
+<<<<<<< 2b4a756eaeb8f1a468fbe161df09668b3dee3777
       </div>
       <div className="col-md-6">
-<<<<<<< 36490d6e4e7cb1ace8884f79c041b196c578a12a
 =======
-        <input
-          placeholder = "Starting city/state"
-          className="form-control"
-          value = {this.state.startLocation}
-          onChange = {this.handleChange.bind(this, 'startLocation')} />
 
-        <input
-          type = "number"
-          className="form-control"
-          placeholder = "# of passengers?"
-          value = {this.state.numSeats}
-          onChange = {this.handleChange.bind(this, 'numSeats')} />
-
->>>>>>> worked on styling searchbar
+>>>>>>> [refactor] put search trips in two colums
         <input
           type = "number"
           className="form-control"
