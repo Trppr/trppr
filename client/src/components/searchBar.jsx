@@ -35,6 +35,7 @@ class SearchBar extends Component {
     return (
 
       <form className="form-group">
+      <div className="col-md-6" id="searchTripsLeft">
         <input
           type = "date"
           className="form-control"
@@ -54,7 +55,8 @@ class SearchBar extends Component {
           className="form-control"
           value = {this.state.endLocation}
           onChange = {this.handleChange.bind(this, 'endLocation')} />
-
+      </div>
+      <div className="col-md-6">
         <input
           placeholder = "Starting city/state"
           className="form-control"
@@ -75,6 +77,7 @@ class SearchBar extends Component {
           value = {this.state.price}
           onChange = {this.handleChange.bind(this, 'price')}/>
 
+      </div>
         <input
           type="button"
           className="btn btn-primary"
