@@ -1,1 +1,15 @@
-body { padding-top: 70px; }
+body {
+  padding-top: 70px;
+}
+#CreateAndSearchTripsLeft{
+  width: 50%;
+  padding-left: 0px;
+  border: 0px;
+  margin: 0px;
+}
+#CreateAndSearchTripsRight{
+  width: 50%;
+  padding-right: 0px;
+  border: 0px;
+  margin: 0px;
+}
