@@ -34,7 +34,7 @@ class SearchBar extends Component {
     return (
 
       <form className="form-group">
-      <div className="col-md-6" id="searchTripsLeft">
+      <div className="col-md-6" id="CreateAndSearchTripsLeft">
         <input
           placeholder = "Starting city/state"
           className="form-control"
@@ -56,7 +56,7 @@ class SearchBar extends Component {
           onChange = {this.handleChange.bind(this, 'numSeats')} />
 
       </div>
-      <div className="col-md-6" id="searchTripsRight">
+      <div className="col-md-6" id="CreateAndSearchTripsRight">
 
         <input
           placeholder = "Ending city/state"
