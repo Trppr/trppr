@@ -87,13 +87,13 @@ module.exports = {
     }
     // Location can be either state or city. numSeats and seatPrice should be ints.
     var startLocation = req.query.startLocation;
-    if(req.query.startLocation > 2){
-      startLocation = postal.toAbbreviation(startLocation);
-    }
+    // if(req.query.startLocation > 2){
+    //   startLocation = postal.toAbbreviation(startLocation);
+    // }
     var endLocation = req.query.endLocation;
-    if(req.query.endLocation.length > 2){
-      endLocation = postal.toAbbreviation(endLocation);
-    }
+    // if(req.query.endLocation.length > 2){
+    //   endLocation = postal.toAbbreviation(endLocation);
+    // }
     var numSeats = req.query.numSeats;
     var seatPrice = req.query.seatPrice;
 
