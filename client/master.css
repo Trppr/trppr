@@ -1,13 +1,13 @@
 body {
   padding-top: 70px;
 }
-#searchTripsLeft{
+#CreateAndSearchTripsLeft{
   width: 50%;
   padding-left: 0px;
   border: 0px;
   margin: 0px;
 }
-#searchTripsRight{
+#CreateAndSearchTripsRight{
   width: 50%;
   padding-right: 0px;
   border: 0px;
