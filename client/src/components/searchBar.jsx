@@ -32,8 +32,15 @@ class SearchBar extends Component {
 
   render() {
     return (
+
       <form className="form-group">
       <div className="col-md-6" id="searchTripsLeft">
+        <input
+          placeholder = "Starting city/state"
+          className="form-control"
+          value = {this.state.startLocation}
+          onChange = {this.handleChange.bind(this, 'startLocation')} />
+
         <input
           type = "date"
           className="form-control"
@@ -42,20 +49,20 @@ class SearchBar extends Component {
           onChange = {this.handleChange.bind(this, 'startDate')}/>
 
           <input
-          placeholder = "Starting city/state"
-          className="form-control"
-          value = {this.state.startLocation}
-          onChange = {this.handleChange.bind(this, 'startLocation')} />
-
-          <input
           type = "number"
           className="form-control"
           placeholder = "# of passengers?"
           value = {this.state.numSeats}
           onChange = {this.handleChange.bind(this, 'numSeats')} />
 
-          </div>
-          <div className="col-md-6" id="searchTripsRight">
+      </div>
+      <div className="col-md-6" id="searchTripsRight">
+
+        <input
+          placeholder = "Ending city/state"
+          className="form-control"
+          value = {this.state.endLocation}
+          onChange = {this.handleChange.bind(this, 'endLocation')} />
 
         <input
           type = "date"
@@ -64,13 +71,6 @@ class SearchBar extends Component {
           value = {this.state.endDate}
           onChange = {this.handleChange.bind(this, 'endDate')}/>
 
-        <input
-          placeholder = "Ending city/state"
-          className="form-control"
-          value = {this.state.endLocation}
-          onChange = {this.handleChange.bind(this, 'endLocation')} />
-      </div>
-      <div className="col-md-6">
         <input
           type = "number"
           className="form-control"
