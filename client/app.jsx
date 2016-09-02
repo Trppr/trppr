@@ -1,9 +1,11 @@
 //if you require outside files at the top of the entry file defined when you
 //call webpack in the terminal, webpack automatically bundles the linked files
 import React, { Component } from 'react';
+import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 import {render} from 'react-dom';
 const axios = require('axios');
 const moment = require('moment');
+
 
 import TripList from './src/components/tripList.jsx';
 import SearchBar from './src/components/searchBar.jsx';
@@ -112,8 +114,14 @@ class App extends Component {
   }
 }
 
-render(<App/>, document.getElementById('app'));
-
+// render(<App/>, document.getElementById('app'));
+//render(<Route history={hashHistory}>
+render((
+  <Router history={browserHistory}>
+    <Route path="/" component={App}>
+    </Route>
+  </Router>
+), document.getElementById('app'));
 // document.getElementById('root').appendChild(tripList());
 // document.getElementById('root').appendChild(apple());
 // document.getElementById('root').appendChild(trip());
