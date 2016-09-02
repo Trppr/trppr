@@ -46,10 +46,17 @@ class CreateTrip extends Component {
   render() {
     return (
       <form className="form-group">
+<<<<<<< 6ab503768fca288275eaabb4fbcd869b61af5dd5
+        <div>
+          <h1>Create a Trip</h1>
+          <input
+            placeholder = "Driver name"
+=======
       <div className="col-md-6" id="CreateAndSearchTripsLeft">
 
             <input
             placeholder = "Start street"
+>>>>>>> [refactor]reordered the create trips to be balanced
             className="form-control"
             value = {this.state.startSt}
             onChange = {this.handleChange.bind(this, 'startSt')} />

@@ -32,9 +32,8 @@ class SearchBar extends Component {
 
   render() {
     return (
-
       <form className="form-group">
-      <div className="col-md-6" id="CreateAndSearchTripsLeft">
+      <div className="col-md-6" id="searchTripsLeft">
         <input
           placeholder = "Starting city/state"
           className="form-control"
@@ -56,7 +55,7 @@ class SearchBar extends Component {
           onChange = {this.handleChange.bind(this, 'numSeats')} />
 
       </div>
-      <div className="col-md-6" id="CreateAndSearchTripsRight">
+      <div className="col-md-6" id="searchTripsRight">
 
         <input
           placeholder = "Ending city/state"
@@ -72,6 +71,20 @@ class SearchBar extends Component {
           onChange = {this.handleChange.bind(this, 'endDate')}/>
 
         <input
+<<<<<<< 00e479e07f2b333d498f15e6efd0a8d3197901f8
+          placeholder = "Ending city/state"
+          className="form-control"
+          value = {this.state.endLocation}
+          onChange = {this.handleChange.bind(this, 'endLocation')} />
+<<<<<<< 2a23bff1e651af9b3dabcdbd7c7f17455e52a9cb
+<<<<<<< 2b4a756eaeb8f1a468fbe161df09668b3dee3777
+=======
+>>>>>>> [refactor]reordered the search boxes
+      </div>
+      <div className="col-md-6">
+        <input
+=======
+>>>>>>> [refactor]reordered the search boxes
           type = "number"
           className="form-control"
           placeholder = "Max budget?"
