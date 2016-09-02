@@ -5,6 +5,7 @@ const moment = require('moment');
 
 module.exports = {
   createTrip: function(req, res){
+    
     const newTrip = Trip.build({
       driverName: req.body.driverName,
       tripDate: req.body.tripDate,
@@ -142,9 +143,9 @@ module.exports = {
       ]
     })
     .then(function(trips){
-      for(var i = 0; i < trips.length; i++){
-        tripsList.push(trips[i].dataValues);
-      }
+      trips.forEach( (trip) => {
+        tripsList.push(trip.dataValues);
+      });
       console.log('\033[34m <TRPPR> Sending data: \033[0m');
       console.log(tripsList);
       res.json(tripsList);
