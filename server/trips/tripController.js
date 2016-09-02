@@ -1,11 +1,11 @@
 const Trip = require('../trips/tripModel');
 const sequelize = require('sequelize');
 const moment = require('moment');
-
+const postal = require("postal-abbreviations");
 
 module.exports = {
   createTrip: function(req, res){
-    
+
     const newTrip = Trip.build({
       driverName: req.body.driverName,
       tripDate: req.body.tripDate,
@@ -36,16 +36,23 @@ module.exports = {
   },
 
   reserveSeat: function(req, res){
-
     Trip.findOne({
       where: {
         id: req.body.tripId
       }
     })
     .then(function(trip) {
-      trip.addPassengers(req.body.passengerId);
-      console.log("\033[34m <TRPPR> Seat reserved. \033[0m");
-      res.sendStatus(201);
+      var numSeats = trip.get('numSeats');
+      if(numSeats > 0){
+          trip.addPassengers(req.body.passengerId);
+          trip.set( { 'numSeats': (numSeats - 1) } );
+          trip.save();
+          console.log("\033[34m <TRPPR> Seat reserved. \033[0m");
+          res.sendStatus(201);
+      }
+      else{
+        res.status(500).send('Trip is full.');
+      }
     })
     .catch(function(err) {
       console.log('Error:', err);
@@ -53,7 +60,6 @@ module.exports = {
   },
 
   searchTrips: function(req, res){
-    console.log('req.query inside tripController.js',req.query)
     var tripsList = [];
 
     // The code below handles converting dates from params to PostgreSQL style.
@@ -81,7 +87,13 @@ module.exports = {
     }
     // Location can be either state or city. numSeats and seatPrice should be ints.
     var startLocation = req.query.startLocation;
+    // if(req.query.startLocation > 2){
+    //   startLocation = postal.toAbbreviation(startLocation);
+    // }
     var endLocation = req.query.endLocation;
+    // if(req.query.endLocation.length > 2){
+    //   endLocation = postal.toAbbreviation(endLocation);
+    // }
     var numSeats = req.query.numSeats;
     var seatPrice = req.query.seatPrice;
 
