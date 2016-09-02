@@ -49,7 +49,7 @@ module.exports = (app, express) => {
   // for this to work.
 
   app.get('*', (req, res) => {
-    res.status(404);
+    res.sendStatus(404);
   });
 
 };

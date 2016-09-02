@@ -1,7 +1,7 @@
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const expressJWT = require('express-jwt');
-
+const morgan = require('morgan');
 
 module.exports = (app, express) => {
   app.use(cors());
@@ -13,6 +13,7 @@ module.exports = (app, express) => {
   //app.use(expressJWT({secret:'hello world trppr'})
   //.unless({path: ['/login', '/', '/recent', '/signup', '/search', '/dummyData']}));
   app.use('/', express.static('./client'));
+  app.use(morgan('dev'));
   // Temporarily turning off auth for testing purposes.
   // app.use(expressJWT({secret:'hello world trppr'})
   //   .unless( {
