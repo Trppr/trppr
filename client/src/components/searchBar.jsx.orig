@@ -35,17 +35,17 @@ class SearchBar extends Component {
       <form className="form-group">
       <div className="col-md-6" id="searchTripsLeft">
         <input
+          placeholder = "Starting city/state"
+          className="form-control"
+          value = {this.state.startLocation}
+          onChange = {this.handleChange.bind(this, 'startLocation')} />
+
+        <input
           type = "date"
           className="form-control"
           placeholder = "Starting date"
           value = {this.state.startDate}
           onChange = {this.handleChange.bind(this, 'startDate')}/>
-
-          <input
-          placeholder = "Starting city/state"
-          className="form-control"
-          value = {this.state.startLocation}
-          onChange = {this.handleChange.bind(this, 'startLocation')} />
 
           <input
           type = "number"
@@ -54,8 +54,14 @@ class SearchBar extends Component {
           value = {this.state.numSeats}
           onChange = {this.handleChange.bind(this, 'numSeats')} />
 
-          </div>
-          <div className="col-md-6" id="searchTripsRight">
+      </div>
+      <div className="col-md-6" id="searchTripsRight">
+
+        <input
+          placeholder = "Ending city/state"
+          className="form-control"
+          value = {this.state.endLocation}
+          onChange = {this.handleChange.bind(this, 'endLocation')} />
 
         <input
           type = "date"
@@ -65,17 +71,16 @@ class SearchBar extends Component {
           onChange = {this.handleChange.bind(this, 'endDate')}/>
 
         <input
+<<<<<<< 00e479e07f2b333d498f15e6efd0a8d3197901f8
           placeholder = "Ending city/state"
           className="form-control"
           value = {this.state.endLocation}
           onChange = {this.handleChange.bind(this, 'endLocation')} />
-<<<<<<< 90db3b2adc11144742e3890a044b0b29c0d76328
       </div>
       <div className="col-md-6">
-=======
-
->>>>>>> [refactor] put search trips in two colums
         <input
+=======
+>>>>>>> [refactor]reordered the search boxes
           type = "number"
           className="form-control"
           placeholder = "Max budget?"
