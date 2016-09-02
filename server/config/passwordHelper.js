@@ -1,5 +1,9 @@
 const bcrypt = require('bcrypt');
 
+/*
+* Password Helper Functions: Promisify bcrypt's hash() and compare()
+*/
+
 function hash(param) {
   return new Promise(function(resolve, reject) {
     bcrypt.hash(param, 10, function(error, hash) {
