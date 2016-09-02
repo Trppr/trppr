@@ -1,1 +1,7 @@
-body { padding-top: 70px; }
+body {
+  padding-top: 70px;
+}
+#tripBox {
+  border-radius: 1px;
+  background-color: cadetblue;
+}
