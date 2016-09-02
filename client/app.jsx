@@ -33,7 +33,7 @@ class App extends Component {
   getTrips(searchObj) {
     console.log('searchObj inside getTrips', searchObj)
     const that = this;
-    if(searchObj.startDate && searchObj.endDate !== '')
+    if(searchObj.startDate && searchObj.startDate !== '')
       searchObj.startDate = moment(searchObj.startDate).format('MM-DD-YYYY');
     if(searchObj.endDate && searchObj.endDate !== '')
       searchObj.endDate = moment(searchObj.endDate).format('MM-DD-YYYY');
@@ -96,6 +96,7 @@ class App extends Component {
     if(this.props.params.location) {
       this.state.landingLocation = this.props.params.location;
       this.getTrips({endLocation: this.state.landingLocation})
+      this.props.params.location = undefined;
     }
     return (
           <div>
