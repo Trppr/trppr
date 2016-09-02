@@ -69,7 +69,8 @@ class SearchBar extends Component {
           className="form-control"
           value = {this.state.endLocation}
           onChange = {this.handleChange.bind(this, 'endLocation')} />
-
+      </div>
+      <div className="col-md-6">
         <input
           type = "number"
           className="form-control"

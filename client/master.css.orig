@@ -1,0 +1,21 @@
+body {
+  padding-top: 70px;
+}
+<<<<<<< 396db11781f6de65ea262b2f5560f8d32dff82fe
+#searchTripsLeft{
+  width: 50%;
+  padding-left: 0px;
+  border: 0px;
+  margin: 0px;
+}
+#searchTripsRight{
+  width: 50%;
+  padding-right: 0px;
+  border: 0px;
+  margin: 0px;
+=======
+#tripBox {
+  border-radius: 1px;
+  background-color: cadetblue;
+>>>>>>> worked on styling searchbar
+}
