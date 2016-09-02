@@ -52,6 +52,7 @@ module.exports = {
   },
 
   searchTrips: function(req, res){
+    console.log('req.query inside tripController.js',req.query)
     var tripsList = [];
 
     // The code below handles converting dates from params to PostgreSQL style.

@@ -1,5 +1,9 @@
 import React, {Component} from 'react';
 import {render} from 'react-dom';
+import { Router, Route, IndexRoute, Link, hashHistory } from 'react-router';
+
+import CreateTrip from './createTrip.jsx';
+import Signup from './signUp.jsx';
 
 class Login extends Component {
   constructor(props) {
@@ -26,12 +30,14 @@ class Login extends Component {
           <a className = 'navbar-brand'
              href = '#'> Trppr </a>
           <form className = 'navbar-form navbar-right'>
+            <Link to="/createTrip">Create Trip</Link>
+            <Link to='/signUp'>Sign Up</Link>
             <div>
               <input
                 value = {this.state.username}
                 placeholder = 'Username'
                 className = 'form-control'
-                onChange = {this.handleChange.bind(this, 'username')}/> 
+                onChange = {this.handleChange.bind(this, 'username')}/>
 
               <input
                 value = {this.state.password}
