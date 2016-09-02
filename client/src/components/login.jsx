@@ -1,11 +1,9 @@
 import React, {Component} from 'react';
 import {render} from 'react-dom';
+import { Router, Route, IndexRoute, Link, hashHistory } from 'react-router';
 
-import TripList from './src/components/tripList.jsx';
-import SearchBar from './src/components/searchBar.jsx';
-import CreateTrip from './src/components/createTrip.jsx';
-import Login from './src/components/login.jsx';
-import Signup from './src/components/signUp.jsx';
+import CreateTrip from './createTrip.jsx';
+import Signup from './signUp.jsx';
 
 class Login extends Component {
   constructor(props) {
@@ -32,6 +30,8 @@ class Login extends Component {
           <a className = 'navbar-brand'
              href = '#'> Trppr </a>
           <form className = 'navbar-form navbar-right'>
+            <Link to="/createTrip">Create Trip</Link>
+            <Link to='/signUp'>Sign Up</Link>
             <div>
               <input
                 value = {this.state.username}

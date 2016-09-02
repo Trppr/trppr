@@ -1,7 +1,10 @@
 import React, {Component} from 'react';
 import {render} from 'react-dom';
 import { Router, Route, IndexRoute, hashHistory } from 'react-router';
+
 import App from './app.jsx'
+import CreateTrip from './src/components/createTrip.jsx';
+import Signup from './src/components/signUp.jsx';
 
 class Landing extends Component {
   constructor(props) {
@@ -43,5 +46,7 @@ render((
   <Router history={hashHistory}>
     <Route path='/' component={Landing} />
     <Route path='app(/:location)' name='app' component={App} />
+    <Route path='createTrip' component={CreateTrip} />
+    <Route path='signUp' component={Signup} />
   </Router>
 ), document.getElementById('app'));

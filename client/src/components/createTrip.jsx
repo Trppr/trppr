@@ -47,6 +47,7 @@ class CreateTrip extends Component {
     return (
       <form className="form-group">
         <div>
+          <h1>Create a Trip</h1>
           <input
             placeholder = "Driver name"
             className="form-control"

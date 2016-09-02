@@ -101,20 +101,21 @@ class App extends Component {
           <div>
           <Login checkUser={this.checkUser}/>
 
-          {/* <div className="container">
-             <ul className="nav nav-tabs">
+           <div className="container">
+             {/* <ul className="nav nav-tabs">
                <li role="presentation" className="active">
                  <a href="#">Search Trips</a>
                </li>
                <li role="presentation">
                  <a href="#">Create Trip</a>
                 </li>
-             </ul>
+             </ul> */}
+             <h1>Detailed Search</h1>
              <SearchBar infoStore={this.infoStore}/>
-             <CreateTrip makeTrip={this.makeTrip}/>
+             {/* <CreateTrip makeTrip={this.makeTrip}/> */}
            </div>
 
-            <Signup createUser={this.createUser}/> */}
+            {/* <Signup createUser={this.createUser}/> */}
             <TripList trips={this.state.tripResults}/>
           </div>
     )
