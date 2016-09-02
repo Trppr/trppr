@@ -12,14 +12,14 @@ import SearchBar from './src/components/searchBar.jsx';
 import CreateTrip from './src/components/createTrip.jsx';
 import Login from './src/components/login.jsx';
 import Signup from './src/components/signUp.jsx';
-import Landing from './landing.jsx';
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = { searchTerm: '',
                    tripResults: [],
-                   Authorization: ''
+                   Authorization: '',
+                   landingLocation: ''
                  };
     this.infoStore = this.infoStore.bind(this);
     this.checkUser = this.checkUser.bind(this);
@@ -31,16 +31,18 @@ class App extends Component {
   }
 
   getTrips(searchObj) {
+    console.log('searchObj inside getTrips', searchObj)
     const that = this;
-    if(searchObj.startDate !== '')
+    if(searchObj.startDate && searchObj.endDate !== '')
       searchObj.startDate = moment(searchObj.startDate).format('MM-DD-YYYY');
-    if(searchObj.endDate !== '')
+    if(searchObj.endDate && searchObj.endDate !== '')
       searchObj.endDate = moment(searchObj.endDate).format('MM-DD-YYYY');
     axios.get('/searchTrips', {
       params: searchObj
       }
     )
     .then(function (response) {
+      console.log('tripResults inside getTrips', response.data)
       that.setState({tripResults: response.data})
     })
     .catch(function (error) {
@@ -91,13 +93,15 @@ class App extends Component {
 
 
   render () {
-    console.log('hashHistory inside app.jsx', hashHistory)
-    console.log('state inside app.jsx',)
+    if(this.props.params.location) {
+      this.state.landingLocation = this.props.params.location;
+      this.getTrips({endLocation: this.state.landingLocation})
+    }
     return (
           <div>
           <Login checkUser={this.checkUser}/>
 
-          <div className="container">
+          {/* <div className="container">
              <ul className="nav nav-tabs">
                <li role="presentation" className="active">
                  <a href="#">Search Trips</a>
@@ -110,13 +114,14 @@ class App extends Component {
              <CreateTrip makeTrip={this.makeTrip}/>
            </div>
 
-            <Signup createUser={this.createUser}/>
+            <Signup createUser={this.createUser}/> */}
             <TripList trips={this.state.tripResults}/>
           </div>
     )
   }
 }
 
+export default App;
 // render(<App/>, document.getElementById('app'));
 //render(<Route history={hashHistory}>
 // render((

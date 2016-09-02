@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {render} from 'react-dom';
-import { hashHistory } from 'react-router'
+import { Router, Route, IndexRoute, hashHistory } from 'react-router';
+import App from './app.jsx'
 
 class Landing extends Component {
   constructor(props) {
@@ -15,12 +16,11 @@ class Landing extends Component {
   }
 
   submitData() {
-    hashHistory.push('/app');
+    const link = '/app/' + this.state.endLocation
+    hashHistory.push(link);
   }
 
   render() {
-    console.log('HashHistory inside landing.jsx', hashHistory)
-
     return (
       <div>
         <h1> Where are you going? </h1>
@@ -39,4 +39,9 @@ class Landing extends Component {
   }
 }
 
-export default Landing;
+render((
+  <Router history={hashHistory}>
+    <Route path='/' component={Landing} />
+    <Route path='app(/:location)' name='app' component={App} />
+  </Router>
+), document.getElementById('app'));

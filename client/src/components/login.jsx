@@ -1,6 +1,12 @@
 import React, {Component} from 'react';
 import {render} from 'react-dom';
 
+import TripList from './src/components/tripList.jsx';
+import SearchBar from './src/components/searchBar.jsx';
+import CreateTrip from './src/components/createTrip.jsx';
+import Login from './src/components/login.jsx';
+import Signup from './src/components/signUp.jsx';
+
 class Login extends Component {
   constructor(props) {
     super(props);
@@ -31,7 +37,7 @@ class Login extends Component {
                 value = {this.state.username}
                 placeholder = 'Username'
                 className = 'form-control'
-                onChange = {this.handleChange.bind(this, 'username')}/> 
+                onChange = {this.handleChange.bind(this, 'username')}/>
 
               <input
                 value = {this.state.password}
