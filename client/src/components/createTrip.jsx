@@ -38,7 +38,7 @@ class CreateTrip extends Component {
       }
     }
     if(!filled) {
-      render(<div> Please fill out all fields </div>, document.getElementById('create'));
+      render(<div> Please fill out all empty fields </div>, document.getElementById('create'));
     } else {
       render(<div></div>, document.getElementById('create'));
       this.makeTrip(this.state);
