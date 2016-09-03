@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {render} from 'react-dom';
-import { Router, Route, IndexRoute, hashHistory } from 'react-router';
+import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 
 import App from './app.jsx'
 import NavBar from './src/components/navBar.jsx';
@@ -21,7 +21,7 @@ class Landing extends Component {
 
   submitData() {
     const link = '/app/' + this.state.endLocation
-    hashHistory.push(link);
+    browserHistory.push(link);
   }
 
   render() {
@@ -44,7 +44,7 @@ class Landing extends Component {
 }
 
 render((
-  <Router history={hashHistory}>
+  <Router history={browserHistory}>
     <Route path='/' component={Landing} />
     <Route path='app(/:location)' name='app' component={App} />
     <Route path='createTrip' component={CreateTrip} />
