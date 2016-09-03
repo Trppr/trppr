@@ -1,4 +1,5 @@
 const jwt = require('jsonwebtoken');
+const path = require('path');
 const tripController = require('../trips/tripController');
 const userController = require('../users/userController');
 
@@ -48,6 +49,12 @@ module.exports = (app, express) => {
   // Note: These id's are foreign keys so they have to exist in the db
   // for this to work.
 
+  // handle every other route with index.html, which will contain
+// a script tag to your application's JavaScript file(s).
+  app.get('*', function (request, response){
+    response.sendFile(path.resolve('./', 'client', 'index.html'))
+  })
+  
   app.get('*', (req, res) => {
     res.sendStatus(404);
   });
