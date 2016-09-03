@@ -19,7 +19,6 @@ class App extends Component {
                    landingLocation: ''
                  };
     this.infoStore = this.infoStore.bind(this);
-    this.checkUser = this.checkUser.bind(this);
   }
 
   infoStore(searchObj) {
@@ -45,21 +44,8 @@ class App extends Component {
     });
   }
 
-  checkUser(userObj) {
-    const that = this;
-    axios.post('/login',
-      userObj
-    )
-    .then(function (response) {
-      axios.defaults.headers.common['Authorization'] = 'Bearer ' + response.data;
-      console.log('Login successful!')
-    })
-    .catch(function (error) {
-      console.log(error);
-    })
-  }
-
   render () {
+    console.log('inside app.jsx',axios.defaults.headers)
     if(this.props.params.location) {
       this.state.landingLocation = this.props.params.location;
       this.getTrips({endLocation: this.state.landingLocation})
