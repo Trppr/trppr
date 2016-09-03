@@ -4,7 +4,8 @@ import {Link} from 'react-router';
 
 import Login from './login.jsx'
 
-const NavBar = () => {
+const NavBar = (props) => {
+
   return (
     <nav className = 'navbar navbar-default navbar-fixed-top'>
       <div className = 'container-fluid'>
@@ -13,7 +14,7 @@ const NavBar = () => {
         <form className = 'navbar-form navbar-right'>
           <Link to="/createTrip">Create Trip</Link>
           <Link to='/signUp'>Sign Up</Link>
-          <Login />
+          <Login/>
         </form>
       </div>
     </nav>
