@@ -3,6 +3,7 @@ import {render} from 'react-dom';
 import { Router, Route, IndexRoute, hashHistory } from 'react-router';
 
 import App from './app.jsx'
+import NavBar from './src/components/navBar.jsx';
 import CreateTrip from './src/components/createTrip.jsx';
 import Signup from './src/components/signUp.jsx';
 
