@@ -103,10 +103,7 @@ class App extends Component {
            <div className="container">
              <h1>Detailed Search</h1>
              <SearchBar infoStore={this.infoStore}/>
-             {/* <CreateTrip makeTrip={this.makeTrip}/> */}
            </div>
-
-            {/* <Signup createUser={this.createUser}/> */}
             <TripList trips={this.state.tripResults}/>
           </div>
     )

@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {render} from 'react-dom';
+import axios from 'axios';
 
 // Add form validation
 class CreateTrip extends Component {
@@ -39,8 +40,22 @@ class CreateTrip extends Component {
       render(<div> Please fill out all fields </div>, document.getElementById('create'));
     } else {
       render(<div></div>, document.getElementById('create'));
-      this.props.makeTrip(this.state);
+      this.makeTrip(this.state);
     }
+  }
+
+  makeTrip(tripObj) {
+    const that = this;
+    axios.post('/createTrip',
+      tripObj
+    )
+    .then(function (response) {
+      console.log(response);
+    })
+    .catch(function (error) {
+      render(<div> Please login. </div>, document.getElementById('create'));
+      console.log(error);
+    });
   }
 
   render() {
@@ -67,6 +82,7 @@ class CreateTrip extends Component {
             onChange = {this.handleChange.bind(this, 'startState')} />
 
           <input
+            type = 'date'
             placeholder = "Trip Date"
             className="form-control"
             value = {this.state.tripDate}
