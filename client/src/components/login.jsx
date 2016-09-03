@@ -8,7 +8,7 @@ import Signup from './signUp.jsx';
 class Login extends Component {
   constructor(props) {
     super(props);
-    this.state = { username: '',
+    this.state = { email: '',
                    password: ''};
   }
 
@@ -27,10 +27,10 @@ class Login extends Component {
     return (
       <div>
         <input
-          value = {this.state.username}
-          placeholder = 'Username'
+          value = {this.state.email}
+          placeholder = 'E-mail address'
           className = 'form-control'
-          onChange = {this.handleChange.bind(this, 'username')}/>
+          onChange = {this.handleChange.bind(this, 'email')}/>
 
         <input
           value = {this.state.password}
