@@ -3,15 +3,12 @@
 import React, { Component } from 'react';
 import { Router, Route, IndexRoute, hashHistory } from 'react-router';
 import {render} from 'react-dom';
-const axios = require('axios');
-const moment = require('moment');
-
+import axios from 'axios';
+import moment from 'moment';
 
 import TripList from './src/components/tripList.jsx';
 import SearchBar from './src/components/searchBar.jsx';
-import CreateTrip from './src/components/createTrip.jsx';
-import Login from './src/components/login.jsx';
-import Signup from './src/components/signUp.jsx';
+import NavBar from './src/components/navBar.jsx';
 
 class App extends Component {
   constructor(props) {
@@ -44,20 +41,6 @@ class App extends Component {
       that.setState({tripResults: response.data})
     })
     .catch(function (error) {
-      console.log(error);
-    });
-  }
-
-  makeTrip(tripObj) {
-    const that = this;
-    axios.post('/createTrip',
-      tripObj
-    )
-    .then(function (response) {
-      console.log(response);
-    })
-    .catch(function (error) {
-      render(<div> Please login. </div>, document.getElementById('create'));
       console.log(error);
     });
   }
@@ -99,14 +82,11 @@ class App extends Component {
     }
     return (
           <div>
-          <Login checkUser={this.checkUser}/>
+          <NavBar />
            <div className="container">
              <h1>Detailed Search</h1>
              <SearchBar infoStore={this.infoStore}/>
-             {/* <CreateTrip makeTrip={this.makeTrip}/> */}
            </div>
-
-            {/* <Signup createUser={this.createUser}/> */}
             <TripList trips={this.state.tripResults}/>
           </div>
     )
