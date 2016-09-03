@@ -11,6 +11,7 @@ class Landing extends Component {
   constructor(props) {
     super(props);
     this.state = { endLocation: '' };
+    this.submitData = this.submitData.bind(this);
   }
 
   handleChange(name, e) {
@@ -19,26 +20,25 @@ class Landing extends Component {
     this.setState(change);
   }
 
-  submitData() {
+  submitData(e) {
+    e.preventDefault();
     const link = '/app/' + this.state.endLocation
     browserHistory.push(link);
   }
 
   render() {
     return (
-      <div>
-        <h1> Where are you going? </h1>
-          <input
-            className="form-control"
-            placeholder = "Enter city/state"
-            value = {this.state.endLocation}
-            onChange = {this.handleChange.bind(this, 'endLocation')} />
-          <input
-            type="button"
-            className="btn btn-primary"
-            value="Search"
-            onClick = {event => this.submitData()}/>
-      </div>
+        <div>
+          <h1> Where are you going? </h1>
+            <form onSubmit={this.submitData}>
+            <input
+              className="form-control"
+              placeholder = "Enter city/state"
+              value = {this.state.endLocation}
+              onChange = {this.handleChange.bind(this, 'endLocation')} />
+            <input type="submit" value="Search"/>
+            </form>
+        </div>
     )
   }
 }
