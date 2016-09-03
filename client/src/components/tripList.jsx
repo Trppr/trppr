@@ -7,13 +7,13 @@ import Trip from './trip.jsx';
   const TripList = (props) => {
     console.log("props.trips: ", props.trips);
      return (
-       <div>
-         <h3>Trip List</h3>
-         <ul>
+       <div className="container">
+         <h1>Search Results</h1>
+         <div className="tripContainer">
            {props.trips.map((trip, index) => {
             return <Trip key={index} trip={trip}/>
            })}
-         </ul>
+         </div>
        </div>
      );
   }
