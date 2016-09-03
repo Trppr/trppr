@@ -19,7 +19,6 @@ class App extends Component {
                    landingLocation: ''
                  };
     this.infoStore = this.infoStore.bind(this);
-    this.checkUser = this.checkUser.bind(this);
   }
 
   infoStore(searchObj) {
@@ -45,6 +44,8 @@ class App extends Component {
     });
   }
 
+<<<<<<< 205f27d59d1e80dca71e9aa3978fe9d5451f7375
+=======
   checkUser(userObj) {
     const that = this;
     axios.post('/login',
@@ -74,7 +75,9 @@ class App extends Component {
 
 
 
+>>>>>>> [fix] catch error for createUser
   render () {
+    console.log('inside app.jsx',axios.defaults.headers)
     if(this.props.params.location) {
       this.state.landingLocation = this.props.params.location;
       this.getTrips({endLocation: this.state.landingLocation})
@@ -83,7 +86,7 @@ class App extends Component {
     }
     return (
           <div>
-          <NavBar />
+          <NavBar checkUser={this.checkUser}/>
            <div className="container">
              <h1>Detailed Search</h1>
              <SearchBar infoStore={this.infoStore}/>
@@ -95,3 +98,14 @@ class App extends Component {
 }
 
 export default App;
+// render(<App/>, document.getElementById('app'));
+//render(<Route history={hashHistory}>
+// render((
+//   <Router history={hashHistory}>
+//     <Route path='/' component={Landing} />
+//     <Route path='app' component={App} />
+//   </Router>
+// ), document.getElementById('app'));
+// document.getElementById('root').appendChild(tripList());
+// document.getElementById('root').appendChild(apple());
+// document.getElementById('root').appendChild(trip());
