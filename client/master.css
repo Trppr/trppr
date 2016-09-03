@@ -13,3 +13,30 @@ body {
   border: 0px;
   margin: 0px;
 }
+
+#tripEntry {
+  border: 1px solid;
+  border-radius: 5px;
+  margin-bottom: 20px;
+  background-color: #dceaea;
+
+}
+
+/*#tripRow {
+  height:5%;
+ font-size: 13px;
+}*/
+
+#tripTag {
+  font-size:16px;
+  font-weight: bold;
+}
+
+.other {
+  border: 1px solid;
+}
+
+.rsvpButton {
+  text-align: center;
+  float: right;
+}
