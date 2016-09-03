@@ -58,6 +58,7 @@ class CreateTrip extends Component {
     });
   }
 
+  //Note: Change driver id to reflect the user signed in, in the future
   render() {
     return (
       <form className="form-group">
