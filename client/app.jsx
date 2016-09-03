@@ -31,9 +31,8 @@ class App extends Component {
   }
 
   getTrips(searchObj) {
-    console.log('searchObj inside getTrips', searchObj)
     const that = this;
-    if(searchObj.startDate && searchObj.endDate !== '')
+    if(searchObj.startDate && searchObj.startDate !== '')
       searchObj.startDate = moment(searchObj.startDate).format('MM-DD-YYYY');
     if(searchObj.endDate && searchObj.endDate !== '')
       searchObj.endDate = moment(searchObj.endDate).format('MM-DD-YYYY');
@@ -42,7 +41,6 @@ class App extends Component {
       }
     )
     .then(function (response) {
-      console.log('tripResults inside getTrips', response.data)
       that.setState({tripResults: response.data})
     })
     .catch(function (error) {
@@ -96,20 +94,13 @@ class App extends Component {
     if(this.props.params.location) {
       this.state.landingLocation = this.props.params.location;
       this.getTrips({endLocation: this.state.landingLocation})
+      this.props.params.location = undefined;
+      this.state.landingLocation = ''
     }
     return (
           <div>
           <Login checkUser={this.checkUser}/>
-
            <div className="container">
-             {/* <ul className="nav nav-tabs">
-               <li role="presentation" className="active">
-                 <a href="#">Search Trips</a>
-               </li>
-               <li role="presentation">
-                 <a href="#">Create Trip</a>
-                </li>
-             </ul> */}
              <h1>Detailed Search</h1>
              <SearchBar infoStore={this.infoStore}/>
              {/* <CreateTrip makeTrip={this.makeTrip}/> */}
