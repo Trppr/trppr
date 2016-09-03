@@ -4,13 +4,12 @@ import {Link} from 'react-router';
 
 import Login from './login.jsx'
 
-
-const NavBar = (props) => {
+const NavBar = () => {
   return (
     <nav className = 'navbar navbar-default navbar-fixed-top'>
       <div className = 'container-fluid'>
         <a className = 'navbar-brand'
-           href = '#'> Trppr </a>
+           href = '/'> Trppr </a>
         <form className = 'navbar-form navbar-right'>
           <Link to="/createTrip">Create Trip</Link>
           <Link to='/signUp'>Sign Up</Link>
