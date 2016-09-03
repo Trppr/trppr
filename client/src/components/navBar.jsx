@@ -1,6 +1,9 @@
 import React, {Component} from 'react';
 import {render} from 'react-dom';
+import {Link} from 'react-router';
+
 import Login from './login.jsx'
+
 
 const NavBar = (props) => {
   return (
