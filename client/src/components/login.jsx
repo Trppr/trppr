@@ -19,7 +19,7 @@ class Login extends Component {
   }
 
   submitUser() {
-    console.log("newuserobject:", this.state);
+    // console.log("newuserobject:", this.state);
     this.props.checkUser(this.state);
   }
 
