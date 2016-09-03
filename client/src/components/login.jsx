@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {render} from 'react-dom';
 import { Router, Route, IndexRoute, Link, hashHistory } from 'react-router';
+import axios from 'axios';
 
 import CreateTrip from './createTrip.jsx';
 import Signup from './signUp.jsx';
@@ -12,6 +13,20 @@ class Login extends Component {
                    password: ''};
   }
 
+  checkUser(userObj) {
+    const that = this;
+    axios.post('/login',
+      userObj
+    )
+    .then(function (response) {
+      axios.defaults.headers.common['Authorization'] = 'Bearer ' + response.data;
+      console.log('Login successful!')
+    })
+    .catch(function (error) {
+      console.log(error);
+    })
+  }
+
   handleChange(name, e) {
     let change = {};
     change[name] = e.target.value;
@@ -20,7 +35,7 @@ class Login extends Component {
 
   submitUser() {
     // console.log("newuserobject:", this.state);
-    this.props.checkUser(this.state);
+    this.checkUser(this.state);
   }
 
   render() {
@@ -28,7 +43,8 @@ class Login extends Component {
       <div>
         <input
           value = {this.state.email}
-          placeholder = 'E-mail address'
+          type = 'email'
+          required placeholder = 'E-mail address'
           className = 'form-control'
           onChange = {this.handleChange.bind(this, 'email')}/>
 
