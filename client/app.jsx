@@ -52,26 +52,12 @@ class App extends Component {
     )
     .then(function (response) {
       axios.defaults.headers.common['Authorization'] = 'Bearer ' + response.data;
+      console.log('Login successful!')
     })
     .catch(function (error) {
       console.log(error);
     })
   }
-
-  createUser(newUserObj) {
-    const that = this;
-    axios.post('/signup',
-      newUserObj)
-    .then(function(response) {
-      console.log("new user created: ", response);
-    })
-    .catch(function(error) {
-      render(<div> User email already exists. Please enter a different email address. </div>, document.getElementByID('create'));
-      console.log(error);
-    })
-  }
-
-
 
   render () {
     if(this.props.params.location) {
@@ -82,7 +68,7 @@ class App extends Component {
     }
     return (
           <div>
-          <NavBar />
+          <NavBar checkUser={this.checkUser}/>
            <div className="container">
              <h1>Detailed Search</h1>
              <SearchBar infoStore={this.infoStore}/>
