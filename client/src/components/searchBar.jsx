@@ -24,7 +24,7 @@ class SearchBar extends Component {
     this.setState({ endLocation: '',
                    startLocation: '',
                    numSeats: '',
-                   price: '',
+                   seatPrice: '',
                    startDate: '',
                    endDate: ''
                  });
@@ -75,8 +75,8 @@ class SearchBar extends Component {
           type = "number"
           className="form-control"
           placeholder = "Max budget?"
-          value = {this.state.price}
-          onChange = {this.handleChange.bind(this, 'price')}/>
+          value = {this.state.seatPrice}
+          onChange = {this.handleChange.bind(this, 'seatPrice')}/>
 
       </div>
         <input
