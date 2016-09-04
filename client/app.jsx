@@ -44,6 +44,34 @@ class App extends Component {
     });
   }
 
+<<<<<<< 68d80b7e6d96e86f221b3b8e868aa507cf74cd54
+=======
+  checkUser(userObj) {
+    const that = this;
+    axios.post('/login',
+      userObj
+    )
+    .then(function (response) {
+      axios.defaults.headers.common['Authorization'] = 'Bearer ' + response.data;
+    })
+    .catch(function (error) {
+      console.log(error);
+    })
+  }
+
+  createUser(newUserObj) {
+    const that = this;
+    axios.post('/signup',
+      newUserObj)
+    .then(function(response) {
+      console.log("new user created: ", response);
+    })
+    .catch(function(error) {
+      render(<div> User email already exists. Please enter a different email address. </div>, document.getElementByID('create'));
+      console.log(error);
+    })
+  }
+
   render () {
     if(this.props.params.location) {
       this.state.landingLocation = this.props.params.location;
