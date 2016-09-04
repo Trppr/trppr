@@ -24,8 +24,13 @@ module.exports = {
           .catch(function(error) {
             console.log("Password hashing error: ", erorr);
           })
+        const token = jwt.sign(user.dataValues, 'hello world trppr');
         console.log("\033[34m <TRPPR> New user created. \033[0m");
-        res.sendStatus(201);
+        res.sendStatus(201)
+        .json({
+          user: user,
+          token: token
+        });
       })
       .catch(function(err) {
         var errorString = "Error:";
