@@ -2,8 +2,12 @@ import React from 'react';
 import {render} from 'react-dom';
 import moment from 'moment';
 
-const Trip = ({trip}) => {
+const Trip = (props) => {
+    //Change trip to class and call the function in app.jsx that calls
+    //the server endpoint reserveSeat
     //console.log("trip inside trip.jsx: ", trip.driverName);
+    const trip = props.trip;
+    console.log('inside trip.jsx',props)
     return (
         <div className="container" id="tripEntry">
 
