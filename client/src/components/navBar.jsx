@@ -11,9 +11,11 @@ const NavBar = (props) => {
       <div className = 'container-fluid'>
         <a className = 'navbar-brand'
            href = '/'> Trppr </a>
+        <ul className = "nav navbar-nav">
+           <li><Link to="/createTrip">Create Trip</Link></li>
+           <li><Link to='/signUp'>Sign Up</Link></li>
+        </ul>
         <form className = 'navbar-form navbar-right'>
-          <Link to="/createTrip">Create Trip</Link>
-          <Link to='/signUp'>Sign Up</Link>
           <Login/>
         </form>
       </div>
