@@ -44,18 +44,7 @@ class Signup extends Component {
     }
   }
 
-  createUser(newUserObj) {
-    const that = this;
-    axios.post('/signup',
-      newUserObj)
-    .then(function(response) {
-      console.log("new user created: ", response);
-    })
-    .catch(function(error) {
-      render(<div> User email already exists. Please enter a different email address. </div>, document.getElementById('create'));
-      console.log(error);
-    })
-
+  
   submitNewUser() {
     this.props.createUser(this.state);
     //console.log("new User Object:", this.state);

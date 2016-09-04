@@ -37,16 +37,11 @@ class Login extends Component {
     this.setState(change);
   }
 
-<<<<<<< HEAD
+
   submitUser(e) {
     e.preventDefault();
     // console.log("newuserobject:", this.state);
     this.checkUser(this.state);
-=======
-  submitUser() {
-    console.log("newuserobject:", this.state);
-    this.props.checkUser(this.state);
->>>>>>> b66ae9953cdeace0223c12a76822ecabc0b3ea76
   }
 
   render() {
