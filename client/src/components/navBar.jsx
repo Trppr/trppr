@@ -2,7 +2,8 @@ import React, {Component} from 'react';
 import {render} from 'react-dom';
 import {Link} from 'react-router';
 
-import Login from './login.jsx'
+import Login from './login.jsx';
+import Logout from './logout.jsx';
 
 class NavBar extends Component {
   constructor(props) {
@@ -13,7 +14,7 @@ class NavBar extends Component {
   checkAuth() {
     console.log(localStorage.getItem('token'))
     if(localStorage.getItem('token')) {
-      return <div><Link to='/logOut'>Log Out</Link></div>;
+      return <Logout/>;
     } else {
       return <div><Link to='/signUp'>Sign Up</Link> <Login/></div>;
     }

@@ -18,6 +18,7 @@ module.exports = (app, express) => {
   app.use(expressJWT({secret:'hello world trppr'})
     .unless( {
       path: [
+        '/app',
         '/login',
         '/',
         '/recent',
