@@ -19,8 +19,7 @@ class CreateTrip extends Component {
                    seatPrice: '',
                    vehicleMake: '',
                    vehicleModel: '',
-                   description: '',
-                   driverId: ''
+                   description: ''
                    };
   }
 
@@ -46,6 +45,9 @@ class CreateTrip extends Component {
   }
 
   makeTrip(tripObj) {
+    if(localStorage.getItem('token')) {
+      axios.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem('token');
+    }
     const that = this;
     axios.post('/createTrip',
       tripObj
@@ -97,12 +99,6 @@ class CreateTrip extends Component {
               className="form-control"
               value = {this.state.driverName}
               onChange = {this.handleChange.bind(this, 'driverName')} />
-
-            <input
-              placeholder = "Driver Id"
-              className="form-control"
-              value = {this.state.driverId}
-              onChange = {this.handleChange.bind(this, 'driverId')} />
 
             <input
               placeholder = "Description"
