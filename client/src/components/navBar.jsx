@@ -19,6 +19,7 @@ class NavBar extends Component {
       return <div><Login/><Link to='/signUp'>Sign Up</Link> </div>;
     }
   }
+  
   render() {
     return (
       <nav className = 'navbar navbar-default navbar-fixed-top'>
