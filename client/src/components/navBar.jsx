@@ -16,7 +16,7 @@ class NavBar extends Component {
     if(localStorage.getItem('token')) {
       return <Logout/>;
     } else {
-      return <div><Login/><li><Link to='/signUp'>Sign Up</Link></li> </div>;
+      return <div><Login/><Link to='/signUp'>Sign Up</Link> </div>;
     }
   }
   render() {
@@ -30,9 +30,9 @@ class NavBar extends Component {
 
         </ul>
           <div className = 'navbar-form navbar-right'>
-            <ul className = "nav navbar-nav">
+
             {this.checkAuth()}
-            </ul>
+
           </div>
         </div>
       </nav>
