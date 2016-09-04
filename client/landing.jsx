@@ -30,7 +30,6 @@ class Landing extends Component {
   render() {
     return (
         <div className="container">
-        <NavBar checkUser={this.checkUser}/>
           <h1> Where are you going? </h1>
             <form onSubmit={this.submitData}>
             <input
