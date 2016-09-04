@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {render} from 'react-dom';
-import { Router, Route, IndexRoute, Link, hashHistory } from 'react-router';
+import { Router, Route, IndexRoute, Link, browserHistory} from 'react-router';
 import axios from 'axios';
 
 import CreateTrip from './createTrip.jsx';
@@ -10,7 +10,8 @@ class Login extends Component {
   constructor(props) {
     super(props);
     this.state = { email: '',
-                   password: ''};
+                   password: '',
+                   firstName: ''};
     this.submitUser = this.submitUser.bind(this);
   }
 
@@ -21,6 +22,8 @@ class Login extends Component {
     )
     .then(function (response) {
       localStorage.setItem('token', response.data.token);
+      localStorage.setItem('name', response.data.user.firstName)
+      browserHistory.push('/app');
       console.log('Login successful!', response.data)
     })
     .catch(function (error) {

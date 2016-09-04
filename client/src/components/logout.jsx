@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {render} from 'react-dom';
+import {browserHistory} from 'react-router';
 
 class Logout extends Component {
   constructor(props) {
@@ -9,10 +10,16 @@ class Logout extends Component {
 
   unAuth() {
     localStorage.removeItem('token');
+    browserHistory.push('/app');
   }
+
   render() {
+    console.log('inside logout.jsx', localStorage.getItem('name'))
     return (
-      <button onClick = {this.unAuth}> Logout </button>
+      <div>
+        <div className='Welcome'>Hello {localStorage.getItem('name')} </div>
+        <button onClick = {this.unAuth}> Logout </button>
+      </div>
     );
   }
 }
