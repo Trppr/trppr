@@ -19,10 +19,12 @@ module.exports = (app, express) => {
     .unless( {
       path: [
         '/app',
+        '/app/*',
         '/login',
         '/',
         '/recent',
         '/signup',
+        '/signUp',
         '/searchTrips'
       ]
     }
