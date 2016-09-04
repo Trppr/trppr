@@ -16,7 +16,8 @@ class App extends Component {
     this.state = { searchTerm: '',
                    tripResults: [],
                    Authorization: '',
-                   landingLocation: ''
+                   landingLocation: '',
+                   isLoading: ''
                  };
     this.infoStore = this.infoStore.bind(this);
     this.checkUser = this.checkUser.bind(this);
@@ -29,6 +30,7 @@ class App extends Component {
 
   getTrips(searchObj) {
     const that = this;
+    that.setState({isLoading: true});
     if(searchObj.startDate && searchObj.startDate !== '')
       searchObj.startDate = moment(searchObj.startDate).format('MM-DD-YYYY');
     if(searchObj.endDate && searchObj.endDate !== '')
@@ -38,13 +40,19 @@ class App extends Component {
       }
     )
     .then(function (response) {
-      that.setState({tripResults: response.data})
+      that.setState({tripResults: response.data,
+                    isLoading: false
+                  });
     })
     .catch(function (error) {
       console.log(error);
     });
   }
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> triplist
   checkUser(userObj) {
     const that = this;
     axios.post('/login',
@@ -63,7 +71,10 @@ class App extends Component {
     axios.post('/signup',
       newUserObj)
     .then(function(response) {
+<<<<<<< HEAD
       console.log("new user created: ", response);
+=======
+>>>>>>> triplist
     })
     .catch(function(error) {
       render(<div> User email already exists. Please enter a different email address. </div>, document.getElementByID('create'));
@@ -73,6 +84,10 @@ class App extends Component {
 
 
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> triplist
   render () {
     if(this.props.params.location) {
       this.state.landingLocation = this.props.params.location;
@@ -80,16 +95,31 @@ class App extends Component {
       this.props.params.location = undefined;
       this.state.landingLocation = ''
     }
-    return (
+
+    if (this.state.isLoading) {
+      return (
+            <div>
+            <NavBar checkUser={this.checkUser}/>
+             <div className="container">
+               <h1>Detailed Search</h1>
+               <SearchBar infoStore={this.infoStore}/>
+             </div>
+               <img src={'./spinner.gif'} className="spinner"/>
+            </div>
+      )
+    }
+    else {
+      return (
           <div>
           <NavBar />
            <div className="container">
              <h1>Detailed Search</h1>
              <SearchBar infoStore={this.infoStore}/>
            </div>
-            <TripList trips={this.state.tripResults}/>
+             <TripList trips={this.state.tripResults}/>
           </div>
-    )
+      )
+    }
   }
 }
 

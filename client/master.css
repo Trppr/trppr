@@ -22,10 +22,18 @@ body {
 
 }
 
-/*#tripRow {
-  height:5%;
- font-size: 13px;
-}*/
+.spinner {
+  position: fixed;
+  /*z-index: 999;*/
+  height: 130px;
+  width: 130px;
+  overflow: show;
+  margin: auto;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}
 
 #tripTag {
   font-size:16px;
