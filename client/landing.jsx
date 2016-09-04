@@ -28,7 +28,7 @@ class Landing extends Component {
 
   render() {
     return (
-        <div>
+        <div className="container">
           <h1> Where are you going? </h1>
             <form onSubmit={this.submitData}>
             <input
