@@ -167,6 +167,39 @@ module.exports = {
       console.log('Error:', err.message);
       res.send(err.message);
     });
-  }
+  },
 
+  cancelTrip: function(req, res){
+    Trip.findOne({
+      where: {
+        id: req.body.tripId
+      }
+    })
+    .then(function(trip) {
+      console.log("\033[34m <TRPPR> Trip cancelled. \033[0m");
+      res.sendStatus(200);
+      return trip.destroy();
+    })
+    .catch(function(err) {
+      console.log('Error:', err);
+    });
+  },
+
+  cancelReservation: function(req, res){
+    Trip.findOne({
+      where: {
+        id: req.body.tripId
+      }
+    })
+    .then(function(trip) {
+      trip.set( { 'numSeats': (numSeats + 1) } );
+      trip.removePassengers(req.body.passengerId)
+      trip.save();
+      console.log("\033[34m <TRPPR> Reservation cancelled. \033[0m");
+      res.sendStatus(200);
+    })
+    .catch(function(err) {
+      console.log('Error:', err);
+    });
+  }
 }
