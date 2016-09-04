@@ -30,7 +30,6 @@ class NavBar extends Component {
             <li><Link to="/createTrip">Create Trip</Link></li>
         </ul>
           <div className = 'navbar-form navbar-right'>
-
             {this.checkAuth()}
 
           </div>
