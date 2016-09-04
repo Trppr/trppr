@@ -11,6 +11,7 @@ class Login extends Component {
     super(props);
     this.state = { email: '',
                    password: ''};
+    this.submitUser = this.submitUser.bind(this);
   }
 
   checkUser(userObj) {
@@ -19,7 +20,7 @@ class Login extends Component {
       userObj
     )
     .then(function (response) {
-      axios.defaults.headers.common['Authorization'] = 'Bearer ' + response.data;
+      localStorage.setItem('token', response.data.token);
       console.log('Login successful!', response.data)
     })
     .catch(function (error) {
@@ -33,34 +34,33 @@ class Login extends Component {
     this.setState(change);
   }
 
-  submitUser() {
+  submitUser(e) {
+    e.preventDefault();
     // console.log("newuserobject:", this.state);
     this.checkUser(this.state);
   }
 
   render() {
     return (
-      <div>
-        <input
-          value = {this.state.email}
-          type = 'email'
-          required placeholder = 'E-mail address'
-          className = 'form-control'
-          onChange = {this.handleChange.bind(this, 'email')}/>
+      <form onSubmit={this.submitUser}>
+        <div>
+          <input
+            value = {this.state.email}
+            type = 'email'
+            required placeholder = 'E-mail address'
+            className = 'form-control'
+            onChange = {this.handleChange.bind(this, 'email')}/>
 
-        <input
-          value = {this.state.password}
-          type = 'password'
-          className = 'form-control'
-          placeholder = 'Password'
-          onChange = {this.handleChange.bind(this, 'password')}/>
+          <input
+            value = {this.state.password}
+            type = 'password'
+            className = 'form-control'
+            placeholder = 'Password'
+            onChange = {this.handleChange.bind(this, 'password')}/>
 
-        <input
-          type = 'button'
-          className = 'btn btn-primary'
-          value = 'Login'
-          onClick = {event => this.submitUser()}/>
-      </div>
+          <input type = 'submit' value = 'Login'/>
+        </div>
+      </form>
     )
   }
 }
