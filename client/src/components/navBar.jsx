@@ -17,9 +17,10 @@ class NavBar extends Component {
       return <div><Link to="/createTrip">Create Trip</Link><Logout/></div>;
     } else {
       return <div><Login/><Link to='/signUp'>Sign Up</Link> </div>;
+      return <div><Login/><li><Link to='/signUp'>Sign Up</Link></li> </div>;
     }
   }
-  
+
   render() {
     return (
       <nav className = 'navbar navbar-default navbar-fixed-top'>
@@ -28,10 +29,11 @@ class NavBar extends Component {
              href = '/'> Trppr </a>
          <ul className = "nav navbar-nav">
             <li><Link to="/createTrip">Create Trip</Link></li>
-
         </ul>
           <div className = 'navbar-form navbar-right'>
+            <ul className = "nav navbar-nav">
             {this.checkAuth()}
+            </ul>
           </div>
         </div>
       </nav>
