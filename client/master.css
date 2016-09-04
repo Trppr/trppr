@@ -1,5 +1,32 @@
 body {
   padding-top: 70px;
+  font-family: 'Helvetica Neue';
+  background-color: #f9f9f9;
+}
+h1, h2, h3, h4  {
+  font-family: 'Helvetica Neue';
+}
+.navbar-brand{
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 20px;
+  font-weight: bolder;
+}
+#login{
+  width: 500px;
+  padding: 20px;
+}
+.form-group {
+  border: 1px solid #f9f9f9;
+  margin: 10px;
+  border-radius: 5px;
+}
+.form-control {
+  border: 1px solid #f9f9f9;
+  margin: 10px;
+}
+.btn {
+  border: 1px solid #f9f9f9;
+  margin: 10px;
 }
 #CreateAndSearchTripsLeft{
   width: 50%;
