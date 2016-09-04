@@ -23,7 +23,9 @@ module.exports = (app, express) => {
         '/',
         '/recent',
         '/signup',
-        '/searchTrips'
+        '/searchTrips',
+        '/cancelTrip',
+        '/cancelReservation'
       ]
     }
   ));

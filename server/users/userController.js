@@ -71,4 +71,12 @@ module.exports = {
 
   },
 
+  updateUser: function(req, res){
+
+  },
+
+  getTripHistory: function(req, res){
+
+  }
+
 }
