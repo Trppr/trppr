@@ -65,14 +65,3 @@ class App extends Component {
 }
 
 export default App;
-// render(<App/>, document.getElementById('app'));
-//render(<Route history={hashHistory}>
-// render((
-//   <Router history={hashHistory}>
-//     <Route path='/' component={Landing} />
-//     <Route path='app' component={App} />
-//   </Router>
-// ), document.getElementById('app'));
-// document.getElementById('root').appendChild(tripList());
-// document.getElementById('root').appendChild(apple());
-// document.getElementById('root').appendChild(trip());

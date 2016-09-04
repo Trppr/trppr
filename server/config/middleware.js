@@ -15,18 +15,16 @@ module.exports = (app, express) => {
   app.use('/', express.static('./client'));
   app.use(morgan('dev'));
   // Temporarily turning off auth for testing purposes.
-  // app.use(expressJWT({secret:'hello world trppr'})
-  //   .unless( {
-  //     path: [
-  //       '/login',
-  //       '/',
-  //       '/recent',
-  //       '/signup',
-  //       '/createTrip',
-  //       '/reserveSeat',
-  //       '/searchTrips'
-  //     ]
-  //   }
-  // ));
-
+  app.use(expressJWT({secret:'hello world trppr'})
+    .unless( {
+      path: [
+        '/app',
+        '/login',
+        '/',
+        '/recent',
+        '/signup',
+        '/searchTrips'
+      ]
+    }
+  ));
 };
