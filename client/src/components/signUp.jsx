@@ -1,8 +1,10 @@
 import React, {Component} from 'react';
 import {render} from 'react-dom';
-import axios from 'axios';
 
+import axios from 'axios';
 import NavBar from './navBar.jsx'
+
+
 class Signup extends Component {
   constructor(props) {
     super(props);
@@ -12,6 +14,7 @@ class Signup extends Component {
                    email: '',
                    description: '',
                    confirm: ''
+
     };
   }
 
@@ -20,6 +23,7 @@ class Signup extends Component {
     change[name] = e.target.value;
     this.setState(change);
   }
+
 
   checkFilled() {
     let filled = true;
@@ -51,10 +55,15 @@ class Signup extends Component {
       render(<div> User email already exists. Please enter a different email address. </div>, document.getElementById('create'));
       console.log(error);
     })
+
+  submitNewUser() {
+    this.props.createUser(this.state);
+    //console.log("new User Object:", this.state);
   }
 
   render() {
     return (
+
       <div className="container">
         <NavBar />
         <form className="signUp form-group">
@@ -113,6 +122,7 @@ class Signup extends Component {
           </div>
         </form>
       </div>
+
     )
   }
 }
