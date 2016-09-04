@@ -16,7 +16,8 @@ class App extends Component {
     this.state = { searchTerm: '',
                    tripResults: [],
                    Authorization: '',
-                   landingLocation: ''
+                   landingLocation: '',
+                   isLoading: ''
                  };
     this.infoStore = this.infoStore.bind(this);
   }
@@ -28,6 +29,7 @@ class App extends Component {
 
   getTrips(searchObj) {
     const that = this;
+    that.setState({isLoading: true});
     if(searchObj.startDate && searchObj.startDate !== '')
       searchObj.startDate = moment(searchObj.startDate).format('MM-DD-YYYY');
     if(searchObj.endDate && searchObj.endDate !== '')
@@ -37,15 +39,16 @@ class App extends Component {
       }
     )
     .then(function (response) {
-      that.setState({tripResults: response.data})
+      that.setState({tripResults: response.data,
+                    isLoading: false
+                  });
     })
     .catch(function (error) {
       console.log(error);
     });
   }
 
-<<<<<<< 68d80b7e6d96e86f221b3b8e868aa507cf74cd54
-=======
+
   checkUser(userObj) {
     const that = this;
     axios.post('/login',
@@ -64,13 +67,15 @@ class App extends Component {
     axios.post('/signup',
       newUserObj)
     .then(function(response) {
-      console.log("new user created: ", response);
     })
     .catch(function(error) {
       render(<div> User email already exists. Please enter a different email address. </div>, document.getElementByID('create'));
       console.log(error);
     })
   }
+
+
+
 
   render () {
     if(this.props.params.location) {
@@ -79,16 +84,31 @@ class App extends Component {
       this.props.params.location = undefined;
       this.state.landingLocation = ''
     }
-    return (
+
+    if (this.state.isLoading) {
+      return (
+            <div>
+            <NavBar checkUser={this.checkUser}/>
+             <div className="container">
+               <h1>Detailed Search</h1>
+               <SearchBar infoStore={this.infoStore}/>
+             </div>
+               <img src={'./spinner.gif'} className="spinner"/>
+            </div>
+      )
+    }
+    else {
+      return (
           <div>
           <NavBar checkUser={this.checkUser}/>
            <div className="container">
              <h1>Detailed Search</h1>
              <SearchBar infoStore={this.infoStore}/>
            </div>
-            <TripList trips={this.state.tripResults}/>
+             <TripList trips={this.state.tripResults}/>
           </div>
-    )
+      )
+    }
   }
 }
 
