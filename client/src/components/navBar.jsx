@@ -14,7 +14,7 @@ class NavBar extends Component {
   checkAuth() {
     console.log(localStorage.getItem('token'))
     if(localStorage.getItem('token')) {
-      return <Logout/>;
+      return <div><Link to="/createTrip">Create Trip</Link><Logout/></div>;
     } else {
       return <div><Link to='/signUp'>Sign Up</Link> <Login/></div>;
     }
@@ -26,7 +26,6 @@ class NavBar extends Component {
           <a className = 'navbar-brand'
              href = '/'> Trppr </a>
           <div className = 'navbar-form navbar-right'>
-            <Link to="/createTrip">Create Trip</Link>
             {this.checkAuth()}
           </div>
         </div>
