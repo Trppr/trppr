@@ -5,7 +5,6 @@ import Trip from './trip.jsx';
 //Need to make trip const, each trip needs to read each object and
 //display different values based on each attribute on the object
   const TripList = (props) => {
-    console.log("props.trips: ", props.trips);
      return (
        <div className="container">
          <h1>Search Results</h1>
