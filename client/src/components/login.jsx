@@ -20,7 +20,7 @@ class Login extends Component {
     )
     .then(function (response) {
       axios.defaults.headers.common['Authorization'] = 'Bearer ' + response.data;
-      console.log('Login successful!')
+      console.log('Login successful!', response.data)
     })
     .catch(function (error) {
       console.log(error);
