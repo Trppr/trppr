@@ -37,6 +37,7 @@ class Login extends Component {
     this.setState(change);
   }
 
+
   submitUser(e) {
     e.preventDefault();
     // console.log("newuserobject:", this.state);
@@ -61,7 +62,7 @@ class Login extends Component {
             placeholder = 'Password'
             onChange = {this.handleChange.bind(this, 'password')}/>
 
-          <input type = 'submit' value = 'Login'/>
+          <input type = 'submit' value = 'Login' className='btn btn-default'/>
         </div>
       </form>
     )

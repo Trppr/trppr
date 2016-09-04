@@ -9,6 +9,10 @@ import moment from 'moment';
 import TripList from './src/components/tripList.jsx';
 import SearchBar from './src/components/searchBar.jsx';
 import NavBar from './src/components/navBar.jsx';
+import CreateTrip from './src/components/createTrip.jsx';
+import Login from './src/components/login.jsx';
+import Signup from './src/components/signUp.jsx';
+
 
 class App extends Component {
   constructor(props) {
@@ -49,10 +53,6 @@ class App extends Component {
     });
   }
 
-<<<<<<< HEAD
-=======
-
->>>>>>> triplist
   checkUser(userObj) {
     const that = this;
     axios.post('/login',
@@ -71,10 +71,9 @@ class App extends Component {
     axios.post('/signup',
       newUserObj)
     .then(function(response) {
-<<<<<<< HEAD
+
       console.log("new user created: ", response);
-=======
->>>>>>> triplist
+
     })
     .catch(function(error) {
       render(<div> User email already exists. Please enter a different email address. </div>, document.getElementByID('create'));
@@ -83,11 +82,6 @@ class App extends Component {
   }
 
 
-
-<<<<<<< HEAD
-=======
-
->>>>>>> triplist
   render () {
     if(this.props.params.location) {
       this.state.landingLocation = this.props.params.location;
@@ -116,7 +110,9 @@ class App extends Component {
              <h1>Detailed Search</h1>
              <SearchBar infoStore={this.infoStore}/>
            </div>
+
              <TripList trips={this.state.tripResults}/>
+
           </div>
       )
     }
