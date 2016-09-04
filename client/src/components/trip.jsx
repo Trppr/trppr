@@ -1,5 +1,6 @@
 import React from 'react';
 import {render} from 'react-dom';
+import moment from 'moment';
 
 const Trip = ({trip}) => {
     //console.log("trip inside trip.jsx: ", trip.driverName);
@@ -31,7 +32,7 @@ const Trip = ({trip}) => {
             <div className="row" id="tripRow">
                 <div className="col-sm-4 other">
                     <div id="tripTag">Trip Dates:</div>
-                    <p>{trip.tripDate}</p>
+                    <p>{moment(trip.tripDate).format('MM-DD-YYYY')}</p>
                 </div>
 
                 <div className="col-sm-4 other">

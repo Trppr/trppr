@@ -45,7 +45,6 @@ class App extends Component {
   }
 
   render () {
-    console.log('inside app.jsx',axios.defaults.headers)
     if(this.props.params.location) {
       this.state.landingLocation = this.props.params.location;
       this.getTrips({endLocation: this.state.landingLocation})
