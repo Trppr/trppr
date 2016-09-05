@@ -3,7 +3,7 @@ import {render} from 'react-dom';
 import axios from 'axios';
 
 import NavBar from './navBar.jsx';
-import TripList from './tripList.jsx';
+import UserTrips from './userTrips.jsx';
 
 class UserProfile extends Component {
   constructor(props) {
@@ -11,7 +11,6 @@ class UserProfile extends Component {
     this.state = {createdTrips: [],
                   joinedTrips: [] };
     this.getTrips = this.getTrips.bind(this);
-    this.reserveSeat = this.reserveSeat.bind(this);
   }
 
   getTrips() {
@@ -39,30 +38,16 @@ class UserProfile extends Component {
     })
   }
 
-  reserveSeat(reserveObj) {
-    if(localStorage.getItem('token')) {
-      axios.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem('token');
-    }
-    axios.post('/reserveSeat',
-      reserveObj
-    )
-    .then(function (response) {
-      console.log('Seat reserved!', response.data)
-    })
-    .catch(function (error) {
-      console.log(error);
-    })
-  }
-
   componentWillMount() {
     this.getTrips();
   }
+  
   render() {
     return (
       <div className = 'container'>
         <h1>Created trips</h1>
         <NavBar />
-        <TripList reserveSeat={this.reserveSeat} trips={this.state.createdTrips}/>
+        <UserTrips trips={this.state.createdTrips}/>
       </div>
     )
   }
