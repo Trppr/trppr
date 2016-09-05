@@ -25,7 +25,8 @@
 #landingBodyPane .form-control{
   height: 60px;
   width: 525px;
-  font-size:32px;
+  font-size:30px;
+  font-weight: 100;
   opacity: 0.5;
   border: 1px white;
 }
@@ -35,7 +36,7 @@
   opacity: 1;
   color: white;
   font-weight: 100;
-  font-size: 60px;
+  font-size: 50px;
   margin: 10px;
   margin-bottom: 20px;
 }
