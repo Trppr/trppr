@@ -30,7 +30,7 @@ class Trip extends Component {
 
                   <div className="col-sm-3 other">
                       <div id="tripTag">Price per Seat:</div>
-                      <p>{this.props.trip.seatPrice}</p>
+                      <p>$ {this.props.trip.seatPrice}</p>
                   </div>
 
                   <div className="col-sm-3 other">
