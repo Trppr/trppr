@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {render} from 'react-dom';
+import {browserHistory} from 'react-router';
 import axios from 'axios';
 
 import NavBar from './navBar.jsx';
@@ -49,11 +50,13 @@ class CreateTrip extends Component {
       axios.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem('token');
     }
     const that = this;
+    tripObj.driverId = localStorage.getItem('id');
     axios.post('/createTrip',
       tripObj
     )
     .then(function (response) {
       console.log(response);
+      browserHistory.push('/userProfile')
     })
     .catch(function (error) {
       render(<div> Please login. </div>, document.getElementById('create'));
