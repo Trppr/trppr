@@ -75,8 +75,6 @@ class App extends Component {
 
 
 
-
-
   componentWillMount() {
 
     if(this.props.params.location) {
