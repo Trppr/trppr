@@ -73,7 +73,6 @@ class App extends Component {
     })
   }
 
-
   render () {
     if(this.props.params.location) {
       this.state.landingLocation = this.props.params.location;
