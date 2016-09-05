@@ -1,4 +1,3 @@
-<<<<<<< d426dad69ab033a9d513a7bc1584374bad21d236
 //if you require outside files at the top of the entry file defined when you
 //call webpack in the terminal, webpack automatically bundles the linked files
 import React, { Component } from 'react';
@@ -75,6 +74,17 @@ class App extends Component {
   }
 
 
+<<<<<<< b0487bf48b7b65ab1a92609eaaad7727ed97ff68
+=======
+  render () {
+    if(this.props.params.location) {
+      this.state.landingLocation = this.props.params.location;
+      this.getTrips({endLocation: this.state.landingLocation})
+      this.props.params.location = undefined;
+      this.state.landingLocation = ''
+    }
+  }
+>>>>>>> removed some stuff to fix conflict
 
   render () {
     if (this.state.isLoading) {
