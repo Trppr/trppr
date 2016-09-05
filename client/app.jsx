@@ -1,3 +1,4 @@
+
 //if you require outside files at the top of the entry file defined when you
 //call webpack in the terminal, webpack automatically bundles the linked files
 import React, { Component } from 'react';
@@ -79,10 +80,16 @@ class App extends Component {
       newUserObj)
     .then(function(response) {
       console.log("new user created: ", response);
+
     })
+    // .catch(function(error) {
+    //   render(<div> User email already exists. Please enter a different email address. </div>, document.getElementByID('create'));
+    //   console.log("new user created: ", response);
+    // })
     .catch(function(error) {
-      render(<div> User email already exists. Please enter a different email address. </div>, document.getElementByID('create'));
-      console.log("new user created: ", response);
+      render(<div> error </div>, document.getElementByID('create'));
+      // render(<div> User email already exists. Please enter a different email address. </div>, document.getElementByID('create'));
+      console.log(error);
     })
   }
 
