@@ -23,8 +23,9 @@ class NavBar extends Component {
     return (
       <nav className = 'navbar navbar-default navbar-fixed-top'>
         <div className = 'container-fluid'>
-          <a className = 'navbar-brand'
-             href = '/'> Trppr </a>
+          <a className = 'navbar-brand' href = '/'>
+             <img id="navLogo" src="../trpperLogo-small.png"></img>
+          </a>
          <ul className = "nav navbar-nav">
             <li><Link to="/createTrip">Create Trip</Link></li>
             <li><Link to="/app">Search Trips</Link></li>

@@ -15,23 +15,23 @@ module.exports = (app, express) => {
   app.use('/', express.static('./client'));
   app.use(morgan('dev'));
   // Temporarily turning off auth for testing purposes.
-  app.use(expressJWT({secret:'hello world trppr'})
-    .unless( {
-      path: [
-        '/app/spinner.gif',
-        '/app',
-        '/login',
-        '/',
-        '/recent',
-        '/signUp',
-        '/signup',
-        '/searchTrips',
-        '/cancelTrip',
-        '/cancelReservation',
-        '/updateUser',
-        '/getDriverHistory',
-        '/getPassengerHistory'
-      ]
-    }
-  ));
+  // app.use(expressJWT({secret:'hello world trppr'})
+  //   .unless( {
+  //     path: [
+  //       '/app/spinner.gif',
+  //       '/app',
+  //       '/login',
+  //       '/',
+  //       '/recent',
+  //       '/signUp',
+  //       '/signup',
+  //       '/searchTrips',
+  //       '/cancelTrip',
+  //       '/cancelReservation',
+  //       '/updateUser',
+  //       '/getDriverHistory',
+  //       '/getPassengerHistory'
+  //     ]
+  //   }
+  // ));
 };
