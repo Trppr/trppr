@@ -91,7 +91,7 @@ class App extends Component {
                <h1>Detailed Search</h1>
                <SearchBar infoStore={this.infoStore}/>
              </div>
-               <img src={'./spinner.gif'} className="spinner"/>
+               <img src={'../spinner.gif'} className="spinner"/>
             </div>
       )
     }
