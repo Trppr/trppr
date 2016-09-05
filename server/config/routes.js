@@ -26,6 +26,10 @@ module.exports = (app, express) => {
   // Success -> Will return json object with user object and token
   // Failure -> 500 with erors
 
+  app.post('/updateUser', userController.updateUser);
+  app.post('/getDriverHistory', userController.getDriverHistory);
+  app.post('/getPassengerHistory', userController.getPassengerHistory);
+
   /*
   *  Trip API Requests
   */

@@ -1,5 +1,6 @@
 const jwt = require('jsonwebtoken');
 const User = require('../users/userModel');
+const Trip = require('../trips/tripModel');
 const password = require('../config/passwordHelper');
 
 module.exports = {
@@ -73,10 +74,110 @@ module.exports = {
 
   updateUser: function(req, res){
 
+    User.update(
+      {
+        firstName: req.body.firstName,
+        lastName: req.body.lastName,
+        email: req.body.email,
+        description: req.body.description,
+      },
+      {
+        where: {
+          id: req.body.userId
+        }
+      })
+      .then(function(user) {
+        if(req.body.password) {
+          password.hash(req.body.password)
+            .then(function(hash) {
+              user.update({
+                password: hash
+              });
+            })
+        }
+        console.log("\033[34m <TRPPR> User updated. \033[0m");
+        res.sendStatus(201);
+      })
+
+
   },
 
-  getTripHistory: function(req, res){
+  getDriverHistory: function(req, res){
+    var tripsList = [];
+    Trip.findAll({
+      where: {
+        driverId: req.body.driverId
+      },
+      attributes: [
+        'id',
+        'tripDate',
+        'startSt',
+        'startCity',
+        'startState',
+        'endSt',
+        'endCity',
+        'endState',
+        'numSeats',
+        'seatPrice',
+        'vehicleMake',
+        'vehicleModel',
+        'vehicleYear',
+        'description'
+      ]
+    })
+    .then(function(trips){
+      trips.forEach( (trip) => {
+        tripsList.push(trip.dataValues);
+      });
+      console.log('\033[34m <TRPPR> Sending data: \033[0m');
+      console.log(tripsList);
+      res.json(tripsList);
+    })
+    .catch(function(err) {
+      console.log('Error:', err.message);
+      res.send(err.message);
+    });
+  },
 
+  getPassengerHistory: function(req, res){
+    var tripsList = [];
+
+    Trip.findAll({
+      attributes: [
+        'id',
+        'tripDate',
+        'startSt',
+        'startCity',
+        'startState',
+        'endSt',
+        'endCity',
+        'endState',
+        'numSeats',
+        'seatPrice',
+        'vehicleMake',
+        'vehicleModel',
+        'vehicleYear',
+        'description'
+      ],
+      where: {
+        id: {
+          include: [Trip, User],
+
+        },
+
+      }
+    })
+    .then(function(trips){
+      trips.forEach( (trip) => {
+        tripsList.push(trip.dataValues);
+      });
+      console.log('\033[34m <TRPPR> Sending data: \033[0m');
+      console.log(tripsList);
+      res.json(tripsList);
+    })
+    .catch(function(err) {
+      console.log('Error:', err.message);
+      res.send(err.message);
+    });
   }
-
 }
