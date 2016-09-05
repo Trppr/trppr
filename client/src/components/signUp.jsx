@@ -29,7 +29,10 @@ class Signup extends Component {
       console.log("new user created: ", response);
       localStorage.setItem('token', response.data.token);
       localStorage.setItem('name', response.data.user.firstName);
+      localStorage.setItem('lastName', response.data.user.lastName);
       localStorage.setItem('id', response.data.user.id);
+      localStorage.setItem('email', response.data.user.email);
+      localStorage.setItem('description', response.data.user.description);
       browserHistory.push('/app');
     })
     .catch(function(error) {
