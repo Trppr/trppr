@@ -7,6 +7,7 @@ import NavBar from './src/components/navBar.jsx';
 import CreateTrip from './src/components/createTrip.jsx';
 import Signup from './src/components/signUp.jsx';
 import Logout from './src/components/logout.jsx';
+import UserProfile from './src/components/userProfile.jsx';
 
 class Landing extends Component {
   constructor(props) {
@@ -51,5 +52,6 @@ render((
     <Route path='createTrip' component={CreateTrip} />
     <Route path='signUp' component={Signup} />
     <Route path='logOut' component={Logout} />
+    <Route path='userProfile' component={UserProfile} />
   </Router>
 ), document.getElementById('app'));
