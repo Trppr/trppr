@@ -34,7 +34,7 @@ class Signup extends Component {
     })
     .catch(function(error) {
       // render(<div> {error} </div>, document.getElementById('create'));
-      render(<div> User email already exists. Please enter a different email address. </div>, document.getElementById('create'));
+      render(<div id="emailError"> User email already exists. Please enter a different email address. </div>, document.getElementById('create'));
       console.log(error);
     })
   }

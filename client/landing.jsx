@@ -30,6 +30,7 @@ class Landing extends Component {
 
   render() {
     return (
+      <div id="landingBody">
         <div className="container">
           <h1> Where are you going? </h1>
             <form onSubmit={this.submitData}>
@@ -41,6 +42,7 @@ class Landing extends Component {
             <input type="submit" value="Search"/>
             </form>
         </div>
+      </div>
     )
   }
 }
