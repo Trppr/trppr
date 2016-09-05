@@ -43,7 +43,13 @@ class App extends Component {
       }
     )
     .then(function (response) {
-      that.setState({tripResults: response.data,
+      const filtered = [];
+      for(const trip of response.data) {
+        if(trip.numSeats > 0) {
+          filtered.push(trip);
+        }
+      }
+      that.setState({tripResults: filtered,
                     isLoading: false
                   });
     })
