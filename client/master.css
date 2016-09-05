@@ -11,7 +11,44 @@
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
+  background-size: cover;
 }
+#landingBodyPane {
+  display: block;
+  position: relative;
+  top: 120px;
+  height: 200px;
+  width: 600px;
+  margin: auto;
+  border-radius: 10px;
+}
+#landingBodyPane .form-control{
+  height: 60px;
+  width: 525px;
+  font-size:30px;
+  font-weight: 100;
+  opacity: 0.5;
+  background-color: #d4d4d4
+  border-radius: 7px;
+}
+#landingLogo{
+  width: 120px;
+  height: auto;
+  padding: 15px;
+}
+#navLogo{
+  width: 80px;
+  height: auto;
+}
+#landingBody h1 {
+  opacity: 1;
+  color: white;
+  font-weight: 100;
+  font-size: 50px;
+  margin: 10px;
+  margin-bottom: 20px;
+}
+
 
 body {
   padding-top: 90px;

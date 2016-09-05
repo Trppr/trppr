@@ -31,16 +31,19 @@ class Landing extends Component {
   render() {
     return (
       <div id="landingBody">
-        <div className="container">
-          <h1> Where are you going? </h1>
-            <form onSubmit={this.submitData}>
-            <input
-              className="form-control"
-              placeholder = "Enter city/state"
-              value = {this.state.endLocation}
-              onChange = {this.handleChange.bind(this, 'endLocation')} />
-            <input type="submit" value="Search"/>
-            </form>
+        <img id="landingLogo" src="trpperLogo-small.png"></img>
+        <div id="landingBodyPane">
+          <div className="container">
+            <h1> Where are you going? </h1>
+              <form onSubmit={this.submitData}>
+              <input
+                className="form-control"
+                placeholder = "Enter a city or state"
+                value = {this.state.endLocation}
+                onChange = {this.handleChange.bind(this, 'endLocation')} />
+
+              </form>
+          </div>
         </div>
       </div>
     )
