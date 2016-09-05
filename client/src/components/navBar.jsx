@@ -14,11 +14,12 @@ class NavBar extends Component {
   checkAuth() {
     console.log(localStorage.getItem('token'))
     if(localStorage.getItem('token')) {
-      return <Logout/>;
+      return <div><Logout/></div>;
     } else {
       return <div><Login/><Link to='/signUp'>Sign Up</Link> </div>;
     }
   }
+
   render() {
     return (
       <nav className = 'navbar navbar-default navbar-fixed-top'>
@@ -27,12 +28,9 @@ class NavBar extends Component {
              href = '/'> Trppr </a>
          <ul className = "nav navbar-nav">
             <li><Link to="/createTrip">Create Trip</Link></li>
-
         </ul>
           <div className = 'navbar-form navbar-right'>
-
             {this.checkAuth()}
-
           </div>
         </div>
       </nav>

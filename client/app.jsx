@@ -24,7 +24,6 @@ class App extends Component {
                    isLoading: ''
                  };
     this.infoStore = this.infoStore.bind(this);
-    this.checkUser = this.checkUser.bind(this);
   }
 
   infoStore(searchObj) {
@@ -53,13 +52,15 @@ class App extends Component {
     });
   }
 
-  checkUser(userObj) {
-    const that = this;
-    axios.post('/login',
-      userObj
+  reserveSeat(reserveObj) {
+    if(localStorage.getItem('token')) {
+      axios.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem('token');
+    }
+    axios.post('/reserveSeat',
+      reserveObj
     )
     .then(function (response) {
-      axios.defaults.headers.common['Authorization'] = 'Bearer ' + response.data;
+      console.log('Seat reserved!', response.data)
     })
     .catch(function (error) {
       console.log(error);
@@ -71,29 +72,20 @@ class App extends Component {
     axios.post('/signup',
       newUserObj)
     .then(function(response) {
-<<<<<<< HEAD
-
       console.log("new user created: ", response);
 
     })
     .catch(function(error) {
       render(<div> User email already exists. Please enter a different email address. </div>, document.getElementByID('create'));
-=======
       console.log("new user created: ", response);
     })
     .catch(function(error) {
       render(<div> error </div>, document.getElementByID('create'));
       // render(<div> User email already exists. Please enter a different email address. </div>, document.getElementByID('create'));
->>>>>>> f639eadc2948b0f7e454345a55cd0d13a76a0659
       console.log(error);
     })
   }
 
-
-<<<<<<< HEAD
-=======
-
->>>>>>> f639eadc2948b0f7e454345a55cd0d13a76a0659
   render () {
     if(this.props.params.location) {
       this.state.landingLocation = this.props.params.location;
@@ -122,9 +114,7 @@ class App extends Component {
              <h1>Detailed Search</h1>
              <SearchBar infoStore={this.infoStore}/>
            </div>
-
-             <TripList trips={this.state.tripResults}/>
-
+            <TripList reserveSeat={this.reserveSeat} trips={this.state.tripResults}/>
           </div>
       )
     }

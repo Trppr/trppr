@@ -22,7 +22,8 @@ class Login extends Component {
     )
     .then(function (response) {
       localStorage.setItem('token', response.data.token);
-      localStorage.setItem('name', response.data.user.firstName)
+      localStorage.setItem('name', response.data.user.firstName);
+      localStorage.setItem('id', response.data.user.id);
       browserHistory.push('/app');
       console.log('Login successful!', response.data)
     })
