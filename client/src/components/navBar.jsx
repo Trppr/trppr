@@ -13,7 +13,7 @@ class NavBar extends Component {
 
   checkAuth() {
     if(localStorage.getItem('token')) {
-      return <div><Logout/></div>;
+      return <div><Logout/><Link to='/userProfile'>Profile</Link></div>;
     } else {
       return <div><Login/><Link to='/signUp'>Sign Up</Link> </div>;
     }
@@ -27,6 +27,7 @@ class NavBar extends Component {
              href = '/'> Trppr </a>
          <ul className = "nav navbar-nav">
             <li><Link to="/createTrip">Create Trip</Link></li>
+            <li><Link to="/app">Search Trips</Link></li>
         </ul>
           <div className = 'navbar-form navbar-right'>
             {this.checkAuth()}
