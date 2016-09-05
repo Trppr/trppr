@@ -14,7 +14,6 @@ class Trip extends Component {
     }
 
     render() {
-      console.log('inside trip.jsx',this.props.trip)
       return (
           <div className="container" id="tripEntry">
 
