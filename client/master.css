@@ -36,6 +36,10 @@
   height: auto;
   padding: 15px;
 }
+#navLogo{
+  width: 80px;
+  height: auto;
+}
 #landingBody h1 {
   opacity: 1;
   color: white;
