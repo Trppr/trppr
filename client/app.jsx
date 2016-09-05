@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 <<<<<<< d426dad69ab033a9d513a7bc1584374bad21d236
+=======
+
+>>>>>>> cb582ddf70ce9f8126cd7386fcaa213fdaeab1ac
 //if you require outside files at the top of the entry file defined when you
 //call webpack in the terminal, webpack automatically bundles the linked files
 import React, { Component } from 'react';
@@ -73,6 +77,7 @@ class App extends Component {
       console.log(error);
     })
   }
+
 
   render () {
     if(this.props.params.location) {
