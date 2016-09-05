@@ -4,7 +4,7 @@ import {browserHistory} from 'react-router';
 import axios from 'axios';
 
 import NavBar from './navBar.jsx';
-// Add form validation
+
 class CreateTrip extends Component {
   constructor(props) {
     super(props);
