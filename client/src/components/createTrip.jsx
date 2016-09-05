@@ -4,12 +4,11 @@ import {browserHistory} from 'react-router';
 import axios from 'axios';
 
 import NavBar from './navBar.jsx';
-// Add form validation
+
 class CreateTrip extends Component {
   constructor(props) {
     super(props);
-    this.state = { driverName: '',
-                   tripDate: '',
+    this.state = { tripDate: '',
                    startSt: '',
                    startCity: '',
                    startState: '',
@@ -22,6 +21,7 @@ class CreateTrip extends Component {
                    vehicleModel: '',
                    description: ''
                    };
+    this.submitTrip = this.submitTrip.bind(this);
   }
 
   handleChange(name, e) {
@@ -30,7 +30,8 @@ class CreateTrip extends Component {
     this.setState(change);
   }
 
-  submitTrip() {
+  submitTrip(e) {
+    e.preventDefault();
     let filled = true;
     for(var attr in this.state) {
       if(this.state[attr] === '') {
@@ -51,6 +52,7 @@ class CreateTrip extends Component {
     }
     const that = this;
     tripObj.driverId = localStorage.getItem('id');
+    tripObj.driverName = localStorage.getItem('name')
     axios.post('/createTrip',
       tripObj
     )
@@ -69,7 +71,7 @@ class CreateTrip extends Component {
     return (
       <div>
         <NavBar />
-        <form className="form-group">
+        <form className="form-group" onSubmit={this.submitTrip}>
         <h1>Create Your Trip</h1>
         <div className="col-md-6" id="CreateAndSearchTripsLeft">
               <input
@@ -96,12 +98,6 @@ class CreateTrip extends Component {
               className="form-control"
               value = {this.state.tripDate}
               onChange = {this.handleChange.bind(this, 'tripDate')} />
-
-            <input
-              placeholder = "Driver name"
-              className="form-control"
-              value = {this.state.driverName}
-              onChange = {this.handleChange.bind(this, 'driverName')} />
 
             <input
               placeholder = "Description"
@@ -157,11 +153,7 @@ class CreateTrip extends Component {
               onChange = {this.handleChange.bind(this, 'vehicleModel')} />
 
           </div>
-            <input
-              type="button"
-              className="btn btn-primary"
-              value="Create"
-              onClick = {event => this.submitTrip()}/>
+            <input type = 'submit' value = 'Create' className='btn btn-primary'/>
         </form>
       </div>
     )
