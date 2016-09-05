@@ -24,7 +24,6 @@ class App extends Component {
                    isLoading: ''
                  };
     this.infoStore = this.infoStore.bind(this);
-    this.checkUser = this.checkUser.bind(this);
   }
 
   infoStore(searchObj) {
@@ -115,7 +114,6 @@ class App extends Component {
              <h1>Detailed Search</h1>
              <SearchBar infoStore={this.infoStore}/>
            </div>
-             <TripList trips={this.state.tripResults}/>
             <TripList reserveSeat={this.reserveSeat} trips={this.state.tripResults}/>
           </div>
       )

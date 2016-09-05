@@ -12,7 +12,7 @@ class Trip extends Component {
     reserveSeat() {
       this.props.reserveSeat({passengerId: localStorage.getItem('id'), tripId: this.props.trip.id});
     }
-    
+
     render() {
       return (
           <div className="container" id="tripEntry">
