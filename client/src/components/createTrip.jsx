@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {render} from 'react-dom';
+import {browserHistory} from 'react-router';
 import axios from 'axios';
 
 import NavBar from './navBar.jsx';
@@ -55,6 +56,7 @@ class CreateTrip extends Component {
     )
     .then(function (response) {
       console.log(response);
+      browserHistory.push('/userProfile')
     })
     .catch(function (error) {
       render(<div> Please login. </div>, document.getElementById('create'));
