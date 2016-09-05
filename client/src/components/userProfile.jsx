@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {render} from 'react-dom';
+import axios from 'axios';
 
 import NavBar from './navBar.jsx'
 
@@ -14,7 +15,7 @@ class UserProfile extends Component {
       {driverId: localStorage.getItem('id')}
     )
     .then(function(response) {
-      console.log("new user created: ", response);
+      console.log('inside userProfile.jsx', response);
     })
     .catch(function(error) {
       // render(<div> {error} </div>, document.getElementById('create'));
@@ -27,7 +28,11 @@ class UserProfile extends Component {
     return (
       <div className = 'container'>
         <NavBar />
-        <input onClick={getTrips} value='Test'/>
+        <input
+          type="button"
+          className="btn btn-primary"
+          value="Create"
+          onClick = {event => this.getTrips()}/>
       </div>
     )
   }

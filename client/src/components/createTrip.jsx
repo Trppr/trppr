@@ -49,6 +49,7 @@ class CreateTrip extends Component {
       axios.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem('token');
     }
     const that = this;
+    tripObj.driverId = localStorage.getItem('id');
     axios.post('/createTrip',
       tripObj
     )
