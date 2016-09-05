@@ -31,7 +31,6 @@ class NavBar extends Component {
         </ul>
           <div className = 'navbar-form navbar-right'>
             {this.checkAuth()}
-
           </div>
         </div>
       </nav>
