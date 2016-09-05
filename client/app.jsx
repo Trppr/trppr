@@ -1,4 +1,4 @@
-<<<<<<< d426dad69ab033a9d513a7bc1584374bad21d236
+
 //if you require outside files at the top of the entry file defined when you
 //call webpack in the terminal, webpack automatically bundles the linked files
 import React, { Component } from 'react';
