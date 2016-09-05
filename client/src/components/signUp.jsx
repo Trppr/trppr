@@ -28,8 +28,8 @@ class Signup extends Component {
       console.log("new user created: ", response);
     })
     .catch(function(error) {
-      render(<div> {error} </div>, document.getElementById('create'));
-      // render(<div> User email already exists. Please enter a different email address. </div>, document.getElementByID('create'));
+      // render(<div> {error} </div>, document.getElementById('create'));
+      render(<div> User email already exists. Please enter a different email address. </div>, document.getElementById('create'));
       console.log(error);
     })
   }
@@ -41,7 +41,8 @@ class Signup extends Component {
   }
 
 
-  checkFilled() {
+  checkFilled(e) {
+    e.preventDefault();
     let filled = true;
     for(var attr in this.state) {
       if(this.state[attr] === '') {
@@ -70,7 +71,7 @@ class Signup extends Component {
     return (
       <div className="container">
         <NavBar />
-        <form className="signUp form-group">
+        <form className="signUp form-group" onSubmit={this.checkFilled}>
           <h1>Create Your Account</h1>
           <div>
             <input
@@ -119,10 +120,9 @@ class Signup extends Component {
           </div>
           <div>
             <input
-              type="button"
+              type="submit"
               value="Sign Up"
-              className="btn btn-primary"
-              onClick = {this.checkFilled}/>
+              className="btn btn-primary"/>
           </div>
         </form>
       </div>
