@@ -15,7 +15,7 @@ module.exports = {
     });
     newUser
       .save()
-      .then(function() {
+      .then(function(user) {
         password.hash(req.body.password)
           .then(function(hash) {
             newUser.update({
@@ -27,8 +27,7 @@ module.exports = {
           })
         const token = jwt.sign(user.dataValues, 'hello world trppr');
         console.log("\033[34m <TRPPR> New user created. \033[0m");
-        res.sendStatus(201)
-        .json({
+        res.json({
           user: user,
           token: token
         });

@@ -14,8 +14,24 @@ class Signup extends Component {
                    email: '',
                    description: '',
                    confirm: ''
-
     };
+    this.checkFilled = this.checkFilled.bind(this);
+  }
+
+  createUser(newUserObj) {
+    const that = this;
+    axios.post('/signup',
+      newUserObj
+    )
+    .then(function(response) {
+      console.log('inside')
+      console.log("new user created: ", response);
+    })
+    .catch(function(error) {
+      render(<div> {error} </div>, document.getElementById('create'));
+      // render(<div> User email already exists. Please enter a different email address. </div>, document.getElementByID('create'));
+      console.log(error);
+    })
   }
 
   handleChange(name, e) {
@@ -44,7 +60,7 @@ class Signup extends Component {
     }
   }
 
-  
+
   submitNewUser() {
     this.props.createUser(this.state);
     //console.log("new User Object:", this.state);
@@ -52,7 +68,6 @@ class Signup extends Component {
 
   render() {
     return (
-
       <div className="container">
         <NavBar />
         <form className="signUp form-group">
@@ -107,7 +122,7 @@ class Signup extends Component {
               type="button"
               value="Sign Up"
               className="btn btn-primary"
-              onClick = {event => this.checkFilled()}/>
+              onClick = {this.checkFilled}/>
           </div>
         </form>
       </div>
