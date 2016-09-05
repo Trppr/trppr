@@ -1,4 +1,4 @@
-<<<<<<< d426dad69ab033a9d513a7bc1584374bad21d236
+
 import React, {Component} from 'react';
 import {render} from 'react-dom';
 import {browserHistory} from 'react-router';
