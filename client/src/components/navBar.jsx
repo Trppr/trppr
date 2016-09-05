@@ -14,7 +14,7 @@ class NavBar extends Component {
   checkAuth() {
     console.log(localStorage.getItem('token'))
     if(localStorage.getItem('token')) {
-      return <div><Link to="/createTrip">Create Trip</Link><Logout/></div>;
+      return <div><Logout/></div>;
     } else {
       return <div><Login/><Link to='/signUp'>Sign Up</Link> </div>;
     }
