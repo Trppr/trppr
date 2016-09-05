@@ -165,4 +165,4 @@ class CreateTrip extends Component {
   }
 }
 
-export default CreateTrip
+export default CreateTrip;

@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {render} from 'react-dom';
+import {browserHistory} from 'react-router';
 
 import axios from 'axios';
 import NavBar from './navBar.jsx'
@@ -24,12 +25,15 @@ class Signup extends Component {
       newUserObj
     )
     .then(function(response) {
-      console.log('inside')
       console.log("new user created: ", response);
+      localStorage.setItem('token', response.data.token);
+      localStorage.setItem('name', response.data.user.firstName);
+      localStorage.setItem('id', response.data.user.id);
+      browserHistory.push('/app');
     })
     .catch(function(error) {
-      render(<div> {error} </div>, document.getElementById('create'));
-      // render(<div> User email already exists. Please enter a different email address. </div>, document.getElementByID('create'));
+      // render(<div> {error} </div>, document.getElementById('create'));
+      render(<div> User email already exists. Please enter a different email address. </div>, document.getElementById('create'));
       console.log(error);
     })
   }
@@ -41,7 +45,8 @@ class Signup extends Component {
   }
 
 
-  checkFilled() {
+  checkFilled(e) {
+    e.preventDefault();
     let filled = true;
     for(var attr in this.state) {
       if(this.state[attr] === '') {
@@ -70,7 +75,7 @@ class Signup extends Component {
     return (
       <div className="container">
         <NavBar />
-        <form className="signUp form-group">
+        <form className="signUp form-group" onSubmit={this.checkFilled}>
           <h1>Create Your Account</h1>
           <div>
             <input
@@ -119,10 +124,9 @@ class Signup extends Component {
           </div>
           <div>
             <input
-              type="button"
+              type="submit"
               value="Sign Up"
-              className="btn btn-primary"
-              onClick = {this.checkFilled}/>
+              className="btn btn-primary"/>
           </div>
         </form>
       </div>
