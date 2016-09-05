@@ -23,7 +23,10 @@ class Login extends Component {
     .then(function (response) {
       localStorage.setItem('token', response.data.token);
       localStorage.setItem('name', response.data.user.firstName);
+      localStorage.setItem('lastName', response.data.user.lastName);
       localStorage.setItem('id', response.data.user.id);
+      localStorage.setItem('email', response.data.user.email);
+      localStorage.setItem('description', response.data.user.description);
       browserHistory.push('/app');
       console.log('Login successful!', response.data)
     })
@@ -41,7 +44,6 @@ class Login extends Component {
 
   submitUser(e) {
     e.preventDefault();
-    // console.log("newuserobject:", this.state);
     this.checkUser(this.state);
   }
 
