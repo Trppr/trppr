@@ -26,6 +26,10 @@ module.exports = (app, express) => {
   // Success -> Will return json object with user object and token
   // Failure -> 500 with erors
 
+  app.post('/updateUser', userController.updateUser);
+  app.post('/getDriverHistory', userController.getDriverHistory);
+  app.post('/getPassengerHistory', userController.getPassengerHistory);
+
   /*
   *  Trip API Requests
   */
@@ -49,12 +53,18 @@ module.exports = (app, express) => {
   // Note: These id's are foreign keys so they have to exist in the db
   // for this to work.
 
+  app.post('/cancelTrip', tripController.cancelTrip);
+  // deletes tripId via req.body.tripId
+
+  app.post('/cancelReservation', tripController.cancelReservation);
+  // deletes reservation via req.body.passengerId & req.body.tripId
+
   // handle every other route with index.html, which will contain
-// a script tag to your application's JavaScript file(s).
+  // a script tag to your application's JavaScript file(s).
   app.get('*', function (request, response){
     response.sendFile(path.resolve('./', 'client', 'index.html'))
   })
-  
+
   app.get('*', (req, res) => {
     res.sendStatus(404);
   });
