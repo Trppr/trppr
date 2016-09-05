@@ -73,14 +73,24 @@ class App extends Component {
     })
   }
 
-  componentWillMount() {
-    if(this.props.params.location) {
-      this.state.landingLocation = this.props.params.location;
-      this.getTrips({endLocation: this.state.landingLocation})
-      this.props.params.location = undefined;
-      this.state.landingLocation = ''
-    }
+
+  createUser(newUserObj) {
+    const that = this;
+    axios.post('/signup',
+      newUserObj)
+    .then(function(response) {
+
+      console.log("new user created: ", response);
+
+    })
+    .catch(function(error) {
+      render(<div> User email already exists. Please enter a different email address. </div>, document.getElementByID('create'));
+      console.log(error);
+    })
   }
+
+
+
 
   render () {
     if (this.state.isLoading) {
@@ -103,7 +113,9 @@ class App extends Component {
              <h1>Detailed Search</h1>
              <SearchBar infoStore={this.infoStore}/>
            </div>
+
             <TripList reserveSeat={this.reserveSeat} trips={this.state.tripResults}/>
+
           </div>
       )
     }
