@@ -62,7 +62,6 @@ class Trip extends Component {
                       <div id="tripTag">Trip Details:</div>
                       <p>{this.props.trip.description}</p>
                       <div className="rsvpButton">
-                          <input placeholder="How many seats?"/>
                           <button onClick= {this.reserveSeat} >Reserve Seat</button>
                       </div>
                   </div>
