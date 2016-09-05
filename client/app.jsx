@@ -74,7 +74,8 @@ class App extends Component {
   }
 
 
-  componentWillMount() {
+
+componentWillMount() {
 
     if(this.props.params.location) {
       this.state.landingLocation = this.props.params.location;
