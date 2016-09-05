@@ -79,16 +79,10 @@ class App extends Component {
       newUserObj)
     .then(function(response) {
       console.log("new user created: ", response);
-
     })
     .catch(function(error) {
       render(<div> User email already exists. Please enter a different email address. </div>, document.getElementByID('create'));
       console.log("new user created: ", response);
-    })
-    .catch(function(error) {
-      render(<div> error </div>, document.getElementByID('create'));
-      // render(<div> User email already exists. Please enter a different email address. </div>, document.getElementByID('create'));
-      console.log(error);
     })
   }
 
