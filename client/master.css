@@ -42,7 +42,8 @@ h1, h2, h3, h4  {
 }
 
 #tripEntry {
-  border: 1px solid;
+  font-style: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  border: 2px solid;
   border-radius: 5px;
   margin-bottom: 20px;
   background-color: #dceaea;
@@ -51,7 +52,6 @@ h1, h2, h3, h4  {
 
 .spinner {
   position: fixed;
-  /*z-index: 999;*/
   height: 130px;
   width: 130px;
   overflow: show;
@@ -71,7 +71,13 @@ h1, h2, h3, h4  {
   border: 1px solid;
 }
 
-.rsvpButton {
+p {
+  margin: 0 0 4px;
+}
+
+#rsvpButton {
   text-align: center;
   float: right;
+  border-radius: 4px;
+  border: 1px solid #f9f9f9;*/
 }
