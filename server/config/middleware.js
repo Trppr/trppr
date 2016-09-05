@@ -25,7 +25,10 @@ module.exports = (app, express) => {
         '/signup',
         '/searchTrips',
         '/cancelTrip',
-        '/cancelReservation'
+        '/cancelReservation',
+        '/updateUser',
+        '/getDriverHistory',
+        '/getPassengerHistory'
       ]
     }
   ));
