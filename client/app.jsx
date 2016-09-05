@@ -107,9 +107,7 @@ componentWillMount() {
              <h1>Detailed Search</h1>
              <SearchBar infoStore={this.infoStore}/>
            </div>
-
             <TripList reserveSeat={this.reserveSeat} trips={this.state.tripResults}/>
-
           </div>
       )
     }
