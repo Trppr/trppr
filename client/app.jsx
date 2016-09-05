@@ -9,6 +9,10 @@ import moment from 'moment';
 import TripList from './src/components/tripList.jsx';
 import SearchBar from './src/components/searchBar.jsx';
 import NavBar from './src/components/navBar.jsx';
+import CreateTrip from './src/components/createTrip.jsx';
+import Login from './src/components/login.jsx';
+import Signup from './src/components/signUp.jsx';
+
 
 class App extends Component {
   constructor(props) {
@@ -16,9 +20,11 @@ class App extends Component {
     this.state = { searchTerm: '',
                    tripResults: [],
                    Authorization: '',
-                   landingLocation: ''
+                   landingLocation: '',
+                   isLoading: ''
                  };
     this.infoStore = this.infoStore.bind(this);
+    this.checkUser = this.checkUser.bind(this);
   }
 
   infoStore(searchObj) {
@@ -28,6 +34,7 @@ class App extends Component {
 
   getTrips(searchObj) {
     const that = this;
+    that.setState({isLoading: true});
     if(searchObj.startDate && searchObj.startDate !== '')
       searchObj.startDate = moment(searchObj.startDate).format('MM-DD-YYYY');
     if(searchObj.endDate && searchObj.endDate !== '')
@@ -37,13 +44,56 @@ class App extends Component {
       }
     )
     .then(function (response) {
-      that.setState({tripResults: response.data})
+      that.setState({tripResults: response.data,
+                    isLoading: false
+                  });
     })
     .catch(function (error) {
       console.log(error);
     });
   }
 
+  checkUser(userObj) {
+    const that = this;
+    axios.post('/login',
+      userObj
+    )
+    .then(function (response) {
+      axios.defaults.headers.common['Authorization'] = 'Bearer ' + response.data;
+    })
+    .catch(function (error) {
+      console.log(error);
+    })
+  }
+
+  createUser(newUserObj) {
+    const that = this;
+    axios.post('/signup',
+      newUserObj)
+    .then(function(response) {
+<<<<<<< HEAD
+
+      console.log("new user created: ", response);
+
+    })
+    .catch(function(error) {
+      render(<div> User email already exists. Please enter a different email address. </div>, document.getElementByID('create'));
+=======
+      console.log("new user created: ", response);
+    })
+    .catch(function(error) {
+      render(<div> error </div>, document.getElementByID('create'));
+      // render(<div> User email already exists. Please enter a different email address. </div>, document.getElementByID('create'));
+>>>>>>> f639eadc2948b0f7e454345a55cd0d13a76a0659
+      console.log(error);
+    })
+  }
+
+
+<<<<<<< HEAD
+=======
+
+>>>>>>> f639eadc2948b0f7e454345a55cd0d13a76a0659
   render () {
     if(this.props.params.location) {
       this.state.landingLocation = this.props.params.location;
@@ -51,16 +101,33 @@ class App extends Component {
       this.props.params.location = undefined;
       this.state.landingLocation = ''
     }
-    return (
+
+    if (this.state.isLoading) {
+      return (
+            <div>
+            <NavBar checkUser={this.checkUser}/>
+             <div className="container">
+               <h1>Detailed Search</h1>
+               <SearchBar infoStore={this.infoStore}/>
+             </div>
+               <img src={'./spinner.gif'} className="spinner"/>
+            </div>
+      )
+    }
+    else {
+      return (
           <div>
-          <NavBar checkUser={this.checkUser}/>
+          <NavBar />
            <div className="container">
              <h1>Detailed Search</h1>
              <SearchBar infoStore={this.infoStore}/>
            </div>
-            <TripList trips={this.state.tripResults}/>
+
+             <TripList trips={this.state.tripResults}/>
+
           </div>
-    )
+      )
+    }
   }
 }
 
