@@ -73,25 +73,6 @@ class App extends Component {
     })
   }
 
-  createUser(newUserObj) {
-    const that = this;
-    axios.post('/signup',
-      newUserObj)
-    .then(function(response) {
-      console.log("new user created: ", response);
-
-    })
-    .catch(function(error) {
-      render(<div> User email already exists. Please enter a different email address. </div>, document.getElementByID('create'));
-      console.log("new user created: ", response);
-    })
-    .catch(function(error) {
-      render(<div> error </div>, document.getElementByID('create'));
-      // render(<div> User email already exists. Please enter a different email address. </div>, document.getElementByID('create'));
-      console.log(error);
-    })
-  }
-
   render () {
     if(this.props.params.location) {
       this.state.landingLocation = this.props.params.location;

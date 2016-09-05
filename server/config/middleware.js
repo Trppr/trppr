@@ -18,10 +18,12 @@ module.exports = (app, express) => {
   app.use(expressJWT({secret:'hello world trppr'})
     .unless( {
       path: [
+        '/app/spinner.gif',
         '/app',
         '/login',
         '/',
         '/recent',
+        '/signUp',
         '/signup',
         '/searchTrips',
         '/cancelTrip',
