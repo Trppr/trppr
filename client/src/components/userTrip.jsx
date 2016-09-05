@@ -6,18 +6,18 @@ const UserTrip = (props) => {
     return (
         <div className="container" id="tripEntry">
             <div className="row" id="tripRow">
-                <div className="col-sm-3 other">
+                <div className="col-sm-4 other">
                     <div id="tripTag">Seats Available:</div>
                     <p>{props.trip.numSeats}</p>
                 </div>
 
-                <div className="col-sm-3 other">
+                <div className="col-sm-4 other">
                     <div id="tripTag">Price per Seat:</div>
-                    <p>{props.trip.seatPrice}</p>
+                    <p>$ {props.trip.seatPrice}</p>
                 </div>
 
-                <div className="col-sm-3 other">
-                    <div id="tripTag">Vehical Type/Model:</div>
+                <div className="col-sm-4 other">
+                    <div id="tripTag">Vehical Type/Model/Year:</div>
                     <p>{props.trip.vehicleMake}, &nbsp; {props.trip.vehicleModel}, &nbsp; {props.trip.vehicleYear}</p>
                 </div>
             </div>

@@ -19,6 +19,7 @@ class CreateTrip extends Component {
                    seatPrice: '',
                    vehicleMake: '',
                    vehicleModel: '',
+                   vehicleYear: '',
                    description: ''
                    };
     this.submitTrip = this.submitTrip.bind(this);
@@ -151,6 +152,12 @@ class CreateTrip extends Component {
               className="form-control"
               value = {this.state.vehicleModel}
               onChange = {this.handleChange.bind(this, 'vehicleModel')} />
+
+            <input
+              placeholder = "Vehicle Year"
+              className="form-control"
+              value = {this.state.vehicleYear}
+              onChange = {this.handleChange.bind(this, 'vehicleYear')} />
 
           </div>
             <input type = 'submit' value = 'Create' className='btn btn-primary'/>
