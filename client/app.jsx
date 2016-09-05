@@ -78,6 +78,7 @@ class App extends Component {
 
 componentWillMount() {
 
+
     if(this.props.params.location) {
       this.state.landingLocation = this.props.params.location;
       this.getTrips({endLocation: this.state.landingLocation})
@@ -107,7 +108,9 @@ componentWillMount() {
              <h1>Detailed Search</h1>
              <SearchBar infoStore={this.infoStore}/>
            </div>
+
             <TripList reserveSeat={this.reserveSeat} trips={this.state.tripResults}/>
+
           </div>
       )
     }
