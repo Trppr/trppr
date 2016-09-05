@@ -37,10 +37,10 @@ class Landing extends Component {
               <form onSubmit={this.submitData}>
               <input
                 className="form-control"
-                placeholder = "Enter city/state"
+                placeholder = "Enter a city or state"
                 value = {this.state.endLocation}
                 onChange = {this.handleChange.bind(this, 'endLocation')} />
-              
+
               </form>
           </div>
         </div>
