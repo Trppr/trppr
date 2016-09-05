@@ -31,7 +31,7 @@ const UserTrip = (props) => {
 
                   <div className="col-sm-4 other">
                       <div id="tripTag">Pick-up Address:</div>
-                      <p>{props.trip.startSt}, &nbsp; {props.trip.startCity}, &nbsp; {props.trip.State}</p>
+                      <p>{props.trip.startSt}, &nbsp; {props.trip.startCity}, &nbsp; {props.trip.startState}</p>
                   </div>
 
                   <div className="col-sm-4 other">

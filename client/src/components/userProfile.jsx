@@ -41,6 +41,7 @@ class UserProfile extends Component {
   componentWillMount() {
     this.getTrips();
   }
+  
   render() {
     return (
       <div className = 'container'>
