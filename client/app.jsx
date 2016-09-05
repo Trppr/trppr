@@ -54,7 +54,9 @@ class App extends Component {
   }
 
   reserveSeat(reserveObj) {
-    //need tripId and seatNum
+    if(localStorage.getItem('token')) {
+      axios.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem('token');
+    }
     axios.post('/reserveSeat',
       reserveObj
     )
