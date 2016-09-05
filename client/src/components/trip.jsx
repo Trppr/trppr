@@ -14,6 +14,7 @@ class Trip extends Component {
     }
 
     render() {
+      console.log('inside trip.jsx',this.props.trip)
       return (
           <div className="container" id="tripEntry">
 
@@ -47,7 +48,7 @@ class Trip extends Component {
 
                   <div className="col-sm-4 other">
                       <div id="tripTag">Pick-up Address:</div>
-                      <p>{this.props.trip.startSt}, &nbsp; {this.props.trip.startCity}, &nbsp; {this.props.trip.State}</p>
+                      <p>{this.props.trip.startSt}, &nbsp; {this.props.trip.startCity}, &nbsp; {this.props.trip.startState}</p>
                   </div>
 
                   <div className="col-sm-4 other">
