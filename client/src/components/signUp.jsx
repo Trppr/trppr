@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {render} from 'react-dom';
+import {browserHistory} from 'react-router';
 
 import axios from 'axios';
 import NavBar from './navBar.jsx'
@@ -24,8 +25,11 @@ class Signup extends Component {
       newUserObj
     )
     .then(function(response) {
-      console.log('inside')
       console.log("new user created: ", response);
+      localStorage.setItem('token', response.data.token);
+      localStorage.setItem('name', response.data.user.firstName);
+      localStorage.setItem('id', response.data.user.id);
+      browserHistory.push('/app');
     })
     .catch(function(error) {
       // render(<div> {error} </div>, document.getElementById('create'));
