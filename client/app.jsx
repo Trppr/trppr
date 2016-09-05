@@ -1,4 +1,3 @@
-
 //if you require outside files at the top of the entry file defined when you
 //call webpack in the terminal, webpack automatically bundles the linked files
 import React, { Component } from 'react';
@@ -73,6 +72,8 @@ class App extends Component {
       console.log(error);
     })
   }
+
+
 
 
 
