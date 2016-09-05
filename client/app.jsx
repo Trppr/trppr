@@ -1,4 +1,3 @@
-
 //if you require outside files at the top of the entry file defined when you
 //call webpack in the terminal, webpack automatically bundles the linked files
 import React, { Component } from 'react';
@@ -75,9 +74,7 @@ class App extends Component {
   }
 
 
-
 componentWillMount() {
-
     if(this.props.params.location) {
       this.state.landingLocation = this.props.params.location;
       this.getTrips({endLocation: this.state.landingLocation})
@@ -85,7 +82,6 @@ componentWillMount() {
       this.state.landingLocation = ''
     }
 }
-
 
 
 
