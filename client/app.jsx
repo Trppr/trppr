@@ -76,6 +76,7 @@ class App extends Component {
 
 
 
+
   componentWillMount() {
 
     if(this.props.params.location) {
@@ -84,7 +85,10 @@ class App extends Component {
       this.props.params.location = undefined;
       this.state.landingLocation = ''
     }
-  }
+}
+
+
+
 
   render () {
     if (this.state.isLoading) {
