@@ -10,7 +10,7 @@ import Trip from './trip.jsx';
          <h1>Search Results</h1>
          <div className="tripContainer">
            {props.trips.map((trip, index) => {
-            return <Trip key={index} trip={trip}/>
+            return <Trip key={index} trip={trip} reserveSeat={props.reserveSeat}/>
            })}
          </div>
        </div>
