@@ -31,6 +31,7 @@ class Landing extends Component {
   render() {
     return (
       <div id="landingBody">
+        <img id="landingLogo" src="trpperLogo-small.png"></img>
         <div id="landingBodyPane">
           <div className="container">
             <h1> Where are you going? </h1>

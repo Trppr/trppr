@@ -28,10 +28,14 @@
   font-size:30px;
   font-weight: 100;
   opacity: 0.5;
-  border: 1px white;
+  background-color: #d4d4d4
+  border-radius: 7px;
 }
-
-
+#landingLogo{
+  width: 120px;
+  height: auto;
+  padding: 15px;
+}
 #landingBody h1 {
   opacity: 1;
   color: white;
