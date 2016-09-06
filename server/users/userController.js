@@ -77,7 +77,7 @@ module.exports = {
   },
 
   updateUser: function(req, res){
-
+    console.log('in server updateuser')
     User.update(
       {
         firstName: req.body.firstName,
