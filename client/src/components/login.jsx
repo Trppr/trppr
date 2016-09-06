@@ -50,10 +50,8 @@ class Login extends Component {
   render() {
     return (
       <div className = 'navbar-form navbar-right'>
-
           <form onSubmit={this.submitUser}>
-
-          <input
+              <input
                 value = {this.state.email}
                 type = 'email'
                 required placeholder = 'E-mail address'
@@ -70,9 +68,7 @@ class Login extends Component {
                 onChange = {this.handleChange.bind(this, 'password')}/>
 
               <input type = 'submit' value = 'Login' className='btn btn-default'/>
-
           </form>
-
       </div>
     )
   }

@@ -23,15 +23,17 @@ class NavBar extends Component {
 
   render() {
     return (
-      <nav className = 'navbar navbar-default navbar-fixed-top'>
-        <div className = 'container-fluid'>
-          <a className = 'navbar-brand' href = '/'>
+      <nav className ="navbar navbar-default navbar-fixed-top">
+        <div className ="container-fluid">
+          <a className ="navbar-brand" href = "/">
             <img id="navLogo" src="../trpperLogo-small.png"></img>
           </a>
+
           <ul className = "nav navbar-nav">
             <li className="navItem"><Link to="/create">Create Trip</Link></li>
             <li className="navItem"><Link to="/app">Search Trips</Link></li>
           </ul>
+          
           {this.checkAuth()}
         </div>
       </nav>
