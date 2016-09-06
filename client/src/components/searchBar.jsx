@@ -32,7 +32,6 @@ class SearchBar extends Component {
 
   render() {
     return (
-
       <form className="form-group">
       <div className="col-md-6" id="CreateAndSearchTripsLeft">
         <input
@@ -48,16 +47,15 @@ class SearchBar extends Component {
           value = {this.state.startDate}
           onChange = {this.handleChange.bind(this, 'startDate')}/>
 
-          <input
+        <input
           type = "number"
           className="form-control"
           placeholder = "# of passengers?"
           value = {this.state.numSeats}
           onChange = {this.handleChange.bind(this, 'numSeats')} />
-
       </div>
-      <div className="col-md-6" id="CreateAndSearchTripsRight">
 
+      <div className="col-md-6" id="CreateAndSearchTripsRight">
         <input
           placeholder = "Ending city/state"
           className="form-control"
@@ -77,7 +75,6 @@ class SearchBar extends Component {
           placeholder = "Max budget?"
           value = {this.state.seatPrice}
           onChange = {this.handleChange.bind(this, 'seatPrice')}/>
-
       </div>
         <input
           type="button"
@@ -85,7 +82,6 @@ class SearchBar extends Component {
           value="Search"
           onClick = {event => this.submitData()}/>
       </form>
-
     )
   }
 }
