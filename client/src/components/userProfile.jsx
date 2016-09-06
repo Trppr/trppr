@@ -55,7 +55,7 @@ class UserProfile extends Component {
     )
     .then(function(response) {
       console.log("user updated ", response);
-      browserHistory.push('/userProfile');
+      window.location.href = '/userProfile';
     })
     .catch(function(error) {
       console.log(error);
