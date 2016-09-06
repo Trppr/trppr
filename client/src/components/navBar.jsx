@@ -29,7 +29,7 @@ class NavBar extends Component {
              <img id="navLogo" src="../trpperLogo-small.png"></img>
           </a>
          <ul className = "nav navbar-nav">
-            <li><Link to="/createTrip">Create Trip</Link></li>
+            <li><Link to="/create">Create Trip</Link></li>
             <li><Link to="/app">Search Trips</Link></li>
         </ul>
           <div className = 'navbar-form navbar-right'>
