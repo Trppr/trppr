@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {render} from 'react-dom';
 import axios from 'axios';
+import {browserHistory} from 'react-router';
 
 import NavBar from './navBar.jsx';
 import UserTrips from './userTrips.jsx';
@@ -54,15 +55,9 @@ class UserProfile extends Component {
     )
     .then(function(response) {
       console.log("user updated ", response);
-      localStorage.setItem('name', response.data.user.firstName);
-      localStorage.setItem('lastName', response.data.user.lastName);
-      localStorage.setItem('id', response.data.user.id);
-      localStorage.setItem('email', response.data.user.email);
-      localStorage.setItem('description', response.data.user.description);
       browserHistory.push('/userProfile');
     })
     .catch(function(error) {
-      render(<div id="emailError"> User email already exists. Please enter a different email address. </div>, document.getElementById('create'));
       console.log(error);
     })
   }
@@ -76,10 +71,11 @@ class UserProfile extends Component {
   checkFilled(e) {
     e.preventDefault();
     let filled = true;
-    const userObj = { name: this.state.name,
-                lastName: this.state.lastName,
-                description: this.state.description,
-                email: this.state.email }
+    const userObj = { firstName: this.state.name,
+                      lastName: this.state.lastName,
+                      description: this.state.description,
+                      email: this.state.email,
+                      userId: localStorage.getItem('id')}
     for(var attr in userObj) {
       if(this.state[attr] === '') {
         filled = false;
@@ -93,6 +89,10 @@ class UserProfile extends Component {
       } else {
         render(<div></div>, document.getElementById('create'));
         console.log('userObj inside userProfile', userObj)
+        localStorage.setItem('name', userObj.firstName);
+        localStorage.setItem('lastName', userObj.lastName);
+        localStorage.setItem('email', userObj.email);
+        localStorage.setItem('description', userObj.description);
         this.updateUser(userObj);
       }
     }

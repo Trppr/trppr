@@ -12,6 +12,9 @@ class Logout extends Component {
     localStorage.removeItem('token');
     localStorage.removeItem('name');
     localStorage.removeItem('id');
+    localStorage.removeItem('lastName');
+    localStorage.removeItem('email');
+    localStorage.removeItem('description')
     browserHistory.push('/app');
   }
 
