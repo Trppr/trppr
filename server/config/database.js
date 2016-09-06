@@ -1,7 +1,9 @@
 const Sequelize = require('sequelize');
 
-var sequelize = new Sequelize('trppr2', 'admin', 'PSZFZHAUDTKOUUHS', {
-  host: 'sl-us-dal-9-portal.2.dblayer.com',
+//Need to add a database that is mysql/postgres/sql compatible
+//here for the db to work
+var sequelize = new Sequelize('', '', '', {
+  host: '',
   dialect: 'postgres',
   port: '10860',
   //logging: false,
