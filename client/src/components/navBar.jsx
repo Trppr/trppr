@@ -4,6 +4,8 @@ import {Link} from 'react-router';
 
 import Login from './login.jsx';
 import Logout from './logout.jsx';
+import NavUserProfile from './navUserProfile.jsx';
+import NavSignUp from './navSignUp.jsx';
 
 class NavBar extends Component {
   constructor(props) {
@@ -13,9 +15,9 @@ class NavBar extends Component {
 
   checkAuth() {
     if(localStorage.getItem('token')) {
-      return <div><Logout/><Link to='/userProfile'>Profile</Link></div>;
+      return <div><Logout/><NavUserProfile/></div>
     } else {
-      return <div><Login/><Link to='/signUp'>Sign Up</Link> </div>;
+      return <div><Login/><NavSignUp/></div>
     }
   }
 
