@@ -149,7 +149,7 @@ class CreateTrip extends Component {
             <input
               type = 'number'
               className="form-control"
-              placeholder = "Price per Seats"
+              placeholder = "Price per Seat"
               value = {this.state.seatPrice}
               onChange = {this.handleChange.bind(this, 'seatPrice')} />
 
