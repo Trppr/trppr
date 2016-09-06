@@ -7,7 +7,7 @@ const NavUserProfile = () => {
     <div className = 'navbar-form navbar-right'>
       <ul className = "nav navbar-nav">
         <form method="get" action="/userProfile">
-          <button className="btn btn-default" type="submit">Profile</button>
+          <button className="btn btn-default" id="profile" type="submit">Profile</button>
         </form>
       </ul>
     </div>

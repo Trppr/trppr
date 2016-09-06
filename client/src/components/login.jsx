@@ -58,19 +58,21 @@ class Login extends Component {
                 type = 'email'
                 required placeholder = 'E-mail address'
                 className = 'form-control'
+                id = 'emailAndPassword'
                 onChange = {this.handleChange.bind(this, 'email')}/>
 
               <input
                 value = {this.state.password}
                 type = 'password'
                 className = 'form-control'
+                id = 'emailAndPassword'
                 placeholder = 'Password'
                 onChange = {this.handleChange.bind(this, 'password')}/>
 
               <input type = 'submit' value = 'Login' className='btn btn-default'/>
 
           </form>
-        
+
       </div>
     )
   }

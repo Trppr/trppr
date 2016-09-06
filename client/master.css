@@ -37,6 +37,7 @@
   padding: 15px;
 }
 #navLogo{
+  margin-top: -10px;
   width: 80px;
   height: auto;
 }
@@ -148,10 +149,20 @@ p {
 }
 .Welcome{
   color: white;
-  padding-top: 16px;
+  padding-top: 13px;
   font-size: 18px;
-  padding-right: 5px;
+  padding-right: 10px;
 }
 #signup {
+  margin-top: 5px;
+  margin-left: -10px;
+}
+#profile{
+  margin-left: -10px;
+}
+#navItem{
   margin-top: 10px;
+}
+#emailAndPassword{
+  height: 35px;
 }
