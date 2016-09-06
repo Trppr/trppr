@@ -11,7 +11,6 @@ const NavUserProfile = () => {
         </form>
       </ul>
     </div>
-
   )
 }
 
