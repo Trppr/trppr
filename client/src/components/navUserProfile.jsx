@@ -6,7 +6,9 @@ const NavUserProfile = () => {
   return (
     <div className = 'navbar-form navbar-right'>
       <ul className = "nav navbar-nav">
-      <Link to='/userProfile'>Profile</Link>
+      <form method="get" action="/userProfile">
+        <button type="submit">Profile</button>
+      </form>
       </ul>
     </div>
 
