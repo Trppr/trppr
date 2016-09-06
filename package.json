@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js",
     "bundle": "node_modules/.bin/webpack -w",
-    "postinstall": "node_modules/.bin/webpack -w"
+    "postinstall": "node_modules/.bin/webpack -p"
   },
   "engines": {
     "node": "6.3.1"
