@@ -20,7 +20,8 @@ class Logout extends Component {
 
   render() {
     return (
-      <div>
+
+      <div className = 'navbar-form navbar-right'>
         <ul className = "nav navbar-nav">
           <li><div className='Welcome'>Hello {localStorage.getItem('name')} </div></li>
           <li><button className="btn btn-default" onClick = {this.unAuth}> Logout </button></li>
