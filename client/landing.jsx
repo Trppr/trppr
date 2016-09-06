@@ -54,7 +54,7 @@ render((
   <Router history={browserHistory}>
     <Route path='/' component={Landing} />
     <Route path='app(/:location)' name='app' component={App} />
-    <Route path='createTrip' component={CreateTrip} />
+    <Route path='create' component={CreateTrip} />
     <Route path='signUp' component={Signup} />
     <Route path='logOut' component={Logout} />
     <Route path='userProfile' component={UserProfile} />
