@@ -5,6 +5,7 @@ import { Router, Route, IndexRoute, hashHistory } from 'react-router';
 import {render} from 'react-dom';
 import axios from 'axios';
 import moment from 'moment';
+import {browserHistory} from 'react-router';
 
 import TripList from './src/components/tripList.jsx';
 import SearchBar from './src/components/searchBar.jsx';
@@ -67,6 +68,7 @@ class App extends Component {
     )
     .then(function (response) {
       console.log('Seat reserved!', response.data)
+      browserHistory.push('/userProfile')
     })
     .catch(function (error) {
       console.log(error);
