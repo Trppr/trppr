@@ -4,7 +4,12 @@ import {Link} from 'react-router';
 
 const NavUserProfile = () => {
   return (
-    <Link to='/userProfile'>Profile</Link>
+    <div className = 'navbar-form navbar-right'>
+      <ul className = "nav navbar-nav">
+      <Link to='/userProfile'>Profile</Link>
+      </ul>
+    </div>
+
   )
 }
 

@@ -49,25 +49,29 @@ class Login extends Component {
 
   render() {
     return (
-      <form onSubmit={this.submitUser}>
-        <div>
-          <input
-            value = {this.state.email}
-            type = 'email'
-            required placeholder = 'E-mail address'
-            className = 'form-control'
-            onChange = {this.handleChange.bind(this, 'email')}/>
+      <div className = 'navbar-form navbar-right'>
+
+          <form onSubmit={this.submitUser}>
 
           <input
-            value = {this.state.password}
-            type = 'password'
-            className = 'form-control'
-            placeholder = 'Password'
-            onChange = {this.handleChange.bind(this, 'password')}/>
+                value = {this.state.email}
+                type = 'email'
+                required placeholder = 'E-mail address'
+                className = 'form-control'
+                onChange = {this.handleChange.bind(this, 'email')}/>
 
-          <input type = 'submit' value = 'Login' className='btn btn-default'/>
-        </div>
-      </form>
+              <input
+                value = {this.state.password}
+                type = 'password'
+                className = 'form-control'
+                placeholder = 'Password'
+                onChange = {this.handleChange.bind(this, 'password')}/>
+
+              <input type = 'submit' value = 'Login' className='btn btn-default'/>
+
+          </form>
+        
+      </div>
     )
   }
 }
