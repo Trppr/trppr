@@ -35,7 +35,6 @@ class Signup extends Component {
       browserHistory.push('/app');
     })
     .catch(function(error) {
-      // render(<div> {error} </div>, document.getElementById('create'));
       render(<div id="emailError"> User email already exists. Please enter a different email address. </div>, document.getElementById('create'));
       console.log(error);
     })
@@ -71,7 +70,6 @@ class Signup extends Component {
 
   submitNewUser() {
     this.props.createUser(this.state);
-    //console.log("new User Object:", this.state);
   }
 
   render() {
@@ -133,7 +131,6 @@ class Signup extends Component {
           </div>
         </form>
       </div>
-
     )
   }
 }
