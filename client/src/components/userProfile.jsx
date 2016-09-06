@@ -36,7 +36,6 @@ class UserProfile extends Component {
       {driverId: localStorage.getItem('id')}
     )
     .then(function(response) {
-      // that.setState({createdTrips: response.data})
       console.log('inside userProfile.jsx /getPassengerHistory' , response);
     })
     .catch(function(error) {

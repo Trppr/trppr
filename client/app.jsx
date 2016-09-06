@@ -1,5 +1,3 @@
-//if you require outside files at the top of the entry file defined when you
-//call webpack in the terminal, webpack automatically bundles the linked files
 import React, { Component } from 'react';
 import { Router, Route, IndexRoute, hashHistory } from 'react-router';
 import {render} from 'react-dom';
@@ -11,9 +9,6 @@ import TripList from './src/components/tripList.jsx';
 import SearchBar from './src/components/searchBar.jsx';
 import NavBar from './src/components/navBar.jsx';
 import CreateTrip from './src/components/createTrip.jsx';
-import Login from './src/components/login.jsx';
-import Signup from './src/components/signUp.jsx';
-
 
 class App extends Component {
   constructor(props) {
@@ -75,8 +70,6 @@ class App extends Component {
     })
   }
 
-
-
 componentWillMount() {
     if(this.props.params.location) {
       this.state.landingLocation = this.props.params.location;
@@ -89,32 +82,29 @@ componentWillMount() {
   render () {
     if (this.state.isLoading) {
       return (
-            <div>
-            <NavBar />
-             <div className="container">
-               <h1>Detailed Search</h1>
-               <SearchBar infoStore={this.infoStore}/>
-             </div>
-               <img src={'../car.gif'} className="spinner"/>
-            </div>
+        <div>
+          <NavBar />
+          <div className="container">
+            <h1>Detailed Search</h1>
+            <SearchBar infoStore={this.infoStore}/>
+           </div>
+          <img src={'../car.gif'} className="spinner"/>
+        </div>
       )
     }
     else {
       return (
-          <div>
+        <div>
           <NavBar />
-           <div className="container">
-             <h1>Detailed Search</h1>
-             <SearchBar infoStore={this.infoStore}/>
-           </div>
-
-            <TripList reserveSeat={this.reserveSeat} trips={this.state.tripResults}/>
-
+          <div className="container">
+            <h1>Detailed Search</h1>
+            <SearchBar infoStore={this.infoStore}/>
           </div>
+          <TripList reserveSeat={this.reserveSeat} trips={this.state.tripResults}/>
+        </div>
       )
     }
   }
 }
-
 
 export default App;
