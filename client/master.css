@@ -37,6 +37,7 @@
   padding: 15px;
 }
 #navLogo{
+  margin-top: -10px;
   width: 80px;
   height: auto;
 }
@@ -90,7 +91,7 @@ h1, h2, h3, h4  {
 }
 .btn {
   border: 1px solid #f9f9f9;
-  margin: 10px;
+  margin-left: 10px;
 }
 #CreateAndSearchTripsLeft{
   width: 50%;
@@ -148,5 +149,20 @@ p {
 }
 .Welcome{
   color: white;
-  height: auto;
+  padding-top: 13px;
+  font-size: 18px;
+  padding-right: 10px;
+}
+#signup {
+  margin-top: 5px;
+  margin-left: -10px;
+}
+#profile{
+  margin-left: -10px;
+}
+#navItem{
+  margin-top: 10px;
+}
+#emailAndPassword{
+  height: 35px;
 }

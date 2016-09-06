@@ -29,8 +29,8 @@ class NavBar extends Component {
              <img id="navLogo" src="../trpperLogo-small.png"></img>
           </a>
          <ul className = "nav navbar-nav">
-            <li><Link to="/create">Create Trip</Link></li>
-            <li><Link to="/app">Search Trips</Link></li>
+            <li className="navItem"><Link to="/create">Create Trip</Link></li>
+            <li className="navItem"><Link to="/app">Search Trips</Link></li>
         </ul>
 
             {this.checkAuth()}
