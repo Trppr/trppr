@@ -70,7 +70,7 @@ class CreateTrip extends Component {
   //Note: Change driver id to reflect the user signed in, in the future
   render() {
     return (
-      <div>
+      <div className="container">
         <NavBar />
         <form className="form-group" onSubmit={this.submitTrip}>
         <h1>Create Your Trip</h1>
@@ -100,12 +100,24 @@ class CreateTrip extends Component {
               value = {this.state.tripDate}
               onChange = {this.handleChange.bind(this, 'tripDate')} />
 
-            <input
-              placeholder = "Description"
-              className="form-control"
-              value = {this.state.description}
-              onChange = {this.handleChange.bind(this, 'description')} />
 
+              <input
+              placeholder = "Vehicle Make"
+              className="form-control"
+              value = {this.state.vehicleMake}
+              onChange = {this.handleChange.bind(this, 'vehicleMake')} />
+
+              <input
+              placeholder = "Vehicle Model"
+              className="form-control"
+              value = {this.state.vehicleModel}
+              onChange = {this.handleChange.bind(this, 'vehicleModel')} />
+
+              <input
+              placeholder = "Vehicle Year"
+              className="form-control"
+              value = {this.state.vehicleYear}
+              onChange = {this.handleChange.bind(this, 'vehicleYear')} />
           </div>
           <div className="col-md-6" id="CreateAndSearchTripsRight">
 
@@ -141,26 +153,14 @@ class CreateTrip extends Component {
               value = {this.state.seatPrice}
               onChange = {this.handleChange.bind(this, 'seatPrice')} />
 
-            <input
-              placeholder = "Vehicle Make"
+              <input
+              placeholder = "Description"
               className="form-control"
-              value = {this.state.vehicleMake}
-              onChange = {this.handleChange.bind(this, 'vehicleMake')} />
+              value = {this.state.description}
+              onChange = {this.handleChange.bind(this, 'description')} />
 
-            <input
-              placeholder = "Vehicle Model"
-              className="form-control"
-              value = {this.state.vehicleModel}
-              onChange = {this.handleChange.bind(this, 'vehicleModel')} />
-
-            <input
-              placeholder = "Vehicle Year"
-              className="form-control"
-              value = {this.state.vehicleYear}
-              onChange = {this.handleChange.bind(this, 'vehicleYear')} />
-
+              <input type = 'submit' value = 'Create' className='btn btn-primary'/>
           </div>
-            <input type = 'submit' value = 'Create' className='btn btn-primary'/>
         </form>
       </div>
     )
