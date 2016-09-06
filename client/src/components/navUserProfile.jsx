@@ -6,9 +6,9 @@ const NavUserProfile = () => {
   return (
     <div className = 'navbar-form navbar-right'>
       <ul className = "nav navbar-nav">
-      <form method="get" action="/userProfile">
-        <button type="submit">Profile</button>
-      </form>
+        <form method="get" action="/userProfile">
+          <button className="btn btn-default" type="submit">Profile</button>
+        </form>
       </ul>
     </div>
 

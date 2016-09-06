@@ -90,7 +90,7 @@ h1, h2, h3, h4  {
 }
 .btn {
   border: 1px solid #f9f9f9;
-  margin: 10px;
+  margin-left: 10px;
 }
 #CreateAndSearchTripsLeft{
   width: 50%;
@@ -148,5 +148,10 @@ p {
 }
 .Welcome{
   color: white;
-  height: auto;
+  padding-top: 16px;
+  font-size: 18px;
+  padding-right: 5px;
+}
+#signup {
+  margin-top: 10px;
 }
