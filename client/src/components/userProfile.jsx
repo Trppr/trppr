@@ -15,6 +15,7 @@ class UserProfile extends Component {
                   description: localStorage.getItem('description'),
                   email: localStorage.getItem('email') };
     this.getTrips = this.getTrips.bind(this);
+    this.checkFilled = this.checkFilled.bind(this);
   }
 
   getTrips() {
@@ -47,7 +48,23 @@ class UserProfile extends Component {
   }
 
   updateUser(userObj) {
-
+    console.log(userObj, 'inside updateUser')
+    axios.post('/updateUser',
+      userObj
+    )
+    .then(function(response) {
+      console.log("user updated ", response);
+      localStorage.setItem('name', response.data.user.firstName);
+      localStorage.setItem('lastName', response.data.user.lastName);
+      localStorage.setItem('id', response.data.user.id);
+      localStorage.setItem('email', response.data.user.email);
+      localStorage.setItem('description', response.data.user.description);
+      browserHistory.push('/userProfile');
+    })
+    .catch(function(error) {
+      render(<div id="emailError"> User email already exists. Please enter a different email address. </div>, document.getElementById('create'));
+      console.log(error);
+    })
   }
 
   handleChange(name, e) {
@@ -59,7 +76,11 @@ class UserProfile extends Component {
   checkFilled(e) {
     e.preventDefault();
     let filled = true;
-    for(var attr in this.state) {
+    const userObj = { name: this.state.name,
+                lastName: this.state.lastName,
+                description: this.state.description,
+                email: this.state.email }
+    for(var attr in userObj) {
       if(this.state[attr] === '') {
         filled = false;
       }
@@ -71,7 +92,8 @@ class UserProfile extends Component {
         render(<div> Passwords do not match </div>, document.getElementById('create'));
       } else {
         render(<div></div>, document.getElementById('create'));
-        this.updateUser(this.state);
+        console.log('userObj inside userProfile', userObj)
+        this.updateUser(userObj);
       }
     }
   }
