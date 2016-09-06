@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {render} from 'react-dom';
 import axios from 'axios';
+import {browserHistory} from 'react-router';
 
 import NavBar from './navBar.jsx';
 import UserTrips from './userTrips.jsx';
@@ -15,6 +16,7 @@ class UserProfile extends Component {
                   description: localStorage.getItem('description'),
                   email: localStorage.getItem('email') };
     this.getTrips = this.getTrips.bind(this);
+    this.checkFilled = this.checkFilled.bind(this);
   }
 
   getTrips() {
@@ -47,7 +49,17 @@ class UserProfile extends Component {
   }
 
   updateUser(userObj) {
-
+    console.log(userObj, 'inside updateUser')
+    axios.post('/updateUser',
+      userObj
+    )
+    .then(function(response) {
+      console.log("user updated ", response);
+      browserHistory.push('/userProfile');
+    })
+    .catch(function(error) {
+      console.log(error);
+    })
   }
 
   handleChange(name, e) {
@@ -59,7 +71,12 @@ class UserProfile extends Component {
   checkFilled(e) {
     e.preventDefault();
     let filled = true;
-    for(var attr in this.state) {
+    const userObj = { firstName: this.state.name,
+                      lastName: this.state.lastName,
+                      description: this.state.description,
+                      email: this.state.email,
+                      userId: localStorage.getItem('id')}
+    for(var attr in userObj) {
       if(this.state[attr] === '') {
         filled = false;
       }
@@ -71,7 +88,12 @@ class UserProfile extends Component {
         render(<div> Passwords do not match </div>, document.getElementById('create'));
       } else {
         render(<div></div>, document.getElementById('create'));
-        this.updateUser(this.state);
+        console.log('userObj inside userProfile', userObj)
+        localStorage.setItem('name', userObj.firstName);
+        localStorage.setItem('lastName', userObj.lastName);
+        localStorage.setItem('email', userObj.email);
+        localStorage.setItem('description', userObj.description);
+        this.updateUser(userObj);
       }
     }
   }
