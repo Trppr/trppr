@@ -5,9 +5,11 @@ import {Link} from 'react-router';
 const NavSignUp = () => {
   return (
     <div className = 'navbar-form navbar-right'>
-    <form method="get" action="/signUp">
-      <button type="submit">Sign Up</button>
-    </form>
+      <ul className = "nav navbar-nav">
+        <form method="get" action="/signUp">
+          <button className="btn btn-default" id="signup" type="submit">Sign Up</button>
+        </form>
+      </ul>
     </div>
   )
 }
