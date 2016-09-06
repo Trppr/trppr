@@ -7,7 +7,7 @@ This project is a long distance carpooling application.
 #Prerequisites
 
 - Need to have node installed.
-- Need to have a mysql/postgres database.
+- Need to have a sql compatible database.
 
 # Installation/Setup
 1. Fork the repo and then clone onto own computer.
@@ -16,3 +16,17 @@ This project is a long distance carpooling application.
 4. Run npm start to start the server.
 
 Open a browser and type localhost:3000 to see the application.
+
+# Built with
+- Node express
+- Sequelize
+- React
+- Bootstrap
+- PostgreSQL
+
+# Authors
+
+Eugene Row
+Kinjal Chatterjee
+Sean Cox
+Calvin Lee
