@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {render} from 'react-dom';
 import { Router, Route, browserHistory } from 'react-router';
+import Autocomplete from 'react-google-autocomplete'; 
 
 import App from './app.jsx'
 import NavBar from './src/components/navBar.jsx';
@@ -28,6 +29,7 @@ class Landing extends Component {
     browserHistory.push(link);
   }
 
+
   render() {
     return (
       <div id="landingBody">
@@ -36,12 +38,17 @@ class Landing extends Component {
           <div className="container">
             <h1> Where are you going? </h1>
               <form onSubmit={this.submitData}>
-              <input
-                className="form-control"
-                placeholder = "Enter a city or state"
-                value = {this.state.endLocation}
-                onChange = {this.handleChange.bind(this, 'endLocation')} />
 
+              <Autocomplete
+                style={{width: '50%'}}
+                className="form-control"
+                placeholder="Enter a city or state"
+                value = {this.state.endLocation}
+                onChange = {this.handleChange.bind(this, 'endLocation')}
+                onPlaceSelected={(place) => {
+                  console.log(place);
+                }}
+              />
               </form>
           </div>
         </div>

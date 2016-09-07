@@ -43,6 +43,7 @@
     "postal-abbreviations": "^2.0.0",
     "react": "^15.3.1",
     "react-dom": "^15.3.1",
+    "react-google-autocomplete": "^1.0.3",
     "react-router": "^2.7.0",
     "request": "^2.74.0",
     "sequelize": "^3.24.1",
