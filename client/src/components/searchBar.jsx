@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import { render } from 'react-dom';
+import Autocomplete from 'react-google-autocomplete'; 
 
 class SearchBar extends Component {
   constructor(props) {
@@ -34,11 +35,15 @@ class SearchBar extends Component {
     return (
       <form className="form-group">
       <div className="col-md-6" id="CreateAndSearchTripsLeft">
-        <input
+
+        <Autocomplete
           placeholder = "Starting city/state"
-          className="form-control"
+          className = "form-control"
           value = {this.state.startLocation}
-          onChange = {this.handleChange.bind(this, 'startLocation')} />
+          onChange = {this.handleChange.bind(this, 'startLocation')}
+          onPlaceSelected={(place) => {
+
+          }} />
 
         <input
           type = "date"
@@ -56,11 +61,16 @@ class SearchBar extends Component {
       </div>
 
       <div className="col-md-6" id="CreateAndSearchTripsRight">
-        <input
+
+         <Autocomplete
           placeholder = "Ending city/state"
-          className="form-control"
+          className = "form-control"
           value = {this.state.endLocation}
-          onChange = {this.handleChange.bind(this, 'endLocation')} />
+          onChange = {this.handleChange.bind(this, 'endLocation')}
+          onPlaceSelected={(place) => {
+
+          }} />
+
 
         <input
           type = "date"
