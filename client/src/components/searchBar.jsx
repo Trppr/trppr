@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import { render } from 'react-dom';
-import Autocomplete from 'react-google-autocomplete'; 
+import Geosuggest from 'react-geosuggest'; 
 
 class SearchBar extends Component {
   constructor(props) {
@@ -36,14 +36,13 @@ class SearchBar extends Component {
       <form className="form-group">
       <div className="col-md-6" id="CreateAndSearchTripsLeft">
 
-        <Autocomplete
-          placeholder = "Starting city/state"
-          className = "form-control"
+        <Geosuggest
+          className="form-control"
+          placeholder="Starting city/state"
           value = {this.state.startLocation}
           onChange = {this.handleChange.bind(this, 'startLocation')}
-          onPlaceSelected={(place) => {
-
-          }} />
+          onSuggestSelect={this.onSuggestSelect}
+        />
 
         <input
           type = "date"
@@ -62,14 +61,13 @@ class SearchBar extends Component {
 
       <div className="col-md-6" id="CreateAndSearchTripsRight">
 
-         <Autocomplete
-          placeholder = "Ending city/state"
-          className = "form-control"
+         <Geosuggest
+          className="form-control"
+          placeholder="Ending city/state"
           value = {this.state.endLocation}
           onChange = {this.handleChange.bind(this, 'endLocation')}
-          onPlaceSelected={(place) => {
-
-          }} />
+          onSuggestSelect={this.onSuggestSelect}
+        />
 
 
         <input

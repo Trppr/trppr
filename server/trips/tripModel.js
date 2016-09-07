@@ -8,27 +8,11 @@ const Trip = sequelize.define('trip', {
     type: Sequelize.DATE,
     allowNull: false
   },
-  startSt: {
+  startAddress: {
     type: Sequelize.STRING,
     allowNull: false
   },
-  startCity: {
-    type: Sequelize.STRING,
-    allowNull: false
-  },
-  startState: {
-    type: Sequelize.STRING,
-    allowNull: false
-  },
-  endSt: {
-    type: Sequelize.STRING,
-    allowNull: false
-  },
-  endCity: {
-    type: Sequelize.STRING,
-    allowNull: false
-  },
-  endState: {
+  endAddress: {
     type: Sequelize.STRING,
     allowNull: false
   },

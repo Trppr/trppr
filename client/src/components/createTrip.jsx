@@ -2,19 +2,15 @@ import React, {Component} from 'react';
 import {render} from 'react-dom';
 import {browserHistory} from 'react-router';
 import axios from 'axios';
-
+import Geosuggest from 'react-geosuggest';
 import NavBar from './navBar.jsx';
 
 class CreateTrip extends Component {
   constructor(props) {
     super(props);
     this.state = { tripDate: '',
-                   startSt: '',
-                   startCity: '',
-                   startState: '',
-                   endSt: '',
-                   endCity: '',
-                   endState: '',
+                   startAddress: '',
+                   endAddress: '',
                    numSeats: '',
                    seatPrice: '',
                    vehicleMake: '',
@@ -74,23 +70,14 @@ class CreateTrip extends Component {
         <form className="form-group" onSubmit={this.submitTrip}>
           <h1>Create Your Trip</h1>
           <div className="col-md-6" id="CreateAndSearchTripsLeft">
-                <input
-                placeholder = "Start street"
-                className="form-control"
-                value = {this.state.startSt}
-                onChange = {this.handleChange.bind(this, 'startSt')} />
 
-                <input
-                placeholder = "Start city"
+              <Geosuggest
                 className="form-control"
-                value = {this.state.startCiy}
-                onChange = {this.handleChange.bind(this, 'startCity')} />
-
-                <input
-                placeholder = "Start state"
-                className="form-control"
-                value = {this.state.startState}
-                onChange = {this.handleChange.bind(this, 'startState')} />
+                placeholder="Starting Address"
+                value = {this.state.startAddress}
+                onChange = {this.handleChange.bind(this, 'startAddress')}
+                onSuggestSelect={this.onSuggestSelect}
+              />
 
               <input
                 type = 'date'
@@ -119,23 +106,14 @@ class CreateTrip extends Component {
             </div>
 
             <div className="col-md-6" id="CreateAndSearchTripsRight">
-              <input
-                placeholder = "End street"
-                className="form-control"
-                value = {this.state.endSt}
-                onChange = {this.handleChange.bind(this, 'endSt')} />
 
-              <input
-                placeholder = "End city"
+              <Geosuggest
                 className="form-control"
-                value = {this.state.endCity}
-                onChange = {this.handleChange.bind(this, 'endCity')} />
-
-              <input
-                placeholder = "End state"
-                className="form-control"
-                value = {this.state.endState}
-                onChange = {this.handleChange.bind(this, 'endState')} />
+                placeholder="Ending Address"
+                value = {this.state.endAddress}
+                onChange = {this.handleChange.bind(this, 'endAddress')}
+                onSuggestSelect={this.onSuggestSelect}
+              />
 
               <input
                 type = 'number'
