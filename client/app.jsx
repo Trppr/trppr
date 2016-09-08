@@ -29,14 +29,11 @@ class App extends Component {
   }
 
   getTrips(searchObj) {
+    console.log('searchObj', searchObj);
     const that = this;
     that.setState({isLoading: true});
-    if(searchObj.startDate && searchObj.startDate !== '')
-      searchObj.startDate = moment(searchObj.startDate).format('MM-DD-YYYY');
-    if(searchObj.endDate && searchObj.endDate !== '')
-      searchObj.endDate = moment(searchObj.endDate).format('MM-DD-YYYY');
-    axios.get('/searchTrips', {
-      params: searchObj
+    axios.get('/getMapData', {
+      city: searchObj
       }
     )
     .then(function (response) {
