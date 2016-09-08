@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {render} from 'react-dom';
 import moment from 'moment';
 import braintree from 'braintree-web';
+import axios from 'axios';
 
 class Trip extends Component {
     constructor(props) {
@@ -9,9 +10,36 @@ class Trip extends Component {
       this.state = {};
       this.reserveSeat = this.reserveSeat.bind(this);
       
+      // braintree.setup(localStorage.getItem('payToken'), 'dropin', {
+      //   container: 'dropin-container'
+      // });
       braintree.setup(localStorage.getItem('payToken'), 'dropin', {
-        container: 'dropin-container'
+        container: "payment-form",
+        onPaymentMethodReceived: function (obj) {
+    // Do some logic in here.
+    // When you're ready to submit the form:
+    console.log(obj);
+    console.log("getting in payment")
+
+    if(localStorage.getItem('token')) {
+      axios.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem('token');
+    }
+    axios.post('/checkout',
+      obj
+    )
+    .then(function (response) {
+      console.log("sucessfulPayment!!")
+    })
+    .catch(function (error) {
+      console.log(error);
+    })
+    //myForm.submit();
+        }
       });
+
+
+
+
     }
 
     reserveSeat() {
@@ -67,9 +95,13 @@ class Trip extends Component {
                       <div id="tripTag">Trip Details:</div>
                       <p>{this.props.trip.description}</p>
                       <button id="rsvpButton" onClick= {this.reserveSeat} >Book Seat</button>
-                      <form>
-                        <div id="dropin-container"></div>
+                      
+                      <form id="checkout" method="post" action="/checkout">
+                      <div id="payment-form"></div>
+                      <input type="submit" value="Pay $10" />
                       </form>
+
+
                   </div>
               </div>
 

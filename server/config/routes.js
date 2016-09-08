@@ -3,6 +3,19 @@ const path = require('path');
 const tripController = require('../trips/tripController');
 const userController = require('../users/userController');
 
+
+var braintree = require('braintree');
+
+var gateway = braintree.connect({
+  environment: braintree.Environment.Sandbox,
+  merchantId: "d3sys36mr9ppg9c9",
+  publicKey: "nzjvbrj6rpw76xwy",
+  privateKey: "63c33adf98bea880d05dcc1bc7fc769e"
+});
+
+
+
+
 module.exports = (app, express) => {
 
   /*
@@ -58,6 +71,28 @@ module.exports = (app, express) => {
 
   app.post('/cancelReservation', tripController.cancelReservation);
   // deletes reservation via req.body.passengerId & req.body.tripId
+
+  app.post("/checkout", function (req, res) {
+  var nonceFromTheClient = req.body.nonce;
+  console.log(req.body.nonce);
+  console.log(req.body);
+  
+  // Use payment method nonce here
+  gateway.transaction.sale({
+  amount: "23.44",
+  paymentMethodNonce: nonceFromTheClient,
+  options: {
+    submitForSettlement: true
+  }
+  }, function (err, result) {
+    if(err){
+      res.send(err);
+    }
+    res.send(result);
+  });
+  
+
+  });
 
 
 
