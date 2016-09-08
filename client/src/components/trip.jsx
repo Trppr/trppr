@@ -10,39 +10,9 @@ class Trip extends Component {
       this.state = {};
       this.reserveSeat = this.reserveSeat.bind(this);
 
-      var context=this;
       
-      braintree.setup(localStorage.getItem('payToken'), 'custom', {
-        paypal: {
-          container: 'paypal-container',
-          singleUse: true, // Required
-          amount: context.props.trip.seatPrice, // Required
-          currency: 'USD', // Required
-          locale: 'en_us'
-        },
-        onPaymentMethodReceived: function (obj) {
-          //doSomethingWithTheNonce(obj.nonce);
-          console.log(obj);
-          console.log("getting in payment")
-          console.log(context.props.trip.seatPrice);
-          obj.amount=context.props.trip.seatPrice;
-          if(localStorage.getItem('token')) {
-            axios.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem('token');
-          }
-          axios.post('/checkout',
-            obj
-          )
-          .then(function (response) {
-            console.log(response);
-            console.log("sucessfulPayment!!")
-          })
-          .catch(function (error) {
-            console.log(error);
-          })
 
 
-        }
-      });
 
 
 
@@ -78,7 +48,44 @@ class Trip extends Component {
     }
 
     reserveSeat() {
-      this.props.reserveSeat({passengerId: localStorage.getItem('id'), tripId: this.props.trip.id});
+      
+
+      var context=this;
+
+      braintree.setup(localStorage.getItem('payToken'), 'custom', {
+        paypal: {
+          container: 'paypal-container',
+          singleUse: true, // Required
+          amount: context.props.trip.seatPrice, // Required
+          currency: 'USD', // Required
+          locale: 'en_us'
+        },
+        onPaymentMethodReceived: function (obj) {
+          //doSomethingWithTheNonce(obj.nonce);
+          console.log(obj);
+          console.log("getting in payment")
+          console.log(context.props.trip.seatPrice);
+          obj.amount=context.props.trip.seatPrice;
+          if(localStorage.getItem('token')) {
+            axios.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem('token');
+          }
+          axios.post('/checkout',
+            obj
+          )
+          .then(function (response) {
+            console.log(response);
+            console.log("sucessfulPayment!!")
+            context.props.reserveSeat({passengerId: localStorage.getItem('id'), tripId: context.props.trip.id});
+          })
+          .catch(function (error) {
+            console.log(error);
+          })
+
+
+        }
+      });
+
+
     }
 
     render() {
