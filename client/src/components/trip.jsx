@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {render} from 'react-dom';
 import moment from 'moment';
+import braintree from 'braintree-web';
 
 class Trip extends Component {
     constructor(props) {
@@ -8,9 +9,9 @@ class Trip extends Component {
       this.state = {};
       this.reserveSeat = this.reserveSeat.bind(this);
       
-      // braintree.setup('CLIENT-TOKEN-FROM-SERVER', 'dropin', {
-      //   container: 'dropin-container'
-      // });
+      braintree.setup(localStorage.getItem('payToken'), 'dropin', {
+        container: 'dropin-container'
+      });
     }
 
     reserveSeat() {
