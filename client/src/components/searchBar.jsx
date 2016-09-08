@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import { render } from 'react-dom';
-import Geosuggest from 'react-geosuggest'; 
+import Geosuggest from 'react-geosuggest';
 
 class SearchBar extends Component {
   constructor(props) {
@@ -92,6 +92,7 @@ class SearchBar extends Component {
           value="Search"
           onClick = {event => this.submitData()}/>
       </form>
+      
     )
   }
 }

@@ -31,6 +31,11 @@ class Landing extends Component {
 
 
   render() {
+    var fixtures = [
+      {label: 'Los Angeles', location: {lat: 34.0522, lng: 118.2437}},
+      {label: 'Philadelphia', location: {lat: 39.9526, lng: 75.1652}},
+      {label: 'San Francisco', location: {lat: 37.7749, lng: 122.4194}}
+    ];
     return (
       <div id="landingBody">
         <img id="landingLogo" src="trpperLogo-small.png"></img>
@@ -44,6 +49,7 @@ class Landing extends Component {
                 name="search"
                 className="form-control"
                 placeholder = "Enter a city name"
+                fixtures={fixtures}
                 onSuggestSelect={this.onSuggestSelect}
                 value = {this.state.endLocation}
                 onChange = {this.handleChange} 
