@@ -16,11 +16,12 @@ class Landing extends Component {
     this.state = { endLocation: '' };
     this.submitData = this.submitData.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.onSuggestSelect = this.onSuggestSelect.bind(this);
   }
 
-  handleChange(value) {
-    console.log('current input val', value);
-    this.setState( {endLocation: value} );
+  handleChange(e) {
+    console.log('current input val', e);
+    this.setState( {endLocation: e} );
   }
 
   submitData(e) {
@@ -28,6 +29,11 @@ class Landing extends Component {
     const link = '/app/' + this.state.endLocation
     browserHistory.push(link);
   }
+
+    onSuggestSelect(suggest) {
+      console.log(suggest);
+      this.setState( {endLocation: suggest.label} );
+    }
 
 
   render() {
@@ -50,6 +56,7 @@ class Landing extends Component {
                 className="form-control"
                 placeholder = "Enter a city name"
                 fixtures={fixtures}
+                country = 'us'
                 onSuggestSelect={this.onSuggestSelect}
                 value = {this.state.endLocation}
                 onChange = {this.handleChange} 

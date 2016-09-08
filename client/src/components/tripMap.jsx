@@ -15,7 +15,7 @@ class Directions extends Component {
       	key: `Taiwan`,
       	defaultAnimation: 2,
       	}],
-  };
+  	  };
   	this.handleMapClick = this.handleMapClick.bind(this);
   	this.handleMarkerRightclick = this.handleMarkerRightclick.bind(this);
   }

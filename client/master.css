@@ -253,4 +253,5 @@ div.geosuggest__suggests-wrapper {
 .map {
   width: 500px;
   height: 500px;
+  margin: 0 auto;
 }

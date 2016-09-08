@@ -2,7 +2,7 @@ import React from 'react';
 import {GoogleMapLoader, GoogleMap, Marker} from 'react-google-maps';
 
 const Map = props => (
-  <section style={{ height: `40%` }}>
+  <section style={{ height: `60%` }}>
     <GoogleMapLoader
       containerElement={
         <div
