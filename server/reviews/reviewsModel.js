@@ -2,12 +2,10 @@ const Sequelize = require('sequelize');
 const sequelize = require('../config/database');
 
 const Review = sequelize.define('review', {
-  driver: {
-    type: Sequelize.STRING,
-    allowNull: false
-  },
   description: Sequelize.TEXT,
 });
+
+Review.belongsTo(User);
 
 
 sequelize

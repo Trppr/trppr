@@ -2,6 +2,7 @@ const jwt = require('jsonwebtoken');
 const path = require('path');
 const tripController = require('../trips/tripController');
 const userController = require('../users/userController');
+const reviewsController = ('../reviews/reviewsController')
 
 module.exports = (app, express) => {
 
@@ -59,6 +60,14 @@ module.exports = (app, express) => {
   app.post('/cancelReservation', tripController.cancelReservation);
   // deletes reservation via req.body.passengerId & req.body.tripId
 
+
+  //
+  // app.post('/writeReview',
+  // reviewsController.createReview);
+  //
+
+
+
   // handle every other route with index.html, which will contain
   // a script tag to your application's JavaScript file(s).
   app.get('*', function (request, response){
@@ -68,5 +77,14 @@ module.exports = (app, express) => {
   app.get('*', (req, res) => {
     res.sendStatus(404);
   });
+
+
+
+
+
+
+
+
+
 
 };
