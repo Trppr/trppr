@@ -36,6 +36,7 @@ class SearchBar extends Component {
       <form className="form-group">
       <div className="col-md-6" id="CreateAndSearchTripsLeft">
 
+       <div id="gs">
         <Geosuggest
           className="form-control"
           placeholder="Starting city/state"
@@ -43,7 +44,7 @@ class SearchBar extends Component {
           onChange = {this.handleChange.bind(this, 'startLocation')}
           onSuggestSelect={this.onSuggestSelect}
         />
-
+       </div>
         <input
           type = "date"
           className="form-control"
@@ -60,14 +61,15 @@ class SearchBar extends Component {
       </div>
 
       <div className="col-md-6" id="CreateAndSearchTripsRight">
-
+        <div id='gs'>
          <Geosuggest
           className="form-control"
           placeholder="Ending city/state"
           value = {this.state.endLocation}
           onChange = {this.handleChange.bind(this, 'endLocation')}
           onSuggestSelect={this.onSuggestSelect}
-        />
+         />
+        </div> 
 
 
         <input
