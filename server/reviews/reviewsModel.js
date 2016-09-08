@@ -1,5 +1,6 @@
 const Sequelize = require('sequelize');
 const sequelize = require('../config/database');
+const User = require('../users/userModel');
 
 const Review = sequelize.define('review', {
   description: Sequelize.TEXT,

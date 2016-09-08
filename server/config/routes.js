@@ -2,7 +2,7 @@ const jwt = require('jsonwebtoken');
 const path = require('path');
 const tripController = require('../trips/tripController');
 const userController = require('../users/userController');
-const reviewsController = ('../reviews/reviewsController')
+const reviewsController = require('../reviews/reviewsController')
 
 const braintree = require('braintree');
 
@@ -82,9 +82,11 @@ module.exports = (app, express) => {
       }
       res.send(result);
     });
-
   });
 
+
+  app.post('/writeReview',
+  reviewsController.createReview);
 
   // handle every other route with index.html, which will contain
   // a script tag to your application's JavaScript file(s).
