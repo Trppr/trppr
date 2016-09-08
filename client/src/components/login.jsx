@@ -27,6 +27,8 @@ class Login extends Component {
       localStorage.setItem('id', response.data.user.id);
       localStorage.setItem('email', response.data.user.email);
       localStorage.setItem('description', response.data.user.description);
+      localStorage.setItem('payToken', response.data.payToken);
+
       browserHistory.push('/app');
       console.log('Login successful!', response.data)
     })

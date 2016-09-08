@@ -32,6 +32,8 @@
     "body-parser": "^1.15.2",
     "bootstrap": "^3.3.7",
     "bower": "^1.7.9",
+    "braintree": "^1.41.0",
+    "braintree-web": "^2.28.0",
     "cors": "^2.8.0",
     "express": "^4.14.0",
     "express-jwt": "^3.4.0",

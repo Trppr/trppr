@@ -59,11 +59,13 @@ module.exports = (app, express) => {
   app.post('/cancelReservation', tripController.cancelReservation);
   // deletes reservation via req.body.passengerId & req.body.tripId
 
+
+
   // handle every other route with index.html, which will contain
   // a script tag to your application's JavaScript file(s).
   app.get('*', function (request, response){
     response.sendFile(path.resolve('./', 'client', 'index.html'))
-  })
+  });
 
   app.get('*', (req, res) => {
     res.sendStatus(404);

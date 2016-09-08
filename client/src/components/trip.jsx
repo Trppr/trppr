@@ -7,6 +7,10 @@ class Trip extends Component {
       super(props);
       this.state = {};
       this.reserveSeat = this.reserveSeat.bind(this);
+      
+      // braintree.setup('CLIENT-TOKEN-FROM-SERVER', 'dropin', {
+      //   container: 'dropin-container'
+      // });
     }
 
     reserveSeat() {
@@ -61,7 +65,10 @@ class Trip extends Component {
                   <div className="col-sm-12 other">
                       <div id="tripTag">Trip Details:</div>
                       <p>{this.props.trip.description}</p>
-                          <button id="rsvpButton" onClick= {this.reserveSeat} >Book Seat</button>
+                      <button id="rsvpButton" onClick= {this.reserveSeat} >Book Seat</button>
+                      <form>
+                        <div id="dropin-container"></div>
+                      </form>
                   </div>
               </div>
 

@@ -3,6 +3,16 @@ const User = require('../users/userModel');
 const Trip = require('../trips/tripModel');
 const password = require('../config/passwordHelper');
 
+
+var braintree = require('braintree');
+
+var gateway = braintree.connect({
+  environment: braintree.Environment.Sandbox,
+  merchantId: "d3sys36mr9ppg9c9",
+  publicKey: "nzjvbrj6rpw76xwy",
+  privateKey: "63c33adf98bea880d05dcc1bc7fc769e"
+});
+
 module.exports = {
 
   createUser: function(req, res) {
@@ -58,12 +68,24 @@ module.exports = {
       .then(function(user) {
         password.compare(req.body.password, user.password)
           .then(function(result) {
-            const token = jwt.sign(user.dataValues, 'hello world trppr');
-            console.log('\033[34m <TRPPR> User logged in. \033[0m');
-            res.json({
-              user: user,
-              token: token
-            });
+            ///////////////////
+            gateway.clientToken.generate({}, function (err, response) {
+                  const token = jwt.sign(user.dataValues, 'hello world trppr');
+                  console.log('\033[34m <TRPPR> User logged in. \033[0m');
+                  console.log("client token route");
+                  res.json({
+                  user: user,
+                  token: token,
+                  payToken: response.clientToken
+                 });
+                  //res.send(response.clientToken);
+                });
+
+            ///////////////
+            // res.json({
+            //   user: user,
+            //   token: token
+            // });
           })
           .catch(function(error) {
             res.status(500).send('Password incorrect.');
