@@ -13,7 +13,10 @@ module.exports = {
     newReview
       .save()
       .then(function(){
-        
+        res.sendStatus(201)
+      })
+      .catch(function(err){
+        console.log('Error: ', err)
       })
   }
 }
