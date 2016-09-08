@@ -9,8 +9,6 @@ const Review = sequelize.define('review', {
   description: Sequelize.TEXT,
 });
 
-//One-to-one relationship between review and driver
-Review.belongsTo(User, {as: 'driver'});
 
 sequelize
   .sync()
