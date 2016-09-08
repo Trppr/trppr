@@ -9,52 +9,14 @@ class Trip extends Component {
       super(props);
       this.state = {};
       this.reserveSeat = this.reserveSeat.bind(this);
-
-      
-
-
-
-
-
-
-
-    //   braintree.setup(localStorage.getItem('payToken'), 'dropin', {
-    //     container: "payment-form",
-    //     onPaymentMethodReceived: function (obj) {
-    // // Do some logic in here.
-    // // When you're ready to submit the form:
-    // console.log(obj);
-    // console.log("getting in payment")
-
-    // if(localStorage.getItem('token')) {
-    //   axios.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem('token');
-    // }
-    // axios.post('/checkout',
-    //   obj
-    // )
-    // .then(function (response) {
-    //   console.log("sucessfulPayment!!")
-    // })
-    // .catch(function (error) {
-    //   console.log(error);
-    // })
-    // //myForm.submit();
-    //     }
-    //   });
-
-
-
-
     }
 
     reserveSeat() {
-      
-
       var context=this;
 
       braintree.setup(localStorage.getItem('payToken'), 'custom', {
         paypal: {
-          container: 'paypal-container',
+          container: 'paypal-container'+this.props.trip.id,
           singleUse: true, // Required
           amount: context.props.trip.seatPrice, // Required
           currency: 'USD', // Required
@@ -138,7 +100,7 @@ class Trip extends Component {
                       <p>{this.props.trip.description}</p>
                       <button id="rsvpButton" onClick= {this.reserveSeat} >Book Seat</button>
                       
-                      <div id="paypal-container"></div>
+                      <div id={"paypal-container"+this.props.trip.id}></div>
 
 
                   </div>
