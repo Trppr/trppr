@@ -165,10 +165,24 @@ module.exports = {
   getPassengerHistory: function(req, res){
     var tripsList = [];
 
-    sequelize.query("SELECT * FROM \"tripPassengers\"", { type: sequelize.QueryTypes.SELECT})
+    console.log(req.body);
+
+    sequelize.query("SELECT * FROM \"tripPassengers\" where \"userId\"="+req.body.driverId, { type: sequelize.QueryTypes.SELECT})
     .then(function(tripsRelationships) {
     // We don't need spread here, since only the results will be returned for select queries
       console.log(tripsRelationships);
+
+      var tripIds=tripsRelationships.map(function(tripsRelationship){
+        return tripsRelationship.tripId;
+      });
+
+      //res.send(tripIds);
+    Trip.findAll({where:{id:tripIds } })
+    .then(function(trips){
+      res.send(trips);
+    });
+
+
     });
   }
 }
