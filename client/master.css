@@ -141,9 +141,14 @@ p {
   margin: 0 0 4px;
 }
 
+.reserveAndPay{
+  text-align: center;
+  margin: auto;
+}
+
 #rsvpButton {
   text-align: center;
-  float: right;
+  /*float: right;*/
   border-radius: 4px;
   border: 1px solid #f9f9f9;*/
 }

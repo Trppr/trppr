@@ -98,13 +98,19 @@ class Trip extends Component {
                   <div className="col-sm-12 other">
                       <div id="tripTag">Trip Details:</div>
                       <p>{this.props.trip.description}</p>
-                      <button id="rsvpButton" onClick= {this.reserveSeat} >Book Seat</button>
-                      
-                      <div id={"paypal-container"+this.props.trip.id}></div>
-
-
                   </div>
               </div>
+
+              <div className="row" id="tripRow">
+                <div className="col-sm-12 other">
+                    <div className="reserveAndPay">
+                    <button id="rsvpButton" onClick= {this.reserveSeat} >Book Seat</button>
+                    <div id={"paypal-container"+this.props.trip.id}></div>
+                    </div>
+                </div> 
+              </div>
+
+
 
           </div>
       );
