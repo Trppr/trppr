@@ -3,14 +3,10 @@ const User = require('../users/userModel');
 const Trip = require('../trips/tripModel');
 const password = require('../config/passwordHelper');
 
-
-var braintree = require('braintree');
+const braintree = require('braintree');
 
 var gateway = braintree.connect({
-  environment: braintree.Environment.Sandbox,
-  merchantId: "d3sys36mr9ppg9c9",
-  publicKey: "nzjvbrj6rpw76xwy",
-  privateKey: "63c33adf98bea880d05dcc1bc7fc769e"
+  accessToken: 'access_token$sandbox$vf5pkqztz5zw3nd6$4676b0609a3a65e34c93ec60d58a5adb'
 });
 
 module.exports = {

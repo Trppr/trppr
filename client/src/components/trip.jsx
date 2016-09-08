@@ -9,33 +9,68 @@ class Trip extends Component {
       super(props);
       this.state = {};
       this.reserveSeat = this.reserveSeat.bind(this);
-      
-      // braintree.setup(localStorage.getItem('payToken'), 'dropin', {
-      //   container: 'dropin-container'
-      // });
-      braintree.setup(localStorage.getItem('payToken'), 'dropin', {
-        container: "payment-form",
-        onPaymentMethodReceived: function (obj) {
-    // Do some logic in here.
-    // When you're ready to submit the form:
-    console.log(obj);
-    console.log("getting in payment")
 
-    if(localStorage.getItem('token')) {
-      axios.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem('token');
-    }
-    axios.post('/checkout',
-      obj
-    )
-    .then(function (response) {
-      console.log("sucessfulPayment!!")
-    })
-    .catch(function (error) {
-      console.log(error);
-    })
-    //myForm.submit();
+      var context=this;
+      
+      braintree.setup(localStorage.getItem('payToken'), 'custom', {
+        paypal: {
+          container: 'paypal-container',
+          singleUse: true, // Required
+          amount: context.props.trip.seatPrice, // Required
+          currency: 'USD', // Required
+          locale: 'en_us'
+        },
+        onPaymentMethodReceived: function (obj) {
+          //doSomethingWithTheNonce(obj.nonce);
+          console.log(obj);
+          console.log("getting in payment")
+          console.log(context.props.trip.seatPrice);
+          obj.amount=context.props.trip.seatPrice;
+          if(localStorage.getItem('token')) {
+            axios.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem('token');
+          }
+          axios.post('/checkout',
+            obj
+          )
+          .then(function (response) {
+            console.log(response);
+            console.log("sucessfulPayment!!")
+          })
+          .catch(function (error) {
+            console.log(error);
+          })
+
+
         }
       });
+
+
+
+
+
+    //   braintree.setup(localStorage.getItem('payToken'), 'dropin', {
+    //     container: "payment-form",
+    //     onPaymentMethodReceived: function (obj) {
+    // // Do some logic in here.
+    // // When you're ready to submit the form:
+    // console.log(obj);
+    // console.log("getting in payment")
+
+    // if(localStorage.getItem('token')) {
+    //   axios.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem('token');
+    // }
+    // axios.post('/checkout',
+    //   obj
+    // )
+    // .then(function (response) {
+    //   console.log("sucessfulPayment!!")
+    // })
+    // .catch(function (error) {
+    //   console.log(error);
+    // })
+    // //myForm.submit();
+    //     }
+    //   });
 
 
 
@@ -96,10 +131,7 @@ class Trip extends Component {
                       <p>{this.props.trip.description}</p>
                       <button id="rsvpButton" onClick= {this.reserveSeat} >Book Seat</button>
                       
-                      <form id="checkout" method="post" action="/checkout">
-                      <div id="payment-form"></div>
-                      <input type="submit" value="Pay $10" />
-                      </form>
+                      <div id="paypal-container"></div>
 
 
                   </div>
