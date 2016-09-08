@@ -2,6 +2,13 @@ const jwt = require('jsonwebtoken');
 const User = require('../users/userModel');
 const Trip = require('../trips/tripModel');
 const password = require('../config/passwordHelper');
+const sequelize = require('../config/database');
+
+const braintree = require('braintree');
+
+var gateway = braintree.connect({
+  accessToken: 'access_token$sandbox$vf5pkqztz5zw3nd6$4676b0609a3a65e34c93ec60d58a5adb'
+});
 
 module.exports = {
 
@@ -58,12 +65,24 @@ module.exports = {
       .then(function(user) {
         password.compare(req.body.password, user.password)
           .then(function(result) {
-            const token = jwt.sign(user.dataValues, 'hello world trppr');
-            console.log('\033[34m <TRPPR> User logged in. \033[0m');
-            res.json({
-              user: user,
-              token: token
-            });
+            ///////////////////
+            gateway.clientToken.generate({}, function (err, response) {
+                  const token = jwt.sign(user.dataValues, 'hello world trppr');
+                  console.log('\033[34m <TRPPR> User logged in. \033[0m');
+                  console.log("client token route");
+                  res.json({
+                  user: user,
+                  token: token,
+                  payToken: response.clientToken
+                 });
+                  //res.send(response.clientToken);
+                });
+
+            ///////////////
+            // res.json({
+            //   user: user,
+            //   token: token
+            // });
           })
           .catch(function(error) {
             res.status(500).send('Password incorrect.');
@@ -146,42 +165,24 @@ module.exports = {
   getPassengerHistory: function(req, res){
     var tripsList = [];
 
-    Trip.findAll({
-      attributes: [
-        'id',
-        'tripDate',
-        'startSt',
-        'startCity',
-        'startState',
-        'endSt',
-        'endCity',
-        'endState',
-        'numSeats',
-        'seatPrice',
-        'vehicleMake',
-        'vehicleModel',
-        'vehicleYear',
-        'description'
-      ],
-      where: {
-        id: {
-          include: [Trip, User],
+    console.log(req.body);
 
-        },
+    sequelize.query("SELECT * FROM \"tripPassengers\" where \"userId\"="+req.body.driverId, { type: sequelize.QueryTypes.SELECT})
+    .then(function(tripsRelationships) {
+    // We don't need spread here, since only the results will be returned for select queries
+      console.log(tripsRelationships);
 
-      }
-    })
-    .then(function(trips){
-      trips.forEach( (trip) => {
-        tripsList.push(trip.dataValues);
+      var tripIds=tripsRelationships.map(function(tripsRelationship){
+        return tripsRelationship.tripId;
       });
-      console.log('\033[34m <TRPPR> Sending data: \033[0m');
-      console.log(tripsList);
-      res.json(tripsList);
-    })
-    .catch(function(err) {
-      console.log('Error:', err.message);
-      res.send(err.message);
+
+      //res.send(tripIds);
+    Trip.findAll({where:{id:tripIds } })
+    .then(function(trips){
+      res.send(trips);
+    });
+
+
     });
   }
 }

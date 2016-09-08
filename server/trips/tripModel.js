@@ -47,6 +47,9 @@ const Trip = sequelize.define('trip', {
   driverId: Sequelize.INTEGER
 });
 
+// const tripPassengers = sequelize.define('tripPassengers', {});
+
+
 // Associations/foreign key relationships:
 Trip.belongsTo(User, {as: 'driver'});
 // One-to-one relationship between trip and driver.
