@@ -186,9 +186,7 @@ div.geosuggest__suggests-wrapper {
   cursor: pointer;
 }
 
-/**
- * The geosuggest module
- */
+
 .geosuggest {
   font-size: 18px;
   font-size: 1rem;
@@ -214,12 +212,20 @@ div.geosuggest__suggests-wrapper {
 /**
  * A geosuggest item
  */
-.geosuggest-item {
-  font-size: 18px;
+
+ #gs .geosuggest-item {
+  font-size: 15px;
   font-size: 2rem;
   padding: .5em .65em;
   cursor: pointer;
 }
+
+.geosuggest-item {
+  font-size: 2rem;
+  padding: .5em .65em;
+  cursor: pointer;
+}
+
 .geosuggest-item:hover,
 .geosuggest-item:focus {
   background: #f5f5f5;
