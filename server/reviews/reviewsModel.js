@@ -9,6 +9,8 @@ const Review = sequelize.define('review', {
   description: Sequelize.TEXT,
 });
 
+//One-to-one relationship between review and driver
+Review.belongsTo(User, {as: 'driver'});
 
 sequelize
   .sync()
@@ -18,4 +20,4 @@ sequelize
     console.log('An error occurred while creating the review table', err)
   })
 
-  module.exports = Review;
+module.exports = Review;
