@@ -3,6 +3,15 @@ const path = require('path');
 const tripController = require('../trips/tripController');
 const userController = require('../users/userController');
 
+const braintree = require('braintree');
+
+
+var gateway = braintree.connect({
+  accessToken: 'access_token$sandbox$vf5pkqztz5zw3nd6$4676b0609a3a65e34c93ec60d58a5adb'
+});
+
+
+
 module.exports = (app, express) => {
 
   /*
@@ -59,11 +68,29 @@ module.exports = (app, express) => {
   app.post('/cancelReservation', tripController.cancelReservation);
   // deletes reservation via req.body.passengerId & req.body.tripId
 
+  app.post("/checkout", function (req, res) {
+  gateway.transaction.sale({
+    amount: req.body.amount,
+    paymentMethodNonce: req.body.nonce,
+    options: {
+      submitForSettlement: true
+    }
+    }, function (err, result) {
+      if(err){
+        res.send(err);
+      }
+      res.send(result);
+    });
+
+  });
+
+
+
   // handle every other route with index.html, which will contain
   // a script tag to your application's JavaScript file(s).
   app.get('*', function (request, response){
     response.sendFile(path.resolve('./', 'client', 'index.html'))
-  })
+  });
 
   app.get('*', (req, res) => {
     res.sendStatus(404);
