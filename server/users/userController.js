@@ -2,6 +2,7 @@ const jwt = require('jsonwebtoken');
 const User = require('../users/userModel');
 const Trip = require('../trips/tripModel');
 const password = require('../config/passwordHelper');
+const sequelize = require('../config/database');
 
 const braintree = require('braintree');
 
@@ -164,42 +165,10 @@ module.exports = {
   getPassengerHistory: function(req, res){
     var tripsList = [];
 
-    Trip.findAll({
-      attributes: [
-        'id',
-        'tripDate',
-        'startSt',
-        'startCity',
-        'startState',
-        'endSt',
-        'endCity',
-        'endState',
-        'numSeats',
-        'seatPrice',
-        'vehicleMake',
-        'vehicleModel',
-        'vehicleYear',
-        'description'
-      ],
-      where: {
-        id: {
-          include: [Trip, User],
-
-        },
-
-      }
-    })
-    .then(function(trips){
-      trips.forEach( (trip) => {
-        tripsList.push(trip.dataValues);
-      });
-      console.log('\033[34m <TRPPR> Sending data: \033[0m');
-      console.log(tripsList);
-      res.json(tripsList);
-    })
-    .catch(function(err) {
-      console.log('Error:', err.message);
-      res.send(err.message);
+    sequelize.query("SELECT * FROM \"tripPassengers\"", { type: sequelize.QueryTypes.SELECT})
+    .then(function(tripsRelationships) {
+    // We don't need spread here, since only the results will be returned for select queries
+      console.log(tripsRelationships);
     });
   }
 }
