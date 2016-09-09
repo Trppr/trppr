@@ -44,13 +44,18 @@
     "pg": "^6.1.0",
     "postal-abbreviations": "^2.0.0",
     "react": "^15.3.1",
+    "react-addons-update": "^15.3.1",
     "react-dom": "^15.3.1",
+    "react-geosuggest": "^1.25.0",
+    "react-google-autocomplete": "^1.0.3",
+    "react-google-maps": "^4.11.0",
     "react-router": "^2.7.0",
     "request": "^2.74.0",
     "sequelize": "^3.24.1",
     "webpack": "^1.13.2"
   },
   "devDependencies": {
+    "babel-preset-stage-0": "^6.5.0",
     "webpack": "^1.13.2"
   }
 }

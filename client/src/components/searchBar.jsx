@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import { render } from 'react-dom';
+import Geosuggest from 'react-geosuggest';
 
 class SearchBar extends Component {
   constructor(props) {
@@ -34,12 +35,16 @@ class SearchBar extends Component {
     return (
       <form className="form-group">
       <div className="col-md-6" id="CreateAndSearchTripsLeft">
-        <input
-          placeholder = "Starting city/state"
-          className="form-control"
-          value = {this.state.startLocation}
-          onChange = {this.handleChange.bind(this, 'startLocation')} />
 
+       <div id="gs">
+        <Geosuggest
+          className="form-control"
+          placeholder="Starting city/state"
+          value = {this.state.startLocation}
+          onChange = {this.handleChange.bind(this, 'startLocation')}
+          onSuggestSelect={this.onSuggestSelect}
+        />
+       </div>
         <input
           type = "date"
           className="form-control"
@@ -56,11 +61,16 @@ class SearchBar extends Component {
       </div>
 
       <div className="col-md-6" id="CreateAndSearchTripsRight">
-        <input
-          placeholder = "Ending city/state"
+        <div id='gs'>
+         <Geosuggest
           className="form-control"
+          placeholder="Ending city/state"
           value = {this.state.endLocation}
-          onChange = {this.handleChange.bind(this, 'endLocation')} />
+          onChange = {this.handleChange.bind(this, 'endLocation')}
+          onSuggestSelect={this.onSuggestSelect}
+         />
+        </div> 
+
 
         <input
           type = "date"
@@ -82,6 +92,7 @@ class SearchBar extends Component {
           value="Search"
           onClick = {event => this.submitData()}/>
       </form>
+      
     )
   }
 }
