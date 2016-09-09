@@ -6,10 +6,10 @@ const sequelize = require('sequelize');
 
 module.exports = {
   createReview: function(req, res) {
-    console.log('req.query in reviews ctrllr' ,req)
+    console.log('req.query in reviews ctrllr' ,req.body)
     User.find({
       where: {
-        email : req.query.userEmail
+        email : req.body.userEmail
       }, attributes : ['id']
     })
     .then(function(data){
@@ -27,6 +27,9 @@ module.exports = {
         res.status(400).send("E-mail does not exist")
         // console.log("error: ", data)
       }
+    })
+    .catch(function(error) {
+      res.send(error);
     })
 
   },

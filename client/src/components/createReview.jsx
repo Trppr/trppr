@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {render} from 'react-dom';
 import {browserHistory} from 'react-router';
 import axios from 'axios';
+import NavBar from './navBar.jsx';
 
 class CreateReview extends Component {
   constructor(props) {
@@ -26,6 +27,9 @@ class CreateReview extends Component {
       console.log("response.data: ", response.data)
       browserHistory.push('/reviewList');
     })
+    .catch(function(error){
+      console.log("there was an error making a review: ", error)
+    })
   }
 
   handleChange(name, e) {
@@ -37,6 +41,7 @@ class CreateReview extends Component {
   render() {
     return (
     <div className="container">
+    <NavBar />
       <form onSubmit={this.submitReview}>
         <h1>Write a Review</h1>
           <div id='CreateReview'>

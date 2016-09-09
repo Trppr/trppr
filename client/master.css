@@ -166,3 +166,14 @@ p {
 #emailAndPassword{
   height: 35px;
 }
+
+.review{
+  text-align: center;
+  margin: 2px auto;
+  border: 1px solid black;
+  padding: 3px;
+}
+
+.reviewContainer{
+  text-align: center;
+}
