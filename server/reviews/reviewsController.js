@@ -28,5 +28,35 @@ module.exports = {
       }
     })
 
+  },
+
+  getReviews: function(req, res){
+    User.find({
+      where: {
+        email : req.query.email
+      }, attributes : ['id']
+    })
+    .then(function(data){
+      if (data){
+        // console.log("data on ln 41 " , data)
+        // console.log("user data: ", data)
+        //where attribute fields are updated
+        Review.findAll({
+          where : {
+            userId : data.dataValues.id
+          },
+          attributes : ['description']
+        })
+        .then(function(data){
+          console.log("data on ln 51 " , data)
+          res.status(200).json(data)
+        })
+      } else {
+        res.status(400).send("E-mail does not exist")
+        // console.log("error: ", data)
+      }
+    })
+
   }
+
 }

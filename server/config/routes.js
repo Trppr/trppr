@@ -85,8 +85,13 @@ module.exports = (app, express) => {
   });
 
 
-  app.post('/writeReview',
+app.post('/writeReview',
   reviewsController.createReview);
+
+
+app.get('/getReviews',        reviewsController.getReviews);
+
+
 
   // handle every other route with index.html, which will contain
   // a script tag to your application's JavaScript file(s).

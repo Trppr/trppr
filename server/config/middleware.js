@@ -52,7 +52,8 @@ module.exports = (app, express) => {
         '/getDriverHistory',
         '/getPassengerHistory',
         '/userProfile',
-        '/writeReview'
+        '/writeReview',
+        '/getReviews'
       ]
     }
   ));
