@@ -9,52 +9,15 @@ class Trip extends Component {
       super(props);
       this.state = {};
       this.reserveSeat = this.reserveSeat.bind(this);
-
-      
-
-
-
-
-
-
-
-    //   braintree.setup(localStorage.getItem('payToken'), 'dropin', {
-    //     container: "payment-form",
-    //     onPaymentMethodReceived: function (obj) {
-    // // Do some logic in here.
-    // // When you're ready to submit the form:
-    // console.log(obj);
-    // console.log("getting in payment")
-
-    // if(localStorage.getItem('token')) {
-    //   axios.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem('token');
-    // }
-    // axios.post('/checkout',
-    //   obj
-    // )
-    // .then(function (response) {
-    //   console.log("sucessfulPayment!!")
-    // })
-    // .catch(function (error) {
-    //   console.log(error);
-    // })
-    // //myForm.submit();
-    //     }
-    //   });
-
-
-
-
     }
 
     reserveSeat() {
-      
-
       var context=this;
+        console.log(this.props.trip.driverId);
 
       braintree.setup(localStorage.getItem('payToken'), 'custom', {
         paypal: {
-          container: 'paypal-container',
+          container: 'paypal-container'+this.props.trip.id,
           singleUse: true, // Required
           amount: context.props.trip.seatPrice, // Required
           currency: 'USD', // Required
@@ -66,9 +29,11 @@ class Trip extends Component {
           console.log("getting in payment")
           console.log(context.props.trip.seatPrice);
           obj.amount=context.props.trip.seatPrice;
+          obj.driverId=context.props.trip.driverId;
           if(localStorage.getItem('token')) {
             axios.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem('token');
           }
+
           axios.post('/checkout',
             obj
           )
@@ -76,6 +41,14 @@ class Trip extends Component {
             console.log(response);
             console.log("sucessfulPayment!!")
             context.props.reserveSeat({passengerId: localStorage.getItem('id'), tripId: context.props.trip.id});
+
+            var payObj={
+              driverId : context.props.trip.driverId,
+              amount : context.props.trip.seatPrice,
+              name : localStorage.getItem('name')
+            }
+            axios.post('/paydriver',payObj);
+
           })
           .catch(function (error) {
             console.log(error);
@@ -136,13 +109,19 @@ class Trip extends Component {
                   <div className="col-sm-12 other">
                       <div id="tripTag">Trip Details:</div>
                       <p>{this.props.trip.description}</p>
-                      <button id="rsvpButton" onClick= {this.reserveSeat} >Book Seat</button>
-                      
-                      <div id="paypal-container"></div>
-
-
                   </div>
               </div>
+
+              <div className="row" id="tripRow">
+                <div className="col-sm-12 other">
+                    <div className="reserveAndPay">
+                    <button id="rsvpButton" onClick= {this.reserveSeat} >Book Seat</button>
+                    <div id={"paypal-container"+this.props.trip.id}></div>
+                    </div>
+                </div> 
+              </div>
+
+
 
           </div>
       );
