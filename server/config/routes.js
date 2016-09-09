@@ -7,6 +7,8 @@ const querystring = require('querystring');
 
 const braintree = require('braintree');
 
+const User = require('../users/userModel');
+
 
 var gateway = braintree.connect({
   accessToken: 'access_token$sandbox$vf5pkqztz5zw3nd6$4676b0609a3a65e34c93ec60d58a5adb'
@@ -110,52 +112,59 @@ module.exports = (app, express) => {
 
   app.post('/paydriver', function(req,res){
 
-      var qs='grant_type=client_credentials';
+      var driverEmail='';
+      User.findOne({where:{id:req.body.driverId}})
+      .then(function(driver){
+        driverEmail=driver.email;
+      
 
-      var options={
-        url:'https://api.sandbox.paypal.com/v1/oauth2/token',
-        method:'POST',
-        body: qs,
-        "headers": {
-        "authorization": "Basic QWN2VnZaWWdwYnpUc1JYUGwxZG5MVWgxR0tneDRNS1d3UFNHcFNXTEIzTWdYWTJ0ZEVTUTVENk1jTGRJcXd6UzRDeVJfanh5MnY4WEJIcGU6RVBUZjBybUpEZDFKSUozYU5iS1RaWHVTWGtDU0Q3WTJTOEI1T1VQcXRGRGk5M3dPcV9DbGdpZ0dySUNSOFl2THBnR2tTdG5UVHJjX0tMcXo=",
-        "cache-control": "no-cache",
-        //"postman-token": "d28c570e-44a0-9d35-08f8-f83eb4cdd158",
-        "content-type": "application/x-www-form-urlencoded",
-        "accept": "application/json"
-      }
-      };
+          var qs='grant_type=client_credentials';
+
+          var options={
+            url:'https://api.sandbox.paypal.com/v1/oauth2/token',
+            method:'POST',
+            body: qs,
+            "headers": {
+            "authorization": "Basic QWN2VnZaWWdwYnpUc1JYUGwxZG5MVWgxR0tneDRNS1d3UFNHcFNXTEIzTWdYWTJ0ZEVTUTVENk1jTGRJcXd6UzRDeVJfanh5MnY4WEJIcGU6RVBUZjBybUpEZDFKSUozYU5iS1RaWHVTWGtDU0Q3WTJTOEI1T1VQcXRGRGk5M3dPcV9DbGdpZ0dySUNSOFl2THBnR2tTdG5UVHJjX0tMcXo=",
+            "cache-control": "no-cache",
+            //"postman-token": "d28c570e-44a0-9d35-08f8-f83eb4cdd158",
+            "content-type": "application/x-www-form-urlencoded",
+            "accept": "application/json"
+          }
+          };
 
 
-      request(options, function(error, response, body){
-        console.log("request made");
-        // console.log(body);
-        var accessToken=JSON.parse(body).access_token;
-        //res.send(JSON.parse(body));
+          request(options, function(error, response, body){
+            console.log("request made");
+            // console.log(body);
+            var accessToken=JSON.parse(body).access_token;
+            //res.send(JSON.parse(body));
 
-        var options = { method: 'POST',
-          url: 'https://api.sandbox.paypal.com/v1/payments/payouts',
-          headers: 
-           { 'postman-token': '9899a1cc-d03b-571d-3fb4-3f353d436a37',
-             'cache-control': 'no-cache',
-             'content-type': 'application/json',
-             authorization: 'Bearer '+accessToken },
-          body: 
-           { sender_batch_header: { email_subject: 'You have a payment' },
-             items: 
-              [ { recipient_type: 'EMAIL',
-                  amount: { value: 12.34, currency: 'USD' },
-                  receiver: 'lsfisher-buyer2@usc.edu',
-                  note: 'Payment for recent T-Shirt delivery',
-                  sender_item_id: 'A123' } ] },
-          json: true };
+            var options = { method: 'POST',
+              url: 'https://api.sandbox.paypal.com/v1/payments/payouts',
+              headers: 
+               { 'postman-token': '9899a1cc-d03b-571d-3fb4-3f353d436a37',
+                 'cache-control': 'no-cache',
+                 'content-type': 'application/json',
+                 authorization: 'Bearer '+accessToken },
+              body: 
+               { sender_batch_header: { email_subject: 'You have a payment' },
+                 items: 
+                  [ { recipient_type: 'EMAIL',
+                      amount: { value: 12.34, currency: 'USD' }, //add the correct amount
+                      receiver: driverEmail, //add the correct dirver
+                      note: 'Payment for recent T-Shirt delivery',
+                      sender_item_id: 'A123' } ] },
+              json: true };
 
-        request(options, function (error, response, body) {
-          if (error) throw new Error(error);
+            request(options, function (error, response, body) {
+              if (error) throw new Error(error);
 
-          console.log(body);
-          res.send(body);
-        });
+              console.log(body);
+              res.send(body);
+            });
 
+          });
       });
 
   });
