@@ -2,6 +2,8 @@ const Trip = require('../trips/tripModel');
 const sequelize = require('sequelize');
 const moment = require('moment');
 const postal = require("postal-abbreviations");
+const email = require("../services/mailgun");
+
 
 module.exports = {
   createTrip: function(req, res){
@@ -42,12 +44,17 @@ module.exports = {
       }
     })
     .then(function(trip) {
+      var driverName = trip.get('driverName');
+      console.log("+++line 48 this is the DRIVERS NAME ON THE TRIP: ", driverName);
       var numSeats = trip.get('numSeats');
       if(numSeats > 0){
           trip.addPassengers(req.body.passengerId);
           trip.set( { 'numSeats': (numSeats - 1) } );
           trip.save();
           console.log("\033[34m <TRPPR> Seat reserved. \033[0m");
+          //Emails will be sent to notify the driver and the passenger
+          email.confirmPassengerTrip(req.body.passengerId);
+          email.mailDriver(driverName);
           res.sendStatus(201);
       }
       else{
@@ -58,6 +65,7 @@ module.exports = {
       console.log('Error:', err);
     });
   },
+
 
   searchTrips: function(req, res){
     var tripsList = [];
