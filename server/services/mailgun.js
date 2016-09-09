@@ -11,7 +11,6 @@ module.exports = {
         }
       }).then(function(user){
         var userEmail = user.get('email');
-        console.log("This is an email", user.get('email'));
         var data = {
           from: 'Trpper <postmaster@sandbox4013da47551941d09a392674d9bc31b0.mailgun.org>',
           to: userEmail,
@@ -35,7 +34,6 @@ module.exports = {
       }
     }).then(function(user){
       var userEmail = user.get('email');
-      console.log('+++line 37: THIS SHOULD BE THE USER: ', user.get('firstName'));
       var data = {
         from: 'Trpper <postmaster@sandbox4013da47551941d09a392674d9bc31b0.mailgun.org>',
         to: userEmail,
