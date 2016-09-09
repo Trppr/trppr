@@ -45,6 +45,9 @@ module.exports = {
     })
     .then(function(trip) {
       var driverName = trip.get('driverName');
+      var startAddress = trip.get('startSt') +" , " + trip.get('startCity') +" , " + trip.get('startState');
+      var endAddress = trip.get('endSt') + " , " + trip.get('endCity') +" , " + trip.get('endState');
+      console.log('+++ LINE 50 TRIPCONTROLLER start address: ', startAddress,'end address: ',endAddress);
       var numSeats = trip.get('numSeats');
       if(numSeats > 0){
           trip.addPassengers(req.body.passengerId);
@@ -52,7 +55,7 @@ module.exports = {
           trip.save();
           console.log("\033[34m <TRPPR> Seat reserved. \033[0m");
           //Emails will be sent to notify the driver and the passenger
-          email.confirmPassengerTrip(req.body.passengerId);
+          email.confirmPassengerTrip(req.body.passengerId,startAddress,endAddress);
           email.mailDriver(driverName);
           res.sendStatus(201);
       }

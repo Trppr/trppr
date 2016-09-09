@@ -4,7 +4,7 @@ const mailgun = require("mailgun-js")({apiKey:api_key,domain:domain});
 const User = require('../users/userModel');
 
 module.exports = {
-   confirmPassengerTrip: function(user_id) {
+   confirmPassengerTrip: function(user_id,start,end) {
       User.findOne({
         where: {
           id: user_id
@@ -15,7 +15,7 @@ module.exports = {
           from: 'Trpper <postmaster@sandbox4013da47551941d09a392674d9bc31b0.mailgun.org>',
           to: userEmail,
           subject: 'Hello' + user.get('firstName'),
-          text: 'This email is to confirm ' + user.get('firstName') + ' ' + user.get('lastName') + ' ' + 'has successfully booked a trip using Trippr. Thank you for using our service!'
+          text: 'This email is to confirm ' + user.get('firstName') + ' ' + user.get('lastName') + ' ' + 'has successfully booked a trip from ' + start + ' to ' + end + ' using Trippr. Thank you for using our service!'
         };
 
         mailgun.messages().send(data, function (error, body) {
@@ -38,7 +38,7 @@ module.exports = {
         from: 'Trpper <postmaster@sandbox4013da47551941d09a392674d9bc31b0.mailgun.org>',
         to: userEmail,
         subject: 'Hello' + user.get('firstName'),
-        text: 'This email is to confirm that you, ' + user.get('firstName') + ' ' + user.get('lastName') + ', have a seat reserved for your trip. Thank you for using our service!'
+        text: 'This email is to confirm that you, ' + user.get('firstName') + ' ' + user.get('lastName') + ', have a passenger reserved for your trip. Thank you for using our service!'
       };
 
       mailgun.messages().send(data, function (error, body) {
