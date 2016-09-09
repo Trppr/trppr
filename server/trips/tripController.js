@@ -203,17 +203,5 @@ module.exports = {
     });
   },
 
-  getMapData: function(req, res) {
-    console.log('req.query', req.query);
-    Trip.findAll({
-      where: {
-        endCity: req.query.endLocation
-      }
-    })
-    .then((cities) => {
-      res.status(200).send(cities);
-    });
-  }
-
 
 }

@@ -44,8 +44,6 @@ module.exports = (app, express) => {
   // Note: Check tripController.js for more details. Example:
   // searchTrips?startLocation=los+angeles&startDate=9/15&numSeats=2
 
-  app.get('/getMapData', tripController.getMapData);
-
   app.post('/createTrip', tripController.createTrip);
   // Needs ALL the trip model attributes, refer to tripController.js or schema
   // Note: The driverId field has to be a valid user id.

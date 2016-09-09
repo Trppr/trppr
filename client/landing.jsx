@@ -1,8 +1,7 @@
 import React, {Component} from 'react';
 import {render} from 'react-dom';
 import { Router, Route, browserHistory } from 'react-router';
-import Geosuggest from 'react-geosuggest';
-
+import Geosuggest from 'react-geosuggest'; 
 
 import App from './app.jsx'
 import NavBar from './src/components/navBar.jsx';
@@ -22,6 +21,7 @@ class Landing extends Component {
 
   handleChange(e) {
     console.log('current input val', e);
+    this.setState( {endLocation: e} );
   }
 
   submitData(e) {
@@ -30,12 +30,10 @@ class Landing extends Component {
     browserHistory.push(link);
   }
 
-    onSuggestSelect(suggest) {
-      console.log(suggest);
-      //Set desired location's label
-      this.state.endLocation = suggest.gmaps.address_components[0].long_name;
-      console.log('endLocation', this.state.endLocation);
-    }
+  onSuggestSelect(suggest) {
+    console.log(suggest.label);
+    this.setState( {endLocation: suggest.label} );
+  }
 
 
   render() {
@@ -60,6 +58,8 @@ class Landing extends Component {
                 fixtures={fixtures}
                 country = 'us'
                 onSuggestSelect={this.onSuggestSelect}
+                value = {this.state.endLocation}
+                onChange = {this.handleChange} 
                 onFocus={this.onFocus}
                 onBlur={this.onBlur}
               />

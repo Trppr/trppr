@@ -55,13 +55,15 @@ class CreateTrip extends Component {
 
   onSuggestStartSelect(suggest){
     console.log('suggest', suggest);
-    this.state.startSt = suggest.gmaps.address_components[0].long_name + '' + suggest.gmaps.address_components[1].long_name;
+    let space = " ";
+    this.state.startSt = suggest.gmaps.address_components[0].long_name + space + suggest.gmaps.address_components[1].long_name;
     this.state.startCity = suggest.gmaps.address_components[3].long_name;
     this.state.startState = suggest.gmaps.address_components[5].short_name;
   };
 
   onSuggestEndSelect(suggest){
-    this.state.endSt = suggest.gmaps.address_components[0].long_name + '' + suggest.gmaps.address_components[1].long_name;
+    let space = " ";
+    this.state.endSt = suggest.gmaps.address_components[0].long_name + space + suggest.gmaps.address_components[1].long_name;
     this.state.endCity = suggest.gmaps.address_components[3].long_name;
     this.state.endState = suggest.gmaps.address_components[5].short_name;
   };
