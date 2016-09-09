@@ -3,8 +3,12 @@ const path = require('path');
 const tripController = require('../trips/tripController');
 const userController = require('../users/userController');
 const reviewsController = require('../reviews/reviewsController')
+const request = require('request');
+const querystring = require('querystring');
 
 const braintree = require('braintree');
+
+const User = require('../users/userModel');
 
 
 var gateway = braintree.connect({
@@ -70,6 +74,7 @@ module.exports = (app, express) => {
   // deletes reservation via req.body.passengerId & req.body.tripId
 
   app.post("/checkout", function (req, res) {
+    console.log(req.body);
   gateway.transaction.sale({
     amount: req.body.amount,
     paymentMethodNonce: req.body.nonce,
@@ -90,12 +95,91 @@ app.post('/writeReview',
 
 
 app.get('/getReviews',        reviewsController.getReviews);
+  // app.post("/paydiver", function(amount, driverId){
+
+  //        var options={url:'https://api.sandbox.paypal.com/v1/oauth2/token',
+  //         method:'POST',
+  //          body:'grant_type=client_credentials',
+  //         headers:{
+  //           'Accept':'application/json',
+  //           'Accept-Language': 'en_US',
+  //           'Authorization':"Basic AcvVvZYgpbzTsRXPl1dnLUh1GKgx4MKWwPSGpSWLB3MgXY2tdESQ5D6McLdIqwzS4CyR_jxy2v8XBHpe:EPTf0rmJDd1JIJ3aNbKTZXuSXkCSD7Y2S8B5OUPqtFDi93wOq_ClgigGrICR8YvLpgGkStnTTrc_KLqz"
+  //         }};
+
+  //        request(options, function(error, response, body){
+  //           console.log("request made");
+  //           console.log(body);
+  //           res.send(body);
+
+  //         });
+
+  // });
+
+  app.post('/paydriver', function(req,res){
+
+      var driverEmail='';
+      User.findOne({where:{id:req.body.driverId}})
+      .then(function(driver){
+        driverEmail=driver.email;
+      
+
+          var qs='grant_type=client_credentials';
+
+          var options={
+            url:'https://api.sandbox.paypal.com/v1/oauth2/token',
+            method:'POST',
+            body: qs,
+            "headers": {
+            "authorization": "Basic QWN2VnZaWWdwYnpUc1JYUGwxZG5MVWgxR0tneDRNS1d3UFNHcFNXTEIzTWdYWTJ0ZEVTUTVENk1jTGRJcXd6UzRDeVJfanh5MnY4WEJIcGU6RVBUZjBybUpEZDFKSUozYU5iS1RaWHVTWGtDU0Q3WTJTOEI1T1VQcXRGRGk5M3dPcV9DbGdpZ0dySUNSOFl2THBnR2tTdG5UVHJjX0tMcXo=",
+            "cache-control": "no-cache",
+            //"postman-token": "d28c570e-44a0-9d35-08f8-f83eb4cdd158",
+            "content-type": "application/x-www-form-urlencoded",
+            "accept": "application/json"
+          }
+          };
+
+
+          request(options, function(error, response, body){
+            console.log("request made");
+            // console.log(body);
+            var accessToken=JSON.parse(body).access_token;
+            //res.send(JSON.parse(body));
+
+            var options = { method: 'POST',
+              url: 'https://api.sandbox.paypal.com/v1/payments/payouts',
+              headers: 
+               { 'postman-token': '9899a1cc-d03b-571d-3fb4-3f353d436a37',
+                 'cache-control': 'no-cache',
+                 'content-type': 'application/json',
+                 authorization: 'Bearer '+accessToken },
+              body: 
+               { sender_batch_header: { email_subject: 'You have a payment' },
+                 items: 
+                  [ { recipient_type: 'EMAIL',
+                      amount: { value: req.body.amount, currency: 'USD' }, //add the correct amount
+                      receiver: driverEmail,
+                      note: 'Payment for your trip with '+req.body.name,
+                      sender_item_id: 'A123' } ] },
+              json: true };
+
+            request(options, function (error, response, body) {
+              if (error) throw new Error(error);
+
+              console.log(body);
+              res.send(body);
+            });
+
+          });
+      });
+
+  });
+
 
 
   // handle every other route with index.html, which will contain
   // a script tag to your application's JavaScript file(s).
   app.get('*', function (request, response){
-    response.sendFile(path.resolve('./', 'client', 'index.html'))
+    response.sendFile(path.resolve('./', 'client', 'index.html'));
   });
 
   app.get('*', (req, res) => {

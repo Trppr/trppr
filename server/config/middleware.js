@@ -10,4 +10,26 @@ module.exports = (app, express) => {
   app.use('/', express.static('./client'));
   app.use(morgan('dev'));
 
+  // app.use(expressJWT({secret:'hello world trppr'})
+  //   .unless( {
+  //     path: [
+  //       '/app/spinner.gif',
+  //       '/app',
+  //       '/login',
+  //       '/',
+  //       '/recent',
+  //       '/signUp',
+  //       '/signup',
+  //       '/searchTrips',
+  //       '/create',
+  //       '/cancelTrip',
+  //       '/cancelReservation',
+  //       '/updateUser',
+  //       '/getDriverHistory',
+  //       '/getPassengerHistory',
+  //       '/userProfile'
+  //     ]
+  //   }
+  // ));
+
 };
