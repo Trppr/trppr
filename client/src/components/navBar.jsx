@@ -32,8 +32,8 @@ class NavBar extends Component {
           <ul className = "nav navbar-nav">
             <li className="navItem"><Link to="/create">Create Trip</Link></li>
             <li className="navItem"><Link to="/app">Search Trips</Link></li>
+            <li className="navItem"><Link to="/createReview">Write a Review</Link></li>
           </ul>
-          
           {this.checkAuth()}
         </div>
       </nav>

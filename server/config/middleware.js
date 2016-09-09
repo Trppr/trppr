@@ -33,28 +33,28 @@ module.exports = (app, express) => {
   // ));
 
 
-
-  app.use(expressJWT({secret:'hello world trppr'})
-    .unless( {
-      path: [
-        '/app/spinner.gif',
-        '/app',
-        '/login',
-        '/',
-        '/recent',
-        '/signUp',
-        '/signup',
-        '/searchTrips',
-        '/create',
-        '/cancelTrip',
-        '/cancelReservation',
-        '/updateUser',
-        '/getDriverHistory',
-        '/getPassengerHistory',
-        '/userProfile',
-        '/writeReview',
-        '/getReviews'
-      ]
-    }
-  ));
+//
+//   app.use(expressJWT({secret:'hello world trppr'})
+//     .unless( {
+//       path: [
+//         '/app/spinner.gif',
+//         '/app',
+//         '/login',
+//         '/',
+//         '/recent',
+//         '/signUp',
+//         '/signup',
+//         '/searchTrips',
+//         '/create',
+//         '/cancelTrip',
+//         '/cancelReservation',
+//         '/updateUser',
+//         '/getDriverHistory',
+//         '/getPassengerHistory',
+//         '/userProfile',
+//         '/writeReview',
+//         '/getReviews'
+//       ]
+//     }
+//   ));
 };
