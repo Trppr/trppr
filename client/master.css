@@ -255,3 +255,14 @@ div.geosuggest__suggests-wrapper {
   height: 500px;
   margin: 0 auto;
 }
+
+.review{
+  text-align: center;
+  margin: 2px auto;
+  border: 1px solid black;
+  padding: 3px;
+}
+
+.reviewContainer{
+  text-align: center;
+}
