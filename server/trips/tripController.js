@@ -38,21 +38,22 @@ module.exports = {
   },
 
   reserveSeat: function(req, res){
-    console.log('++line39TRIPCONTROL req.body: ',req.body);
     Trip.findOne({
       where: {
         id: req.body.tripId
       }
     })
     .then(function(trip) {
+      var driverName = trip.get('driverName');
       var numSeats = trip.get('numSeats');
       if(numSeats > 0){
           trip.addPassengers(req.body.passengerId);
           trip.set( { 'numSeats': (numSeats - 1) } );
           trip.save();
           console.log("\033[34m <TRPPR> Seat reserved. \033[0m");
-          email.sendMail(req.body.passengerId);
-          //this spot should have sendMail entered
+          //Emails will be sent to notify the driver and the passenger
+          email.confirmPassengerTrip(req.body.passengerId);
+          email.mailDriver(driverName);
           res.sendStatus(201);
       }
       else{
