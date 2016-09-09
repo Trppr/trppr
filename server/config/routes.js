@@ -2,6 +2,7 @@ const jwt = require('jsonwebtoken');
 const path = require('path');
 const tripController = require('../trips/tripController');
 const userController = require('../users/userController');
+const reviewsController = require('../reviews/reviewsController')
 
 const braintree = require('braintree');
 
@@ -81,8 +82,14 @@ module.exports = (app, express) => {
       }
       res.send(result);
     });
-
   });
+
+
+app.post('/writeReview',
+  reviewsController.createReview);
+
+
+app.get('/getReviews',        reviewsController.getReviews);
 
 
 
