@@ -31,7 +31,7 @@ class Landing extends Component {
   }
 
   onSuggestSelect(suggest) {
-    console.log(suggest.label);
+    console.log(suggest);
     this.setState( {endLocation: suggest.label} );
   }
 
