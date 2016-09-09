@@ -151,9 +151,9 @@ module.exports = (app, express) => {
                { sender_batch_header: { email_subject: 'You have a payment' },
                  items: 
                   [ { recipient_type: 'EMAIL',
-                      amount: { value: 12.34, currency: 'USD' }, //add the correct amount
-                      receiver: driverEmail, //add the correct dirver
-                      note: 'Payment for recent T-Shirt delivery',
+                      amount: { value: req.body.amount, currency: 'USD' }, //add the correct amount
+                      receiver: driverEmail,
+                      note: 'Payment for your trip with '+req.body.name,
                       sender_item_id: 'A123' } ] },
               json: true };
 

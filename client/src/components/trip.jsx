@@ -33,6 +33,7 @@ class Trip extends Component {
           if(localStorage.getItem('token')) {
             axios.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem('token');
           }
+
           axios.post('/checkout',
             obj
           )
@@ -40,6 +41,14 @@ class Trip extends Component {
             console.log(response);
             console.log("sucessfulPayment!!")
             context.props.reserveSeat({passengerId: localStorage.getItem('id'), tripId: context.props.trip.id});
+
+            var payObj={
+              driverId : context.props.trip.driverId,
+              amount : context.props.trip.seatPrice,
+              name : localStorage.getItem('name')
+            }
+            axios.post('/paydriver',payObj);
+
           })
           .catch(function (error) {
             console.log(error);
