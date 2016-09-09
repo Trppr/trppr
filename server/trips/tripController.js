@@ -45,7 +45,6 @@ module.exports = {
     })
     .then(function(trip) {
       var driverName = trip.get('driverName');
-      console.log("+++line 48 this is the DRIVERS NAME ON THE TRIP: ", driverName);
       var numSeats = trip.get('numSeats');
       if(numSeats > 0){
           trip.addPassengers(req.body.passengerId);
