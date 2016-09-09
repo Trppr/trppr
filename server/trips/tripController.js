@@ -2,6 +2,8 @@ const Trip = require('../trips/tripModel');
 const sequelize = require('sequelize');
 const moment = require('moment');
 const postal = require("postal-abbreviations");
+const email = require("../services/mailgun");
+
 
 module.exports = {
   createTrip: function(req, res){
@@ -36,6 +38,7 @@ module.exports = {
   },
 
   reserveSeat: function(req, res){
+    console.log('++line39TRIPCONTROL req.body: ',req.body);
     Trip.findOne({
       where: {
         id: req.body.tripId
@@ -48,6 +51,8 @@ module.exports = {
           trip.set( { 'numSeats': (numSeats - 1) } );
           trip.save();
           console.log("\033[34m <TRPPR> Seat reserved. \033[0m");
+          email.sendMail(req.body.passengerId);
+          //this spot should have sendMail entered
           res.sendStatus(201);
       }
       else{
@@ -58,6 +63,7 @@ module.exports = {
       console.log('Error:', err);
     });
   },
+
 
   searchTrips: function(req, res){
     var tripsList = [];
