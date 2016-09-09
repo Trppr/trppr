@@ -8,6 +8,7 @@ import CreateTrip from './src/components/createTrip.jsx';
 import Signup from './src/components/signUp.jsx';
 import Logout from './src/components/logout.jsx';
 import UserProfile from './src/components/userProfile.jsx';
+import ReviewList from './src/components/reviewList.jsx';
 
 import CreateReview from './src/components/createReview.jsx';
 
@@ -61,5 +62,6 @@ render((
     <Route path='logOut' component={Logout} />
     <Route path='userProfile' component={UserProfile} />
     <Route path='createReview' component={CreateReview} />
+    <Route path='reviewList' component={ReviewList} />
   </Router>
 ), document.getElementById('app'));

@@ -6,9 +6,10 @@ const sequelize = require('sequelize');
 
 module.exports = {
   createReview: function(req, res) {
+    console.log('req.query in reviews ctrllr' ,req)
     User.find({
       where: {
-        email : req.body.email
+        email : req.query.userEmail
       }, attributes : ['id']
     })
     .then(function(data){
@@ -31,14 +32,16 @@ module.exports = {
   },
 
   getReviews: function(req, res){
+
+    console.log('req.body in getreviews: ', req.query)
     User.find({
       where: {
-        email : req.query.email
+        email : req.query.userEmail
       }, attributes : ['id']
     })
     .then(function(data){
       if (data){
-        // console.log("data on ln 41 " , data)
+        console.log("data on ln 44 " , data)
         // console.log("user data: ", data)
         //where attribute fields are updated
         Review.findAll({

@@ -21,6 +21,11 @@ class CreateReview extends Component {
 
   makeReview(revObj) {
     console.log('revObj', revObj);
+    axios.post('/writeReview', revObj)
+    .then(function(response){
+      console.log("response.data: ", response.data)
+      browserHistory.push('/reviewList');
+    })
   }
 
   handleChange(name, e) {
