@@ -13,6 +13,7 @@ class Trip extends Component {
 
     reserveSeat() {
       var context=this;
+        console.log(this.props.trip.driverId);
 
       braintree.setup(localStorage.getItem('payToken'), 'custom', {
         paypal: {
@@ -28,6 +29,7 @@ class Trip extends Component {
           console.log("getting in payment")
           console.log(context.props.trip.seatPrice);
           obj.amount=context.props.trip.seatPrice;
+          obj.driverId=context.props.trip.driverId;
           if(localStorage.getItem('token')) {
             axios.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem('token');
           }
