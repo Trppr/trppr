@@ -36,7 +36,9 @@ class UserProfile extends Component {
       {driverId: localStorage.getItem('id')}
     )
     .then(function(response) {
+      that.setState({joinedTrips: response.data})
       console.log('inside userProfile.jsx /getPassengerHistory' , response);
+
     })
     .catch(function(error) {
       console.log(error);
@@ -142,6 +144,9 @@ class UserProfile extends Component {
         <h1>Created trips</h1>
         <NavBar />
         <UserTrips trips={this.state.createdTrips}/>
+        <NavBar />
+        <h1>Scheduled trips</h1>
+        <UserTrips trips={this.state.joinedTrips}/>
       </div>
     )
   }

@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import {render} from 'react-dom';
 import moment from 'moment';
+import braintree from 'braintree-web';
+import axios from 'axios';
 
 class Trip extends Component {
     constructor(props) {
@@ -10,7 +12,53 @@ class Trip extends Component {
     }
 
     reserveSeat() {
-      this.props.reserveSeat({passengerId: localStorage.getItem('id'), tripId: this.props.trip.id});
+      var context=this;
+        console.log(this.props.trip.driverId);
+
+      braintree.setup(localStorage.getItem('payToken'), 'custom', {
+        paypal: {
+          container: 'paypal-container'+this.props.trip.id,
+          singleUse: true, // Required
+          amount: context.props.trip.seatPrice, // Required
+          currency: 'USD', // Required
+          locale: 'en_us'
+        },
+        onPaymentMethodReceived: function (obj) {
+          //doSomethingWithTheNonce(obj.nonce);
+          console.log(obj);
+          console.log("getting in payment")
+          console.log(context.props.trip.seatPrice);
+          obj.amount=context.props.trip.seatPrice;
+          obj.driverId=context.props.trip.driverId;
+          if(localStorage.getItem('token')) {
+            axios.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem('token');
+          }
+
+          axios.post('/checkout',
+            obj
+          )
+          .then(function (response) {
+            console.log(response);
+            console.log("sucessfulPayment!!")
+            context.props.reserveSeat({passengerId: localStorage.getItem('id'), tripId: context.props.trip.id});
+
+            var payObj={
+              driverId : context.props.trip.driverId,
+              amount : context.props.trip.seatPrice,
+              name : localStorage.getItem('name')
+            }
+            axios.post('/paydriver',payObj);
+
+          })
+          .catch(function (error) {
+            console.log(error);
+          })
+
+
+        }
+      });
+
+
     }
 
     render() {
@@ -61,9 +109,19 @@ class Trip extends Component {
                   <div className="col-sm-12 other">
                       <div id="tripTag">Trip Details:</div>
                       <p>{this.props.trip.description}</p>
-                          <button id="rsvpButton" onClick= {this.reserveSeat} >Book Seat</button>
                   </div>
               </div>
+
+              <div className="row" id="tripRow">
+                <div className="col-sm-12 other">
+                    <div className="reserveAndPay">
+                    <button id="rsvpButton" onClick= {this.reserveSeat} >Book Seat</button>
+                    <div id={"paypal-container"+this.props.trip.id}></div>
+                    </div>
+                </div> 
+              </div>
+
+
 
           </div>
       );
